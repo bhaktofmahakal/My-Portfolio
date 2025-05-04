@@ -2,7 +2,7 @@
 // Allow requests from your Vercel domain
 header("Access-Control-Allow-Origin: *"); // Allow requests from any domain for testing
 // Later you can restrict this to your specific domains:
-header("Access-Control-Allow-Origin: https://portfolio-2-e4ig.vercel.app");
+// header("Access-Control-Allow-Origin: https://portfolio-2-e4ig.vercel.app");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
