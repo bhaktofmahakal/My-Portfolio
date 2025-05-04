@@ -1,17 +1,4 @@
 <?php
-// Allow requests from your Vercel domain
-// header("Access-Control-Allow-Origin: *"); // Allow requests from any domain for testing
-// Later you can restrict this to your specific domain:
-header("Access-Control-Allow-Origin: https://portfolio-2-e4ig.vercel.app/");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
-
-// Handle preflight OPTIONS request
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
-
 require_once 'includes/config.php';
 
 // Only process POST requests

@@ -550,7 +550,7 @@ function submitContactForm(event) {
     // Backend URL - points to your PHP backend
     const backendUrl = window.location.hostname === 'localhost' 
         ? 'process_contact.php' 
-        : 'https://your-domain.com/process_contact.php'; // Replace with your actual domain
+        : 'https://utsav.infinityfreeapp.com/process_contact.php'; // Replace with your actual InfinityFree domain
     
     // Send data to server using fetch API
     fetch(backendUrl, {

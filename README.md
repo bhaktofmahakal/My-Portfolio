@@ -22,20 +22,51 @@ A professional portfolio website showcasing skills, projects, and contact inform
 
 ### Backend Deployment (PHP/MySQL)
 
-For detailed backend deployment instructions, please refer to the [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) file.
-
-Here's a quick summary:
-
 1. **Choose a PHP Hosting Provider**
-   - Options include: InfinityFree (Free), 000webhost (Free), Hostinger, NameCheap, or Bluehost
+   - Recommended options: Hostinger, DigitalOcean, or any PHP/MySQL hosting service
 
 2. **Set Up the Database**
-   - Create a new MySQL database on your hosting
-   - Import the database schema from `database/setup.sql`
+   - Create a new MySQL database
+   - Create the required tables using the following SQL:
 
-3. **Configure Database Connection**
-   - Copy `includes/config.production.php` to `includes/config.php`
-   - Update with your hosting database credentials:
+```sql
+-- Create admin_users table
+CREATE TABLE admin_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create messages table
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    subject VARCHAR(200) NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM('new', 'read', 'handled') DEFAULT 'new',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create rate_limits table
+CREATE TABLE rate_limits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ip_address VARCHAR(45) NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX (ip_address, action)
+);
+```
+
+3. **Upload Backend Files**
+   - Upload the following files/folders to your hosting:
+     - `process_contact.php`
+     - `includes/` directory
+     - `admin/` directory
+
+4. **Configure Database Connection**
+   - Update `includes/config.php` with your database credentials:
    ```php
    define('DB_HOST', 'your-database-host');
    define('DB_USER', 'your-database-username');
@@ -43,22 +74,16 @@ Here's a quick summary:
    define('DB_NAME', 'your-database-name');
    ```
 
-4. **Upload Backend Files**
-   - Upload the following files/folders to your hosting:
-     - `process_contact_production.php` (rename to `process_contact.php` on the server)
-     - `includes/` directory (with your updated config.php)
-     - `admin/` directory
+5. **Set Up Admin User**
+   - Navigate to `your-backend-url.com/admin/setup.php` in your browser
+   - This will create the default admin user
+   - Delete `setup.php` after running it for security
 
-5. **Update Frontend Configuration**
-   - Update the backend URL in `portfolio-advanced.js`:
+6. **Update Frontend Configuration**
+   - In the deployed frontend code, update the backend URL in `portfolio-advanced.js`:
    ```javascript
-   const backendUrl = window.location.hostname === 'localhost' 
-       ? 'process_contact.php' 
-       : 'https://your-domain.com/process_contact.php'; // Replace with your actual domain
+   const backendUrl = 'https://your-backend-url.com/process_contact.php';
    ```
-
-6. **Secure Your Admin Panel**
-   - Log in to your admin panel and change the default password
 
 ## Local Development
 
