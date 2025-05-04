@@ -1,5 +1,37 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileOverlay = document.querySelector('.mobile-overlay');
+    const body = document.body;
+    
+    if (hamburger && mobileMenu && mobileOverlay) {
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+        
+        mobileOverlay.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+    }
     // Preloader
     setTimeout(function() {
         document.querySelector('.preloader').style.opacity = '0';
@@ -8,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }, 1500);
 
-    // Custom cursor
+    // Custom cursor - optimized version
     try {
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
@@ -25,24 +57,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 cursor.style.display = 'block';
                 cursorFollower.style.display = 'block';
                 
+                // Use requestAnimationFrame for smoother performance
+                let mouseX = 0, mouseY = 0;
+                let cursorX = 0, cursorY = 0;
+                let followerX = 0, followerY = 0;
+                
+                // Track mouse position
                 document.addEventListener('mousemove', function(e) {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                    
-                    setTimeout(function() {
-                        cursorFollower.style.left = e.clientX + 'px';
-                        cursorFollower.style.top = e.clientY + 'px';
-                    }, 80);
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
                 });
+                
+                // Animate cursor with requestAnimationFrame
+                function animateCursor() {
+                    // Update cursor position immediately
+                    cursorX = mouseX;
+                    cursorY = mouseY;
+                    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+                    
+                    // Update follower with smooth interpolation
+                    followerX += (mouseX - followerX) * 0.2;
+                    followerY += (mouseY - followerY) * 0.2;
+                    cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+                    
+                    requestAnimationFrame(animateCursor);
+                }
+                
+                // Start animation
+                requestAnimationFrame(animateCursor);
         
                 document.addEventListener('mousedown', function() {
-                    cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
-                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
+                    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(0.7)`;
+                    cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%) scale(0.7)`;
                 });
         
                 document.addEventListener('mouseup', function() {
-                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) scale(1)`;
+                    cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%) scale(1)`;
                 });
         
                 // Add hover effect to links and buttons
@@ -50,17 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 hoverElements.forEach(element => {
                     element.addEventListener('mouseenter', function() {
-                        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                        cursor.style.backgroundColor = 'transparent';
-                        cursor.style.border = '1px solid var(--primary-color)';
-                        cursorFollower.style.opacity = '0.3';
+                        cursor.classList.add('cursor-hover');
+                        cursorFollower.classList.add('cursor-hover');
                     });
                     
                     element.addEventListener('mouseleave', function() {
-                        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                        cursor.style.backgroundColor = 'var(--primary-color)';
-                        cursor.style.border = 'none';
-                        cursorFollower.style.opacity = '1';
+                        cursor.classList.remove('cursor-hover');
+                        cursorFollower.classList.remove('cursor-hover');
                     });
                 });
             } else {
@@ -74,11 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Enhanced Mobile menu functionality
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-menu');
     const mobileClose = document.querySelector('.mobile-close');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const body = document.body;
+    // Use existing mobileNavLinks variable or create it if it doesn't exist
+    const enhancedMobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     
     // Function to toggle mobile menu
     function toggleMobileMenu(show) {
@@ -113,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Close menu when a nav link is clicked
-    mobileNavLinks.forEach(link => {
+    enhancedMobileNavLinks.forEach(link => {
         link.addEventListener('click', function() {
             toggleMobileMenu(false);
         });
@@ -547,17 +592,64 @@ function submitContactForm(event) {
     // Get form data
     const formData = new FormData(form);
     
-    // Backend URL - points to your PHP backend
-    const backendUrl = window.location.hostname === 'localhost' 
-        ? 'process_contact.php' 
-        : 'https://utsav.infinityfreeapp.com/process_contact.php'; // Replace with your actual InfinityFree domain
+    // Convert FormData to JSON for API route
+    const formJson = {};
+    formData.forEach((value, key) => {
+        formJson[key] = value;
+    });
+    
+    // For development purposes - simulate successful submission
+    // This prevents the 405 Method Not Allowed error when testing locally
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // Simulate successful submission after a short delay
+        setTimeout(() => {
+            // Show success message
+            if (window.showFormStatus) {
+                window.showFormStatus("Message sent successfully! (Development Mode)", true);
+            } else {
+                statusDiv.innerHTML = "Message sent successfully! (Development Mode)";
+                statusDiv.className = 'form-status success';
+            }
+            
+            // Reset form
+            form.reset();
+            
+            // Re-enable the submit button
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+            
+            // Clear the status message after 5 seconds
+            setTimeout(() => {
+                if (window.showFormStatus) {
+                    statusDiv.classList.add('hidden');
+                } else {
+                    statusDiv.innerHTML = '';
+                    statusDiv.className = 'form-status';
+                }
+            }, 5000);
+        }, 1000);
+        
+        return false; // Prevent default form submission
+    }
+    
+    // For production - use actual backend
+    const backendUrl = 'https://utsav.infinityfreeapp.com/process_contact.php'
     
     // Send data to server using fetch API
     fetch(backendUrl, {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formJson)
     })
-    .then(response => response.json())
+    .then(response => {
+        // Check if response is ok before trying to parse JSON
+        if (!response.ok) {
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
             // Form submission successful
@@ -595,10 +687,11 @@ function submitContactForm(event) {
     .catch(error => {
         console.error('Error:', error);
         
+        // Show error message
         if (window.showFormStatus) {
-            window.showFormStatus('An error occurred. Please try again later.', false);
+            window.showFormStatus("There was an error sending your message. Please try again later.", false);
         } else {
-            statusDiv.innerHTML = 'An error occurred. Please try again later.';
+            statusDiv.innerHTML = "There was an error sending your message. Please try again later.";
             statusDiv.className = 'form-status error';
         }
         

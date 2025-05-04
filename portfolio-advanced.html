@@ -34,39 +34,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (CDN for development) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6c63ff',
-                        secondary: '#f50057',
-                        accent: '#00bfa6',
-                        dark: '#121212',
-                        light: '#f8f9fa'
+                        primary: {
+                            DEFAULT: '#5e60ce',
+                            light: '#7678ed',
+                            dark: '#4a4cc7'
+                        },
+                        secondary: {
+                            DEFAULT: '#ff5678',
+                            light: '#ff7a94',
+                            dark: '#e63e60'
+                        },
+                        accent: {
+                            DEFAULT: '#00d4b1',
+                            light: '#33e6c8',
+                            dark: '#00b396'
+                        }
                     },
                     fontFamily: {
-                        poppins: ['Poppins', 'sans-serif']
+                        sans: ['Poppins', 'sans-serif']
                     },
                     animation: {
-                        'slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-slow': 'bounce 3s infinite'
+                        'bounce-slow': 'bounce 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'spin-slow': 'spin 6s linear infinite',
+                        'tilt': 'tilt 10s infinite linear'
                     },
-                    screens: {
-                        'xs': '480px',
-                        'sm': '640px',
-                        'md': '768px',
-                        'lg': '1024px',
-                        'xl': '1280px',
-                        '2xl': '1536px',
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        tilt: {
+                            '0%, 50%, 100%': {
+                                transform: 'rotate(0deg)',
+                            },
+                            '25%': {
+                                transform: 'rotate(2deg)',
+                            },
+                            '75%': {
+                                transform: 'rotate(-2deg)',
+                            },
+                        }
                     }
                 }
-            },
-            darkMode: 'class'
+            }
         }
     </script>
+    <!-- Note: For production, compile Tailwind CSS using 'npm run build:css' -->
     <script>
         // Debug script to check for errors
         window.addEventListener('error', function(e) {
@@ -94,83 +116,93 @@
     <div class="cursor-follower"></div>
 
     <!-- Header with Tailwind CSS -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 dark:bg-gray-900 bg-white bg-opacity-90 dark:bg-opacity-90 backdrop-blur-lg border-b border-primary/10">
-        <div class="container mx-auto px-6 flex justify-between items-center h-20 relative">
-            <!-- Logo -->
+    <header class="fixed top-0 left-0 w-full z-[100] transition-all duration-300 dark:bg-gray-900 bg-gray-900 bg-opacity-95 backdrop-blur-lg border-b border-gray-800 shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 flex items-center justify-between h-16 relative">
+            <!-- Logo - Left Aligned -->
             <div class="flex items-center relative z-10">
-                <h2 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    Utsav Mishra
-                </h2>
-                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-secondary to-accent ml-2"></div>
-                <div class="absolute -top-2 -right-10 bg-gradient-to-r from-accent to-accent-dark text-white text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold transform rotate-3 shadow-lg">
-                    Developer
+                <div class="relative logo-container">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide logo-text">
+                        Utsav
+                    </h2>
+                    <span class="developer-badge bg-accent text-white text-[9px] px-2 py-0.5 rounded-md uppercase tracking-wider font-bold shadow-lg absolute -top-3 right-0 transform -rotate-2">Developer</span>
                 </div>
             </div>
             
-            <!-- Navigation -->
-            <nav class="hidden lg:block">
-                <ul class="flex space-x-6">
+            <!-- Navigation - Centered -->
+            <nav class="flex-1 flex justify-center">
+                <ul class="flex items-center justify-center space-x-6 xl:space-x-8">
                     <li>
-                        <a href="#home" class="nav-link flex items-center gap-1.5 px-3 py-2 rounded-md text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 group">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-home text-xs text-primary"></i>
+                        <a href="#home" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-white hover:text-accent transition-all duration-300 group">
+                            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-home text-xs text-accent"></i>
                             </div>
-                            <span>Home</span>
+                            <span class="font-medium">Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#about" class="nav-link flex items-center gap-1.5 px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 group">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-user text-xs text-primary"></i>
+                        <a href="#about" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-accent transition-all duration-300 group">
+                            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-user text-xs text-accent"></i>
                             </div>
-                            <span>About</span>
+                            <span class="font-medium">About</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#skills" class="nav-link flex items-center gap-1.5 px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 group">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-code text-xs text-primary"></i>
+                        <a href="#skills" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-accent transition-all duration-300 group">
+                            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-code text-xs text-accent"></i>
                             </div>
-                            <span>Skills</span>
+                            <span class="font-medium">Skills</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#projects" class="nav-link flex items-center gap-1.5 px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 group">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-project-diagram text-xs text-primary"></i>
+                        <a href="#projects" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-accent transition-all duration-300 group">
+                            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-project-diagram text-xs text-accent"></i>
                             </div>
-                            <span>Projects</span>
+                            <span class="font-medium">Projects</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#certifications" class="nav-link flex items-center gap-1.5 px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 group">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-certificate text-xs text-primary"></i>
+                        <a href="#certifications" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-accent transition-all duration-300 group">
+                            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-certificate text-xs text-accent"></i>
                             </div>
-                            <span>Certifications</span>
+                            <span class="font-medium">Certifications</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#contact" class="nav-link flex items-center gap-1.5 px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 group">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-envelope text-xs text-primary"></i>
+                        <a href="#contact" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-accent transition-all duration-300 group">
+                            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-all duration-300">
+                                <i class="fas fa-envelope text-xs text-accent"></i>
                             </div>
-                            <span>Contact</span>
+                            <span class="font-medium">Contact</span>
                         </a>
                     </li>
                 </ul>
             </nav>
             
             <!-- Header Actions -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center">
                 <!-- Theme Toggle -->
                 <button 
                     aria-label="Toggle dark mode" 
-                    class="theme-toggle flex items-center gap-2 px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                    class="theme-toggle h-8 flex items-center justify-center gap-2 px-3 py-1.5 rounded-md bg-gray-800 hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-gray-900 shadow-sm"
                     onclick="toggleTheme()"
                 >
-                    <i class="fas fa-moon text-primary" aria-hidden="true"></i>
-                    <span class="theme-label hidden md:inline text-gray-700 dark:text-gray-300">Dark Mode</span>
+                    <i class="fas fa-sun text-accent" aria-hidden="true"></i>
+                    <span class="theme-label inline text-gray-300 font-medium text-sm">Light Mode</span>
+                </button>
+                
+                <!-- Mobile Menu Button - Hidden -->
+                <button 
+                    aria-label="Toggle mobile menu" 
+                    class="hamburger hidden w-10 h-10 flex-col justify-center items-center rounded-full bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-gray-900 shadow-sm"
+                >
+                    <span class="sr-only">Open main menu</span>
+                    <div class="line w-5 h-0.5 bg-accent rounded-full mb-1 transition-all duration-300"></div>
+                    <div class="line w-5 h-0.5 bg-accent rounded-full mb-1 transition-all duration-300"></div>
+                    <div class="line w-5 h-0.5 bg-accent rounded-full transition-all duration-300"></div>
                 </button>
                 <script>
                     function toggleTheme() {
@@ -183,15 +215,23 @@
                             html.classList.add('dark-theme');
                             html.classList.add('dark');
                             localStorage.setItem('theme', 'dark');
-                            document.querySelector('.theme-toggle i').className = 'fas fa-sun text-primary';
+                            document.querySelector('.theme-toggle i').className = 'fas fa-sun text-accent';
                             document.querySelector('.theme-toggle .theme-label').textContent = 'Light Mode';
+                            document.querySelector('.theme-toggle').classList.remove('bg-gray-100');
+                            document.querySelector('.theme-toggle').classList.remove('hover:bg-gray-200');
+                            document.querySelector('.theme-toggle').classList.add('bg-gray-800');
+                            document.querySelector('.theme-toggle').classList.add('hover:bg-gray-700');
                         } else {
                             body.classList.remove('dark-theme');
                             html.classList.remove('dark-theme');
                             html.classList.remove('dark');
                             localStorage.setItem('theme', 'light');
-                            document.querySelector('.theme-toggle i').className = 'fas fa-moon text-primary';
+                            document.querySelector('.theme-toggle i').className = 'fas fa-moon text-accent';
                             document.querySelector('.theme-toggle .theme-label').textContent = 'Dark Mode';
+                            document.querySelector('.theme-toggle').classList.add('bg-gray-100');
+                            document.querySelector('.theme-toggle').classList.add('hover:bg-gray-200');
+                            document.querySelector('.theme-toggle').classList.remove('bg-gray-800');
+                            document.querySelector('.theme-toggle').classList.remove('hover:bg-gray-700');
                         }
                         
                         // Update mobile toggle if it exists
@@ -202,29 +242,40 @@
                     }
                 </script>
                 
-                <!-- Mobile Menu Button -->
-                <button aria-label="Toggle mobile menu" class="hamburger lg:hidden w-10 h-10 flex flex-col justify-center items-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                <!-- Mobile Menu Button - Hidden -->
+                <button 
+                    aria-label="Toggle mobile menu" 
+                    class="hamburger hidden w-10 h-10 flex-col justify-center items-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900 shadow-sm"
+                >
                     <span class="sr-only">Open main menu</span>
-                    <div class="line w-5 h-0.5 bg-primary rounded-full mb-1"></div>
-                    <div class="line w-5 h-0.5 bg-primary rounded-full mb-1"></div>
-                    <div class="line w-5 h-0.5 bg-primary rounded-full"></div>
+                    <div class="line w-5 h-0.5 bg-primary rounded-full mb-1 transition-all duration-300"></div>
+                    <div class="line w-5 h-0.5 bg-primary rounded-full mb-1 transition-all duration-300"></div>
+                    <div class="line w-5 h-0.5 bg-primary rounded-full transition-all duration-300"></div>
                 </button>
             </div>
         </div>
         
         <!-- Progress Bar -->
-        <div class="header-progress-bar absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary via-secondary to-accent"></div>
+        <div class="header-progress-bar absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-accent via-accent-light to-primary"></div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 mobile-overlay"></div>
+    
     <!-- Mobile Menu with Tailwind -->
-    <div class="fixed top-0 right-[-100%] w-full sm:w-[350px] h-full bg-white dark:bg-gray-900 shadow-2xl z-50 transition-all duration-300 mobile-menu overflow-y-auto" aria-hidden="true">
+    <div class="fixed top-0 right-[-100%] w-full sm:w-[350px] h-full bg-white dark:bg-gray-900 shadow-2xl z-50 transition-all duration-500 ease-in-out mobile-menu overflow-y-auto" aria-hidden="true">
         <!-- Mobile Menu Header -->
         <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-800">
             <div class="flex items-center">
-                <h2 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    Utsav Mishra
-                </h2>
-                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-secondary to-accent ml-2"></div>
+                <div class="flex flex-col">
+                    <div class="flex items-center">
+                        <h2 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            Utsav Mishra
+                        </h2>
+                        <div class="w-2 h-2 rounded-full bg-gradient-to-r from-secondary to-accent ml-2"></div>
+                    </div>
+                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Full Stack Developer</span>
+                </div>
             </div>
             <button aria-label="Close mobile menu" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 mobile-close focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                 <span class="sr-only">Close menu</span>
@@ -237,7 +288,7 @@
             <!-- Navigation Links -->
             <nav aria-label="Mobile navigation">
                 <ul class="space-y-3">
-                    <li>
+                    <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item">
                         <a href="#home" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                             <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                                 <i class="fas fa-home text-primary"></i>
@@ -245,7 +296,7 @@
                             <span class="font-medium">Home</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item" style="transition-delay: 50ms;">
                         <a href="#about" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                             <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                                 <i class="fas fa-user text-primary"></i>
@@ -253,7 +304,7 @@
                             <span class="font-medium">About</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item" style="transition-delay: 100ms;">
                         <a href="#skills" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                             <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                                 <i class="fas fa-code text-primary"></i>
@@ -261,7 +312,7 @@
                             <span class="font-medium">Skills</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item" style="transition-delay: 150ms;">
                         <a href="#projects" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                             <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                                 <i class="fas fa-project-diagram text-primary"></i>
@@ -269,24 +320,24 @@
                             <span class="font-medium">Projects</span>
                         </a>
                     </li>
-                <li>
-                    <a href="#certifications" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2">
+                <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item" style="transition-delay: 200ms;">
+                    <a href="#certifications" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                             <i class="fas fa-certificate text-primary"></i>
                         </div>
                         <span class="font-medium">Certifications</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#achievements" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2">
+                <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item" style="transition-delay: 250ms;">
+                    <a href="#achievements" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                             <i class="fas fa-trophy text-primary"></i>
                         </div>
                         <span class="font-medium">Achievements</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#contact" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2">
+                <li class="transform transition-transform duration-300 opacity-0 translate-x-8 mobile-nav-item" style="transition-delay: 300ms;">
+                    <a href="#contact" class="mobile-nav-link flex items-center gap-3 p-3 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all duration-300 transform hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
                             <i class="fas fa-envelope text-primary"></i>
                         </div>
@@ -296,11 +347,11 @@
             </ul>
             
             <!-- Theme Toggle -->
-            <div class="mt-6 mb-6 py-4 border-t border-b border-gray-200 dark:border-gray-800">
+            <div class="mt-6 mb-6 py-4 border-t border-b border-gray-200 dark:border-gray-800 transform transition-all duration-500 opacity-0 translate-y-4 mobile-theme-container">
                 <div class="flex items-center justify-between">
                     <span class="text-gray-700 dark:text-gray-300">Dark Mode</span>
                     <div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full">
-                        <input type="checkbox" id="mobile-theme-toggle" class="absolute w-6 h-6 opacity-0 z-10 cursor-pointer" onchange="toggleTheme()">
+                        <input type="checkbox" id="mobile-theme-toggle" class="absolute w-6 h-6 opacity-0 z-[101] cursor-pointer" onchange="toggleTheme()">
                         <label for="mobile-theme-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer">
                             <span class="dot absolute inset-y-0 left-0 flex items-center justify-center w-6 h-6 bg-white rounded-full shadow transform transition-transform duration-300 ease-in-out">
                                 <i class="fas fa-moon text-xs text-primary"></i>
@@ -338,7 +389,7 @@
             </div>
             
             <!-- Social Icons -->
-            <div class="flex justify-center space-x-4">
+            <div class="flex justify-center space-x-4 transform transition-all duration-500 opacity-0 translate-y-4 mobile-social-container">
                 <a href="https://www.instagram.com/bhakt_of_mahakal9721" target="_blank" 
                    class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gradient-to-r hover:from-primary hover:to-secondary transform hover:-translate-y-1 transition-all duration-300">
                     <i class="fab fa-instagram text-white"></i>
@@ -360,14 +411,14 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section relative overflow-hidden min-h-screen flex items-center py-20 md:py-0">
-        <div id="particles-js" class="particles-container"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
-            <div class="hero-content flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
-                <div class="hero-text w-full md:w-1/2 text-center md:text-left animate__animated animate__fadeInLeft">
-                    <h1 class="glitch text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" data-text="Utsav Mishra">Utsav Mishra</h1>
-                    <p class="hero-subtitle text-xl sm:text-2xl mb-4">I am a <span class="typed-text"></span></p>
-                    <p class="hero-description text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">Love Coding & Creating Digital Experiences</p>
+    <section id="home" class="relative overflow-hidden min-h-screen flex items-center pt-32 pb-20 md:pt-40 md:pb-32">
+        <div id="particles-js" class="absolute inset-0 z-0"></div>
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
+                <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent">Utsav Mishra</h1>
+                    <p class="text-xl sm:text-2xl mb-4 text-gray-800 dark:text-gray-200">I am a <span class="typed-text font-semibold text-primary"></span></p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto md:mx-0 text-lg">Love Coding & Creating Digital Experiences</p>
                     <div class="hero-buttons flex flex-wrap justify-center md:justify-start gap-4 mb-8">
                         <a href="#projects" class="btn btn-primary animate__animated animate__pulse animate__infinite animate__slower px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">View Projects</a>
                         <a href="#contact" class="btn btn-secondary px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 dark:focus:ring-offset-gray-900">Contact Me</a>
@@ -387,18 +438,18 @@
                         </a>
                     </div>
                 </div>
-                <div class="hero-image w-full md:w-1/2 flex justify-center md:justify-end animate__animated animate__fadeInRight">
-                    <div class="image-container relative mx-auto md:mx-0 w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[350px] md:h-[350px]">
-                        <div class="image-wrapper relative w-full h-full overflow-hidden rounded-2xl">
-                            <img src="utsav-mishra.jpg" alt="Utsav Mishra Profile Picture" class="profile-image w-full h-full object-cover">
-                            <div class="image-shape"></div>
+                <div class="w-full md:w-1/2 flex justify-center md:justify-end" data-aos="fade-left">
+                    <div class="relative mx-auto md:mx-0 w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[350px] md:h-[350px]">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 blur-2xl"></div>
+                        <div class="relative w-full h-full overflow-hidden rounded-2xl border-4 border-white dark:border-gray-800 shadow-2xl">
+                            <img src="utsav-mishra.jpg" alt="Utsav Mishra Profile Picture" class="w-full h-full object-cover">
                         </div>
-                        <!-- Floating icons with responsive positioning using Tailwind classes -->
-                        <div class="floating-icon absolute w-10 h-10 md:w-12 md:h-12 top-[-15px] right-[10px] md:top-[-30px] md:right-[20px]">
-                            <i class="fab fa-html5"></i>
+                        <!-- Floating icons with responsive positioning -->
+                        <div class="absolute w-14 h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg top-[-15px] right-[10px] md:top-[-30px] md:right-[20px] animate-bounce-slow">
+                            <i class="fab fa-html5 text-2xl text-primary"></i>
                         </div>
-                        <div class="floating-icon absolute w-10 h-10 md:w-12 md:h-12 bottom-[20px] left-[-10px] md:bottom-[40px] md:left-[-20px]">
-                            <i class="fab fa-css3-alt"></i>
+                        <div class="absolute w-14 h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg bottom-[20px] left-[-10px] md:bottom-[40px] md:left-[-20px] animate-bounce-slow animation-delay-500">
+                            <i class="fab fa-css3-alt text-2xl text-secondary"></i>
                         </div>
                         <div class="floating-icon absolute w-10 h-10 md:w-12 md:h-12 bottom-[-10px] right-[15px] md:bottom-[-20px] md:right-[30px]">
                             <i class="fab fa-js"></i>
@@ -428,73 +479,140 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white dark:bg-gray-900">
-        <div class="container mx-auto px-4">
+    <section id="about" class="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full -ml-48 -mb-48"></div>
+        
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Section Header -->
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">About Me</h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+                <span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">DISCOVER</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
             </div>
             
             <!-- About Content -->
-            <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
-                <!-- Profile Image -->
+            <div class="flex flex-col lg:flex-row items-center gap-16 mb-20">
+                <!-- Profile Image with Animated Border -->
                 <div class="lg:w-2/5" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="relative rounded-xl overflow-hidden shadow-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30 mix-blend-overlay"></div>
-                        <img src="utsav-mishra.jpg" alt="About Me Image" class="w-full h-auto object-cover">
-                        <div class="absolute -bottom-1 -right-1 w-32 h-32 bg-white dark:bg-gray-800 rounded-full flex flex-col items-center justify-center shadow-xl animate-bounce animate-slow">
-                            <span class="text-3xl font-bold text-primary">3+</span>
-                            <span class="text-sm text-gray-600 dark:text-gray-300 text-center">Years of<br>Experience</span>
+                    <div class="relative group">
+                        <!-- Animated Border -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary via-secondary to-accent rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                        
+                        <!-- Image Container -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl p-2 bg-white dark:bg-gray-800">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 mix-blend-overlay rounded-2xl"></div>
+                            <img src="utsav-mishra.jpg" alt="Utsav Mishra - Full Stack Developer" class="w-full h-auto max-h-[450px] object-cover object-center rounded-xl">
+                            
+                            <!-- Experience Badge -->
+                            <div class="absolute -bottom-5 -right-5 w-36 h-36 bg-white dark:bg-gray-800 rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-white dark:border-gray-800 animate-float">
+                                <span class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">2+</span>
+                                <span class="text-sm text-gray-600 dark:text-gray-300 text-center font-medium">Years of<br>Experience</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- About Text -->
                 <div class="lg:w-3/5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                    <h3 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Hello! I'm <span class="text-primary">Utsav Mishra</span>, a passionate Full Stack Developer</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">I specialize in creating beautiful, functional, and user-friendly digital experiences. With expertise in PHP, Laravel, React.js, and MySQL, I bring ideas to life through clean code and innovative solutions.</p>
-                    <p class="text-gray-600 dark:text-gray-300 mb-8">As a freelance developer, I've built e-commerce platforms, real estate websites, and online grocery stores, optimizing performance and improving user retention by 20%. I'm passionate about creating responsive, accessible web applications that deliver exceptional user experiences.</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-white leading-tight">
+                        Hello! I'm <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Utsav Mishra</span>, 
+                        <span class="relative inline-block">
+                            <span class="relative z-10">a passionate Full Stack Developer</span>
+                            <span class="absolute bottom-1 left-0 w-full h-3 bg-primary/20 -z-10"></span>
+                        </span>
+                    </h3>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
+                        I specialize in creating beautiful, functional, and user-friendly digital experiences. With expertise in PHP, Laravel, React.js, and MySQL, I bring ideas to life through clean code and innovative solutions.
+                    </p>
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+                        As a freelance developer, I've built e-commerce platforms, real estate websites, and online grocery stores, optimizing performance and improving user retention by 20%. I'm passionate about creating responsive, accessible web applications that deliver exceptional user experiences.
+                    </p>
+                    
+                    <!-- Key Skills Pills -->
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">PHP</span>
+                        <span class="px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium">Laravel</span>
+                        <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">React.js</span>
+                        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">MySQL</span>
+                        <span class="px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium">Tailwind CSS</span>
+                        <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">UI/UX Design</span>
+                    </div>
                     
                     <!-- Buttons -->
-                    <div class="flex flex-wrap gap-4 mb-12">
-                        <a href="utsavm-resume.pdf" target="_blank" class="px-8 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/30 animate-pulse animate-slow">
+                    <div class="flex flex-wrap gap-4 mt-10">
+                        <a href="utsavm-resume.pdf" target="_blank" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1 flex items-center">
                             <i class="fas fa-download mr-2"></i> Download CV
                         </a>
-                        <a href="#contact" class="px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:border-primary hover:text-primary transition-all">
+                        <a href="#contact" class="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:border-primary hover:text-primary transition-all duration-300 transform hover:-translate-y-1 flex items-center">
                             <i class="fas fa-paper-plane mr-2"></i> Hire Me
                         </a>
                     </div>
                 </div>
             </div>
             
+            <!-- Personal Information Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <!-- Location Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border-b-4 border-primary transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" data-aos="zoom-in">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-map-marker-alt text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-3 text-center">Location</h4>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">Pratapgarh, Uttar Pradesh, India</p>
+                </div>
+                
+                <!-- Languages Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border-b-4 border-secondary transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-language text-2xl text-secondary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-3 text-center">Languages</h4>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">English (Fluent), Hindi (Native)</p>
+                </div>
+                
+                <!-- Availability Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border-b-4 border-accent transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-accent/20 to-accent/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-clock text-2xl text-accent"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-3 text-center">Availability</h4>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">Available for freelance projects</p>
+                </div>
+            </div>
+            
             <!-- Education & Experience Timeline -->
             <div class="mt-20">
-                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Education & Experience</h3>
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-3">MY JOURNEY</span>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Education & Experience</h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-secondary to-accent mx-auto rounded-full"></div>
+                </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <!-- Education Timeline -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8" data-aos="fade-right">
-                        <div class="flex items-center mb-8">
-                            <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
-                                <i class="fas fa-graduation-cap text-xl text-primary"></i>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:shadow-xl" data-aos="fade-right">
+                        <div class="flex items-center mb-10">
+                            <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-xl text-white"></i>
                             </div>
                             <h4 class="text-2xl font-bold text-gray-800 dark:text-white">Education</h4>
                         </div>
                         
-                        <div class="relative pl-8 border-l-2 border-primary/30">
-                            <div class="mb-8 relative">
-                                <div class="absolute -left-[25px] top-0 w-6 h-6 bg-primary rounded-full"></div>
-                                <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-md">
-                                    <h5 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Bachelor of Computer Applications (B.C.A.)</h5>
-                                    <p class="text-primary font-medium mb-2">Dr. Ram Manohar Lohia Awadh University</p>
-                                    <div class="flex items-center text-gray-500 dark:text-gray-400 mb-2">
+                        <div class="relative pl-16 border-l-2 border-primary/30">
+                            <div class="mb-10 relative">
+                                <div class="absolute -left-[29px] top-0 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                                    <h5 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Bachelor of Computer Applications (B.C.A.)</h5>
+                                    <p class="text-primary font-medium mb-3">Dr. Ram Manohar Lohia Awadh University</p>
+                                    <div class="flex items-center text-gray-500 dark:text-gray-400">
                                         <i class="fas fa-calendar-alt mr-2"></i>
                                         <span>Nov 2023 - Nov 2026</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-500 dark:text-gray-400">
-                                        <i class="fas fa-star mr-2"></i>
-                                        <span>CGPA: 7.5/10</span>
                                     </div>
                                 </div>
                             </div>
@@ -502,82 +620,44 @@
                     </div>
                     
                     <!-- Experience Timeline -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8" data-aos="fade-left">
-                        <div class="flex items-center mb-8">
-                            <div class="w-12 h-12 flex items-center justify-center bg-secondary/10 rounded-full mr-4">
-                                <i class="fas fa-briefcase text-xl text-secondary"></i>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:shadow-xl" data-aos="fade-left">
+                        <div class="flex items-center mb-10">
+                            <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary rounded-full mr-4">
+                                <i class="fas fa-briefcase text-xl text-white"></i>
                             </div>
                             <h4 class="text-2xl font-bold text-gray-800 dark:text-white">Experience</h4>
                         </div>
                         
-                        <div class="relative pl-8 border-l-2 border-secondary/30">
-                            <div class="mb-8 relative">
-                                <div class="absolute -left-[25px] top-0 w-6 h-6 bg-secondary rounded-full"></div>
-                                <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg shadow-md">
-                                    <h5 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Freelance Web Developer</h5>
-                                    <p class="text-secondary font-medium mb-2">Self-employed</p>
-                                    <div class="flex items-center text-gray-500 dark:text-gray-400 mb-2">
+                        <div class="relative pl-16 border-l-2 border-secondary/30">
+                            <div class="mb-10 relative">
+                                <div class="absolute -left-[29px] top-0 w-8 h-8 bg-gradient-to-r from-secondary to-accent rounded-full flex items-center justify-center">
+                                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                                    <h5 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Freelance Web Developer</h5>
+                                    <p class="text-secondary font-medium mb-3">Self-employed</p>
+                                    <div class="flex items-center text-gray-500 dark:text-gray-400 mb-3">
                                         <i class="fas fa-calendar-alt mr-2"></i>
-                                        <span>Oct 2023 - Present</span>
+                                        <span>Oct 2022 - Present</span>
                                     </div>
-                                    <p class="text-gray-600 dark:text-gray-300">Developing custom websites and web applications for clients across various industries.</p>
+                                    <p class="text-gray-600 dark:text-gray-300">Developing custom websites and web applications for clients across various industries. Specializing in e-commerce, real estate, and business websites.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Personal Information -->
-            <div class="mt-20">
-                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Personal Information</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Location Card -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex items-start" data-aos="zoom-in">
-                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4 mt-1 flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-xl text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Location</h4>
-                            <p class="text-gray-600 dark:text-gray-300">Pratapgarh, Uttar Pradesh, India</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Languages Card -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex items-start" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="w-12 h-12 flex items-center justify-center bg-secondary/10 rounded-full mr-4 mt-1 flex-shrink-0">
-                            <i class="fas fa-language text-xl text-secondary"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Languages</h4>
-                            <p class="text-gray-600 dark:text-gray-300">English (Fluent), Hindi (Native)</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Availability Card -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex items-start" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="w-12 h-12 flex items-center justify-center bg-accent/10 rounded-full mr-4 mt-1 flex-shrink-0">
-                            <i class="fas fa-clock text-xl text-accent"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Availability</h4>
-                            <p class="text-gray-600 dark:text-gray-300">Available for freelance projects</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </section>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-light dark:bg-dark">
-        <div class="container mx-auto px-4">
+    <section id="skills" class="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">My Skills</h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-sm rounded-full mb-4">My Expertise</span>
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Professional Skills</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
                 <p class="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                     I've developed a diverse set of skills throughout my journey as a developer. My focus has been on creating comprehensive full-stack solutions that deliver exceptional user experiences.
                 </p>
@@ -585,22 +665,31 @@
 
             <!-- Skills Stats -->
             <div class="flex flex-wrap justify-center gap-8 mb-16">
-                <div class="flex items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-64" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                <div class="flex items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-64 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/40 rounded-full mr-4">
                         <i class="fas fa-code text-2xl text-primary"></i>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold text-primary">15+</div>
+                        <div class="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">10+</div>
                         <div class="text-gray-600 dark:text-gray-300">Projects Completed</div>
                     </div>
                 </div>
-                <div class="flex items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-64" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="w-16 h-16 flex items-center justify-center bg-secondary/10 rounded-full mr-4">
+                <div class="flex items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-64 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-full mr-4">
                         <i class="fas fa-laptop-code text-2xl text-secondary"></i>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold text-secondary">10+</div>
+                        <div class="text-3xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">5+</div>
                         <div class="text-gray-600 dark:text-gray-300">Technologies Mastered</div>
+                    </div>
+                </div>
+                <div class="flex items-center bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-64 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/40 rounded-full mr-4">
+                        <i class="fas fa-certificate text-2xl text-accent"></i>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">2+</div>
+                        <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
                     </div>
                 </div>
             </div>
@@ -608,53 +697,188 @@
             <!-- Skill Categories -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                 <!-- Programming Languages -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all hover:scale-105" data-aos="flip-left" data-aos-delay="100">
-                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6 mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border-b-4 border-primary" data-aos="flip-left" data-aos-delay="100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/40 rounded-full mb-6 mx-auto">
                         <i class="fas fa-code text-2xl text-primary"></i>
                     </div>
                     <h4 class="text-xl font-bold text-center mb-6 text-gray-800 dark:text-white">Programming Languages</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-center"><i class="fab fa-php text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">PHP</span></li>
-                        <li class="flex items-center"><i class="fab fa-js text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">JavaScript</span></li>
-                        <li class="flex items-center"><i class="fab fa-python text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Python</span></li>
-                        <li class="flex items-center"><i class="fab fa-java text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Java</span></li>
-                        <li class="flex items-center"><i class="fab fa-html5 text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">HTML5</span></li>
-                        <li class="flex items-center"><i class="fab fa-css3-alt text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">CSS3</span></li>
-                        <li class="flex items-center"><i class="fas fa-database text-primary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">SQL</span></li>
+                    <ul class="space-y-4">
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
+                                <i class="fab fa-php text-xl text-primary"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">PHP</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-primary mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-primary mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-primary mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-primary mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-primary mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-yellow-500/10 rounded-full mr-3">
+                                <i class="fab fa-js text-xl text-yellow-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">JavaScript</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-yellow-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-yellow-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-yellow-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-yellow-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-blue-500/10 rounded-full mr-3">
+                                <i class="fab fa-python text-xl text-blue-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Python</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-red-500/10 rounded-full mr-3">
+                                <i class="fab fa-java text-xl text-red-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Java</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Frontend & Backend -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all hover:scale-105" data-aos="flip-left" data-aos-delay="200">
-                    <div class="w-16 h-16 flex items-center justify-center bg-secondary/10 rounded-full mb-6 mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border-b-4 border-secondary" data-aos="flip-left" data-aos-delay="200">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-full mb-6 mx-auto">
                         <i class="fas fa-laptop-code text-2xl text-secondary"></i>
                     </div>
                     <h4 class="text-xl font-bold text-center mb-6 text-gray-800 dark:text-white">Frontend & Backend</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-center"><i class="fab fa-react text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">React.js</span></li>
-                        <li class="flex items-center"><i class="fab fa-js text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">jQuery</span></li>
-                        <li class="flex items-center"><i class="fab fa-bootstrap text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Bootstrap</span></li>
-                        <li class="flex items-center"><i class="fab fa-laravel text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Laravel</span></li>
-                        <li class="flex items-center"><i class="fab fa-node-js text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Node.js</span></li>
-                        <li class="flex items-center"><i class="fab fa-php text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">PHP</span></li>
-                        <li class="flex items-center"><i class="fas fa-database text-secondary mr-3"></i> <span class="text-gray-700 dark:text-gray-300">MySQL</span></li>
+                    <ul class="space-y-4">
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-blue-500/10 rounded-full mr-3">
+                                <i class="fab fa-react text-xl text-blue-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">React.js</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-red-500/10 rounded-full mr-3">
+                                <i class="fab fa-laravel text-xl text-red-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Laravel</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-red-500 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-green-600/10 rounded-full mr-3">
+                                <i class="fab fa-node-js text-xl text-green-600"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Node.js</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-green-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-green-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-green-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-blue-700/10 rounded-full mr-3">
+                                <i class="fas fa-database text-xl text-blue-700"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">MySQL</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-blue-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Tools & Technologies -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all hover:scale-105" data-aos="flip-left" data-aos-delay="300">
-                    <div class="w-16 h-16 flex items-center justify-center bg-accent/10 rounded-full mb-6 mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border-b-4 border-accent" data-aos="flip-left" data-aos-delay="300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/40 rounded-full mb-6 mx-auto">
                         <i class="fas fa-tools text-2xl text-accent"></i>
                     </div>
                     <h4 class="text-xl font-bold text-center mb-6 text-gray-800 dark:text-white">Tools & Technologies</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-center"><i class="fab fa-aws text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">AWS (EC2, S3)</span></li>
-                        <li class="flex items-center"><i class="fab fa-git-alt text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Git</span></li>
-                        <li class="flex items-center"><i class="fab fa-docker text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Docker</span></li>
-                        <li class="flex items-center"><i class="fab fa-github text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">GitHub</span></li>
-                        <li class="flex items-center"><i class="fas fa-code text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">VS Code</span></li>
-                        <li class="flex items-center"><i class="fas fa-database text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">phpMyAdmin</span></li>
-                        <li class="flex items-center"><i class="fas fa-mobile-alt text-accent mr-3"></i> <span class="text-gray-700 dark:text-gray-300">Responsive Design</span></li>
+                    <ul class="space-y-4">
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-orange-700/10 rounded-full mr-3">
+                                <i class="fab fa-git-alt text-xl text-orange-700"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Git</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-orange-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-orange-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-orange-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-orange-700 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-orange-700 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-blue-500/10 rounded-full mr-3">
+                                <i class="fab fa-docker text-xl text-blue-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Docker</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-purple-500/10 rounded-full mr-3">
+                                <i class="fab fa-aws text-xl text-purple-500"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">AWS</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-purple-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-purple-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-purple-500 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 mx-0.5"></span>
+                            </div>
+                        </li>
+                        <li class="flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center bg-gray-500/10 rounded-full mr-3">
+                                <i class="fab fa-github text-xl text-gray-700 dark:text-gray-300"></i>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">GitHub</span>
+                            <div class="ml-auto flex">
+                                <span class="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 mx-0.5"></span>
+                                <span class="w-2 h-2 rounded-full bg-gray-700 dark:bg-gray-300 mx-0.5"></span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -662,6 +886,7 @@
             <!-- Technical Proficiency -->
             <div class="mt-20 technical-proficiency">
                 <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full mb-4">Skill Levels</span>
                     <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-4">Technical Proficiency</h2>
                     <div class="w-24 md:w-32 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
                     <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -669,147 +894,153 @@
                     </p>
                 </div>
 
-                <div class="space-y-6 max-w-4xl mx-auto px-4 sm:px-6 md:px-8" data-aos="fade-up">
-                    <!-- PHP -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="100">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3">
-                                    <i class="fab fa-php text-xl text-primary"></i>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4 sm:px-6 md:px-8" data-aos="fade-up">
+                    <!-- Left Column -->
+                    <div class="space-y-6">
+                        <!-- PHP -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="100">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                                        <i class="fab fa-php text-2xl text-primary"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">PHP</h4>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">PHP</h4>
+                                <span class="text-primary font-bold px-4 py-1 bg-primary/10 rounded-full text-lg">90%</span>
                             </div>
-                            <span class="text-primary font-bold px-3 py-1 bg-primary/10 rounded-full">90%</span>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-primary via-purple-500 to-secondary rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="90%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-primary via-purple-500 to-secondary rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="90%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+
+                        <!-- Laravel -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="150">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-red-500/10 rounded-full mr-4">
+                                        <i class="fab fa-laravel text-2xl text-red-500"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Laravel</h4>
+                                </div>
+                                <span class="text-red-500 font-bold px-4 py-1 bg-red-500/10 rounded-full text-lg">85%</span>
+                            </div>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="85%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HTML/CSS -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="200">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-orange-500/10 rounded-full mr-4">
+                                        <i class="fab fa-html5 text-2xl text-orange-500"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">HTML/CSS</h4>
+                                </div>
+                                <span class="text-orange-500 font-bold px-4 py-1 bg-orange-500/10 rounded-full text-lg">95%</span>
+                            </div>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="95%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- JavaScript -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="350">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-yellow-500/10 rounded-full mr-4">
+                                        <i class="fab fa-js text-2xl text-yellow-500"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">JavaScript</h4>
+                                </div>
+                                <span class="text-yellow-500 font-bold px-4 py-1 bg-yellow-500/10 rounded-full text-lg">88%</span>
+                            </div>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="88%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Laravel -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="150">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-red-500/10 rounded-full mr-3">
-                                    <i class="fab fa-laravel text-xl text-red-500"></i>
+                    <!-- Right Column -->
+                    <div class="space-y-6">
+                        <!-- React.js -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-left" data-aos-delay="250">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-blue-500/10 rounded-full mr-4">
+                                        <i class="fab fa-react text-2xl text-blue-500"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">React.js</h4>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">Laravel</h4>
+                                <span class="text-blue-500 font-bold px-4 py-1 bg-blue-500/10 rounded-full text-lg">80%</span>
                             </div>
-                            <span class="text-red-500 font-bold px-3 py-1 bg-red-500/10 rounded-full">85%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="85%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="80%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- HTML/CSS -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="200">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-orange-500/10 rounded-full mr-3">
-                                    <i class="fab fa-html5 text-xl text-orange-500"></i>
+                        <!-- MySQL -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-left" data-aos-delay="300">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-blue-700/10 rounded-full mr-4">
+                                        <i class="fas fa-database text-2xl text-blue-700"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">MySQL</h4>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">HTML/CSS</h4>
+                                <span class="text-blue-700 font-bold px-4 py-1 bg-blue-700/10 rounded-full text-lg">85%</span>
                             </div>
-                            <span class="text-orange-500 font-bold px-3 py-1 bg-orange-500/10 rounded-full">95%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="95%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- React.js -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="250">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-blue-500/10 rounded-full mr-3">
-                                    <i class="fab fa-react text-xl text-blue-500"></i>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-blue-600 to-blue-800 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="85%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">React.js</h4>
-                            </div>
-                            <span class="text-blue-500 font-bold px-3 py-1 bg-blue-500/10 rounded-full">80%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="80%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- MySQL -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="300">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-blue-700/10 rounded-full mr-3">
-                                    <i class="fas fa-database text-xl text-blue-700"></i>
+                        
+                        <!-- Node.js -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-left" data-aos-delay="400">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-green-600/10 rounded-full mr-4">
+                                        <i class="fab fa-node-js text-2xl text-green-600"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Node.js</h4>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">MySQL</h4>
+                                <span class="text-green-600 font-bold px-4 py-1 bg-green-600/10 rounded-full text-lg">75%</span>
                             </div>
-                            <span class="text-blue-700 font-bold px-3 py-1 bg-blue-700/10 rounded-full">85%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-blue-600 to-blue-800 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="85%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- JavaScript -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="350">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-yellow-500/10 rounded-full mr-3">
-                                    <i class="fab fa-js text-xl text-yellow-500"></i>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-green-500 to-green-700 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="75%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">JavaScript</h4>
-                            </div>
-                            <span class="text-yellow-500 font-bold px-3 py-1 bg-yellow-500/10 rounded-full">88%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="88%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Node.js -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="400">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-green-600/10 rounded-full mr-3">
-                                    <i class="fab fa-node-js text-xl text-green-600"></i>
+                        
+                        <!-- Git -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-left" data-aos-delay="450">
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 flex items-center justify-center bg-orange-700/10 rounded-full mr-4">
+                                        <i class="fab fa-git-alt text-2xl text-orange-700"></i>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Git</h4>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">Node.js</h4>
+                                <span class="text-orange-700 font-bold px-4 py-1 bg-orange-700/10 rounded-full text-lg">90%</span>
                             </div>
-                            <span class="text-green-600 font-bold px-3 py-1 bg-green-600/10 rounded-full">75%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-green-500 to-green-700 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="75%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Git -->
-                    <div class="mb-4 transform hover:translate-y-[-5px] transition-all duration-300" data-aos="fade-right" data-aos-delay="450">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex items-center justify-center bg-orange-700/10 rounded-full mr-3">
-                                    <i class="fab fa-git-alt text-xl text-orange-700"></i>
+                            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                                <div class="h-full bg-gradient-to-r from-orange-600 to-orange-800 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="90%">
+                                    <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 dark:text-white">Git</h4>
-                            </div>
-                            <span class="text-orange-700 font-bold px-3 py-1 bg-orange-700/10 rounded-full">90%</span>
-                        </div>
-                        <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-orange-600 to-orange-800 rounded-full transition-all duration-700 transform origin-left flex items-center" style="width: 0%;" data-width="90%">
-                                <div class="w-full h-full bg-opacity-30 bg-white bg-stripes-white"></div>
                             </div>
                         </div>
                     </div>
@@ -817,22 +1048,21 @@
             </div>
         </div>
     </section>
-    </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Projects</h2>
-                <div class="section-line"></div>
+    <section id="projects" class="projects-section py-20">
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">My Projects</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
             </div>
-            <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web</button>
-                <button class="filter-btn" data-filter="app">App</button>
-                <button class="filter-btn" data-filter="design">Design</button>
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-primary text-white font-medium transition-all hover:shadow-lg hover:shadow-primary/30" data-filter="all">All</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium transition-all hover:bg-primary hover:text-white" data-filter="web">Web</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium transition-all hover:bg-primary hover:text-white" data-filter="app">App</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium transition-all hover:bg-primary hover:text-white" data-filter="design">Design</button>
             </div>
-            <div class="projects-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="project-card" data-category="web">
                     <div class="project-image">
                         <img src="image/1.png" alt="Coffee E-Commerce Website">
@@ -918,62 +1148,83 @@
                     </div>
                 </div>
             </div>
-            <div class="projects-cta">
-                <a href="https://github.com/bhaktofmahakal" target="_blank" class="btn btn-primary">View All Projects</a>
+            <div class="text-center mt-12">
+                <a href="https://github.com/bhaktofmahakal" target="_blank" class="inline-block px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-1">
+                    <i class="fab fa-github mr-2"></i> View All Projects
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="certifications-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Certifications</h2>
-                <div class="section-line"></div>
+    <section id="certifications" class="certifications-section py-20 bg-white dark:bg-gray-900">
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">My Certifications</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
             </div>
-            <div class="certifications-grid">
-                <div class="certification-card" data-aos="fade-up">
-                    <div class="certification-icon">
-                        <i class="fas fa-code"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Full Stack Web Developer -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-laptop-code text-2xl text-primary"></i>
                     </div>
-                    <div class="certification-info">
-                        <h3>Alpha Batch DSA</h3>
-                        <p>Apna College</p>
-                        <p class="certification-date">April 2024</p>
-                        <a href="certificate-sigma-batch-dsa-662f9454b676a6f0bf0547cb.pdf" target="_blank" class="certification-link">View Certificate</a>
-                    </div>
-                </div>
-                <div class="certification-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="certification-icon">
-                        <i class="fab fa-google"></i>
-                    </div>
-                    <div class="certification-info">
-                        <h3>Google AI Certification</h3>
-                        <p>Google</p>
-                        <p class="certification-date">April 2025</p>
-                        <a href="kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_6Qwxe4SQ2iZyprrSp_1745562769407_completion_certificate.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Full Stack Web Developer</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">April 2025</p>
+                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="certification-icon">
-                        <i class="fas fa-robot"></i>
+                
+                <!-- AWS Certified Developer Associate -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
+                        <i class="fab fa-aws text-2xl text-secondary"></i>
                     </div>
-                    <div class="certification-info">
-                        <h3>AI Certification</h3>
-                        <p>Coursera</p>
-                        <p class="certification-date">December 2024</p>
-                        <a href="certificteai(2).pdf" target="_blank" class="certification-link">View Certificate</a>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">AWS Certified Developer Associate</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">August 2024</p>
+                        <a href="https://www.udemy.com/certificate/UC-2e8bdf65-6374-47a3-9ea2-f76dedc93ee4/" target="_blank" class="inline-flex items-center text-secondary hover:text-secondary-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="certification-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="certification-icon">
-                        <i class="fas fa-laptop-code"></i>
+                
+                <!-- Google Cloud Certified Data Engineer -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-accent/20 to-accent/10 rounded-full mb-6 mx-auto">
+                        <i class="fab fa-google text-2xl text-accent"></i>
                     </div>
-                    <div class="certification-info">
-                        <h3>Web Development</h3>
-                        <p>Udemy</p>
-                        <p class="certification-date">April 2025</p>
-                        <a href="certificate1.pdf" target="_blank" class="certification-link">View Certificate</a>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Google Cloud Certified Data Engineer</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">October 2024</p>
+                        <a href="https://www.udemy.com/certificate/UC-76139db5-9cdb-4b37-808b-64cefaeb8d36/" target="_blank" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Alpha (DSA with Java) -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-code text-2xl text-primary"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Alpha (DSA with Java)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Apna College</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">September 2024</p>
+                        <a href="https://www.apnacollege.in/path-player?courseid=alpha-plus-combo-1&unit=662f9454b676a6f0bf0547cbUnit" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -981,31 +1232,40 @@
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="achievements-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Achievements</h2>
-                <div class="section-line"></div>
+    <section id="achievements" class="achievements-section py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">Achievements</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
             </div>
-            <div class="achievements-content">
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-award"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Full Stack Web Developer Achievement -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-trophy text-2xl text-primary"></i>
                     </div>
-                    <div class="achievement-info">
-                        <h3>Alpha (DSA with Java)</h3>
-                        <p>Successfully completed the comprehensive course on Data Structures and Algorithms using Java.</p>
-                        <a href="certificate-sigma-batch-dsa-662f9454b676a6f0bf0547cb.pdf" class="certificate-link" target="_blank">View Certificate</a>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Full Stack Web Development</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Successfully completed comprehensive training in modern web development technologies including React, Node.js, and responsive design principles.</p>
+                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors" target="_blank">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-robot"></i>
+                
+                <!-- AWS Achievement -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-cloud text-2xl text-secondary"></i>
                     </div>
-                    <div class="achievement-info">
-                        <h3>Artificial Intelligence</h3>
-                        <p>Successfully completed the course on Creation Of Artificial Intelligence Using Python Programming.</p>
-                        <a href="certificteai(2).pdf" class="certificate-link" target="_blank">View Certificate</a>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Cloud Computing Excellence</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Demonstrated expertise in cloud architecture and deployment strategies with AWS and Google Cloud certifications.</p>
+                        <a href="https://www.udemy.com/certificate/UC-2e8bdf65-6374-47a3-9ea2-f76dedc93ee4/" class="inline-flex items-center text-secondary hover:text-secondary-dark transition-colors" target="_blank">
+                            <span class="mr-2">View Credentials</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1013,7 +1273,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900 dark:bg-gray-900 text-gray-100">
+    <section id="contact" class="py-20 pt-28 bg-gray-900 dark:bg-gray-900 text-gray-100">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent inline-block">Contact Me</h2>
@@ -1196,141 +1456,160 @@
         
         <!-- Gradient Circles Background -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div class="absolute top-[10%] left-[10%] w-[300px] h-[300px] rounded-full bg-gradient-to-r from-primary/10 to-transparent blur-3xl"></div>
-            <div class="absolute bottom-[10%] right-[10%] w-[300px] h-[300px] rounded-full bg-gradient-to-l from-secondary/10 to-transparent blur-3xl"></div>
+            <div class="absolute top-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-gradient-to-r from-primary/20 to-transparent blur-3xl"></div>
+            <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] rounded-full bg-gradient-to-l from-secondary/20 to-transparent blur-3xl"></div>
+            <div class="absolute top-[40%] right-[20%] w-[300px] h-[300px] rounded-full bg-gradient-to-l from-accent/15 to-transparent blur-3xl"></div>
         </div>
         
-        <div class="container mx-auto px-6 py-12 relative z-10">
+        <div class="container mx-auto px-6 py-16 relative z-10">
             <!-- Main Footer Content -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
                 <!-- Developer Info Column -->
                 <div class="lg:col-span-4 flex flex-col space-y-6">
                     <!-- Logo -->
-                    <div class="flex items-center">
-                        <h2 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Utsav Mishra</h2>
-                        <div class="w-2 h-2 rounded-full bg-gradient-to-r from-secondary to-accent ml-2"></div>
+                    <div class="flex items-center mb-2">
+                        <h2 class="text-3xl font-bold text-white">
+                            Utsav <span class="bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">Mishra</span>
+                        </h2>
+                        <div class="w-2 h-2 rounded-full bg-accent ml-2 animate-pulse"></div>
                     </div>
                     
                     <!-- Bio -->
-                    <p class="text-gray-400 max-w-md">
+                    <p class="text-gray-300 max-w-md text-base leading-relaxed">
                         Full Stack Developer specializing in creating beautiful, functional, and user-friendly digital experiences that leave a lasting impression.
                     </p>
                     
                     <!-- Contact Info -->
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3 text-gray-300 group">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-map-marker-alt text-xs text-white"></i>
+                    <div class="space-y-4 mt-2">
+                        <div class="flex items-center space-x-3 text-white group hover:translate-x-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent/30 to-accent-dark/30 flex items-center justify-center group-hover:from-accent/50 group-hover:to-accent-dark/50 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-map-marker-alt text-accent"></i>
                             </div>
-                            <span class="text-sm">Antu, Uttar Pradesh, India</span>
+                            <span class="text-base">Antu, Uttar Pradesh, India</span>
                         </div>
                         
-                        <div class="flex items-center space-x-3 text-gray-300 group">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-envelope text-xs text-white"></i>
+                        <div class="flex items-center space-x-3 text-white group hover:translate-x-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent/30 to-accent-dark/30 flex items-center justify-center group-hover:from-accent/50 group-hover:to-accent-dark/50 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-envelope text-accent"></i>
                             </div>
-                            <span class="text-sm">utsavmishraa005@gmail.com</span>
+                            <span class="text-base">utsavmishraa005@gmail.com</span>
                         </div>
                         
-                        <div class="flex items-center space-x-3 text-gray-300 group">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                                <i class="fas fa-phone-alt text-xs text-white"></i>
+                        <div class="flex items-center space-x-3 text-white group hover:translate-x-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent/30 to-accent-dark/30 flex items-center justify-center group-hover:from-accent/50 group-hover:to-accent-dark/50 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-phone-alt text-accent"></i>
                             </div>
-                            <span class="text-sm">+91 9721607720</span>
+                            <span class="text-base">+91 9721607720</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Links Columns -->
                 <div class="lg:col-span-8">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
                         <!-- Quick Links -->
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 pb-2 border-b border-gray-700 relative">
+                        <div class="bg-gray-800/30 p-6 rounded-xl shadow-xl backdrop-blur-sm border border-gray-700/50">
+                            <h3 class="text-xl font-bold text-white mb-5 pb-2 border-b border-accent/30 relative">
                                 Quick Links
-                                <span class="absolute bottom-0 left-0 w-10 h-0.5 bg-gradient-to-r from-primary to-secondary"></span>
+                                <span class="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-accent to-accent-light rounded-full"></span>
                             </h3>
-                            <ul class="space-y-2">
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#home" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Home</span>
+                            <ul class="space-y-3">
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#home" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-home text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Home</span>
                                     </a>
                                 </li>
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#about" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>About</span>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#about" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-user text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">About</span>
                                     </a>
                                 </li>
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#skills" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Skills</span>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#skills" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-code text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Skills</span>
                                     </a>
                                 </li>
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#projects" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Projects</span>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#projects" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-project-diagram text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Projects</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         
                         <!-- More Links -->
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 pb-2 border-b border-gray-700 relative">
+                        <div class="bg-gray-800/30 p-6 rounded-xl shadow-xl backdrop-blur-sm border border-gray-700/50">
+                            <h3 class="text-xl font-bold text-white mb-5 pb-2 border-b border-accent/30 relative">
                                 More Links
-                                <span class="absolute bottom-0 left-0 w-10 h-0.5 bg-gradient-to-r from-primary to-secondary"></span>
+                                <span class="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-accent to-accent-light rounded-full"></span>
                             </h3>
-                            <ul class="space-y-2">
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#certifications" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Certifications</span>
+                            <ul class="space-y-3">
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#certifications" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-certificate text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Certifications</span>
                                     </a>
                                 </li>
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#achievements" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Achievements</span>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#achievements" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-trophy text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Achievements</span>
                                     </a>
                                 </li>
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="#contact" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Contact</span>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#contact" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-envelope text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Contact</span>
                                     </a>
                                 </li>
-                                <li class="transform transition-transform duration-300 hover:translate-x-1">
-                                    <a href="utsavm-resume.pdf" class="text-gray-400 hover:text-white flex items-center">
-                                        <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
-                                        <span>Resume</span>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="utsavm-resume.pdf" class="text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-file-alt text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Resume</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         
                         <!-- Newsletter -->
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-4 pb-2 border-b border-gray-700 relative">
+                        <div class="bg-gray-800/30 p-6 rounded-xl shadow-xl backdrop-blur-sm border border-gray-700/50">
+                            <h3 class="text-xl font-bold text-white mb-5 pb-2 border-b border-accent/30 relative">
                                 Stay Connected
-                                <span class="absolute bottom-0 left-0 w-10 h-0.5 bg-gradient-to-r from-primary to-secondary"></span>
+                                <span class="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-accent to-accent-light rounded-full"></span>
                             </h3>
-                            <p class="text-gray-400 text-sm mb-4">Subscribe to my newsletter for latest updates</p>
+                            <p class="text-gray-200 text-base mb-5">Subscribe to my newsletter for latest updates</p>
                             
                             <!-- Newsletter Form -->
                             <form class="flex mb-6 overflow-hidden rounded-lg shadow-lg">
                                 <input 
                                     type="email" 
                                     placeholder="Your Email" 
-                                    class="w-full px-4 py-2 bg-gray-800 text-white border-0 focus:outline-none"
+                                    class="w-full px-4 py-3 bg-gray-700 text-white border-0 focus:outline-none focus:ring-2 focus:ring-accent/50"
                                     required
                                 />
                                 <button 
                                     type="submit" 
-                                    class="px-4 bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300"
+                                    class="px-4 bg-accent hover:bg-accent-dark transition-all duration-300"
                                 >
                                     <i class="fas fa-paper-plane"></i>
                                 </button>
@@ -1339,19 +1618,19 @@
                             <!-- Social Icons -->
                             <div class="flex space-x-3">
                                 <a href="https://www.instagram.com/bhakt_of_mahakal9721" target="_blank" 
-                                   class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gradient-to-r hover:from-primary hover:to-secondary transform hover:-translate-y-1 transition-all duration-300">
+                                   class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
                                     <i class="fab fa-instagram text-white"></i>
                                 </a>
                                 <a href="https://www.github.com/bhaktofmahakal" target="_blank" 
-                                   class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gradient-to-r hover:from-primary hover:to-secondary transform hover:-translate-y-1 transition-all duration-300">
+                                   class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
                                     <i class="fab fa-github text-white"></i>
                                 </a>
                                 <a href="https://www.linkedin.com/in/utsav-mishra1" target="_blank" 
-                                   class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gradient-to-r hover:from-primary hover:to-secondary transform hover:-translate-y-1 transition-all duration-300">
+                                   class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
                                     <i class="fab fa-linkedin text-white"></i>
                                 </a>
                                 <a href="#" target="_blank" 
-                                   class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gradient-to-r hover:from-primary hover:to-secondary transform hover:-translate-y-1 transition-all duration-300">
+                                   class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
                                     <i class="fab fa-twitter text-white"></i>
                                 </a>
                             </div>
@@ -1361,16 +1640,19 @@
             </div>
             
             <!-- Footer Bottom -->
-            <div class="pt-8 mt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-500 text-sm mb-4 md:mb-0">
-                    &copy; <span id="current-year">2025</span> Utsav Mishra. All rights reserved.
+            <div class="pt-10 mt-10 border-t border-gray-700/50 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-white text-base mb-4 md:mb-0 font-medium">
+                    &copy; <span id="current-year">2023</span> <span class="text-accent">Utsav Mishra</span>. All rights reserved.
                 </div>
-                <div class="text-gray-500 text-sm flex items-center">
+                <div class="text-white text-base flex items-center bg-gray-800/50 px-4 py-2 rounded-full shadow-lg">
                     Made with 
-                    <i class="fas fa-heart text-secondary mx-1 animate-pulse"></i>
-                    by Utsav Mishra
+                    <i class="fas fa-heart text-accent mx-2 animate-pulse"></i>
+                    by <span class="text-accent font-medium ml-1">Utsav Mishra</span>
                 </div>
             </div>
+            
+            <!-- Accent Line at Bottom -->
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-accent-light to-primary"></div>
         </div>
     </footer>
     
@@ -1406,41 +1688,136 @@
         // Mobile Menu Toggle with Tailwind
         document.querySelector('.hamburger').addEventListener('click', function() {
             const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.mobile-overlay');
+            const hamburgerLines = document.querySelectorAll('.hamburger-line');
+            
+            // Toggle hamburger animation
+            this.classList.toggle('active');
+            hamburgerLines[0].classList.toggle('rotate-45');
+            hamburgerLines[0].classList.toggle('translate-y-1.5');
+            hamburgerLines[1].classList.toggle('opacity-0');
+            hamburgerLines[2].classList.toggle('-rotate-45');
+            hamburgerLines[2].classList.toggle('-translate-y-1.5');
+            
             // Toggle mobile menu visibility
             if (mobileMenu.style.right === '0px') {
+                // Close menu
                 mobileMenu.style.right = '-100%';
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+                overlay.classList.add('pointer-events-none');
+                
+                // Reset animations
+                setTimeout(() => {
+                    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                        item.classList.add('opacity-0', 'translate-x-8');
+                    });
+                    document.querySelector('.mobile-theme-container').classList.add('opacity-0', 'translate-y-4');
+                    document.querySelector('.mobile-social-container').classList.add('opacity-0', 'translate-y-4');
+                }, 500);
             } else {
+                // Open menu
                 mobileMenu.style.right = '0px';
+                overlay.classList.add('opacity-100');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                
+                // Animate menu items
+                document.querySelectorAll('.mobile-nav-item').forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.remove('opacity-0', 'translate-x-8');
+                    }, 100 + (index * 50));
+                });
+                
+                // Animate theme toggle and social icons
+                setTimeout(() => {
+                    document.querySelector('.mobile-theme-container').classList.remove('opacity-0', 'translate-y-4');
+                }, 400);
+                
+                setTimeout(() => {
+                    document.querySelector('.mobile-social-container').classList.remove('opacity-0', 'translate-y-4');
+                }, 500);
             }
         });
 
         // Close mobile menu when clicking the close button
         document.querySelector('.mobile-close').addEventListener('click', function() {
-            document.querySelector('.mobile-menu').style.right = '-100%';
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.mobile-overlay');
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerLines = document.querySelectorAll('.hamburger-line');
+            
+            // Reset hamburger
+            hamburger.classList.remove('active');
+            hamburgerLines[0].classList.remove('rotate-45', 'translate-y-1.5');
+            hamburgerLines[1].classList.remove('opacity-0');
+            hamburgerLines[2].classList.remove('-rotate-45', '-translate-y-1.5');
+            
+            // Close menu
+            mobileMenu.style.right = '-100%';
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            
+            // Reset animations
+            setTimeout(() => {
+                document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                    item.classList.add('opacity-0', 'translate-x-8');
+                });
+                document.querySelector('.mobile-theme-container').classList.add('opacity-0', 'translate-y-4');
+                document.querySelector('.mobile-social-container').classList.add('opacity-0', 'translate-y-4');
+            }, 500);
         });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
             link.addEventListener('click', function() {
-                document.querySelector('.mobile-menu').style.right = '-100%';
+                const mobileMenu = document.querySelector('.mobile-menu');
+                const overlay = document.querySelector('.mobile-overlay');
+                const hamburger = document.querySelector('.hamburger');
+                const hamburgerLines = document.querySelectorAll('.hamburger-line');
+                
+                // Reset hamburger
+                hamburger.classList.remove('active');
+                hamburgerLines[0].classList.remove('rotate-45', 'translate-y-1.5');
+                hamburgerLines[1].classList.remove('opacity-0');
+                hamburgerLines[2].classList.remove('-rotate-45', '-translate-y-1.5');
+                
+                // Close menu
+                mobileMenu.style.right = '-100%';
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
             });
+        });
+        
+        // Close mobile menu when clicking overlay
+        document.querySelector('.mobile-overlay').addEventListener('click', function() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerLines = document.querySelectorAll('.hamburger-line');
+            
+            // Reset hamburger
+            hamburger.classList.remove('active');
+            hamburgerLines[0].classList.remove('rotate-45', 'translate-y-1.5');
+            hamburgerLines[1].classList.remove('opacity-0');
+            hamburgerLines[2].classList.remove('-rotate-45', '-translate-y-1.5');
+            
+            // Close menu
+            mobileMenu.style.right = '-100%';
+            this.classList.remove('opacity-100');
+            this.classList.add('opacity-0', 'pointer-events-none');
+            
+            // Reset animations
+            setTimeout(() => {
+                document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                    item.classList.add('opacity-0', 'translate-x-8');
+                });
+                document.querySelector('.mobile-theme-container').classList.add('opacity-0', 'translate-y-4');
+                document.querySelector('.mobile-social-container').classList.add('opacity-0', 'translate-y-4');
+            }, 500);
         });
 
         // Theme toggle functionality is now handled in theme-toggle.js
 
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-
-        document.addEventListener('mousemove', function(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(function() {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
+        // Custom Cursor is now handled in the DOMContentLoaded event
 
         // Project Filtering
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -1504,36 +1881,73 @@
             }
         });
 
-        // Active Navigation Link on Scroll with Tailwind
+        // Active Navigation Link on Scroll with Tailwind (Improved Scrollspy)
         window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
+            const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
             
             let current = '';
             
+            // Find the current section in viewport
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
+                const scrollPosition = window.scrollY;
                 
-                if (pageYOffset >= sectionTop - 200) {
+                // Adjust the offset to trigger earlier for better UX
+                if (scrollPosition >= sectionTop - 300) {
                     current = section.getAttribute('id');
                 }
             });
             
+            // Update desktop navigation
             navLinks.forEach(link => {
-                // Remove active styles
-                link.classList.remove('text-white');
-                link.classList.add('text-gray-300');
+                // First, remove all active styles
+                link.classList.remove('text-primary', 'dark:text-white', 'bg-gray-100', 'dark:bg-white/5');
+                
+                // Reset to default styles
+                link.classList.add('text-gray-700', 'dark:text-gray-300');
                 
                 // Add active styles to current section link
                 if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.remove('text-gray-300');
-                    link.classList.add('text-white');
+                    // Remove default styles
+                    link.classList.remove('text-gray-700', 'dark:text-gray-300');
                     
-                    // Add a subtle background to the active link
-                    link.classList.add('bg-white/5');
+                    // Add active styles
+                    link.classList.add('text-primary', 'dark:text-white', 'bg-gray-100', 'dark:bg-white/5');
+                    
+                    // Add subtle animation to the icon
+                    const icon = link.querySelector('.w-6');
+                    if (icon) {
+                        icon.classList.add('from-primary/30', 'to-secondary/30');
+                        icon.classList.remove('from-primary/20', 'to-secondary/20');
+                    }
                 } else {
-                    link.classList.remove('bg-white/5');
+                    // Reset icon styles for non-active links
+                    const icon = link.querySelector('.w-6');
+                    if (icon) {
+                        icon.classList.remove('from-primary/30', 'to-secondary/30');
+                        icon.classList.add('from-primary/20', 'to-secondary/20');
+                    }
+                }
+            });
+            
+            // Update mobile navigation
+            mobileNavLinks.forEach(link => {
+                // First, remove all active styles
+                link.classList.remove('text-primary', 'dark:text-white', 'bg-gray-100', 'dark:bg-white/5');
+                
+                // Reset to default styles
+                link.classList.add('text-gray-700', 'dark:text-gray-300');
+                
+                // Add active styles to current section link
+                if (link.getAttribute('href') === `#${current}`) {
+                    // Remove default styles
+                    link.classList.remove('text-gray-700', 'dark:text-gray-300');
+                    
+                    // Add active styles
+                    link.classList.add('text-primary', 'dark:text-white', 'bg-gray-100', 'dark:bg-white/5');
                 }
             });
         });
@@ -1557,7 +1971,7 @@
     
     <script>
         // Initialize AOS animations
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded'), function() {
             // Check for dark mode preference
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -1579,140 +1993,119 @@
                     delay: 100
                 });
                 
-                // Set current year in footer
-                document.getElementById('current-year').textContent = new Date().getFullYear();
-                
-                // Custom cursor effect
-                const cursor = document.querySelector('.cursor');
-                const cursorFollower = document.querySelector('.cursor-follower');
-                
-                if (cursor && cursorFollower) {
-                    document.addEventListener('mousemove', function(e) {
-                        cursor.style.left = e.clientX + 'px';
-                        cursor.style.top = e.clientY + 'px';
-                        
-                        setTimeout(function() {
-                            cursorFollower.style.left = e.clientX + 'px';
-                            cursorFollower.style.top = e.clientY + 'px';
-                        }, 100);
-                    });
-                    
-                    // Add hover effect to links and buttons
-                    const links = document.querySelectorAll('a, button, .btn, .nav-link, .social-icon-circle');
-                    links.forEach(link => {
-                        link.addEventListener('mouseenter', () => {
-                            cursor.classList.add('cursor-hover');
-                            cursorFollower.classList.add('cursor-hover');
-                        });
-                        link.addEventListener('mouseleave', () => {
-                            cursor.classList.remove('cursor-hover');
-                            cursorFollower.classList.remove('cursor-hover');
-                        });
-                    });
-                }
             }
             
+            // Set current year in footer
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+            
+            // Custom cursor effect - optimized version
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            
+            if (cursor && cursorFollower) {
+                // Check if we're on a touch device
+                const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+                
+                if (!isTouchDevice) {
+                    // Use requestAnimationFrame for smoother performance
+                    let mouseX = 0, mouseY = 0;
+                    let cursorX = 0, cursorY = 0;
+                    let followerX = 0, followerY = 0;
+                        
+                        // Track mouse position
+                        document.addEventListener('mousemove', function(e) {
+                            mouseX = e.clientX;
+                            mouseY = e.clientY;
+                        });
+                        
+                        // Animate cursor with requestAnimationFrame
+                        function animateCursor() {
+                            // Update cursor position immediately
+                            cursorX = mouseX;
+                            cursorY = mouseY;
+                            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+                            
+                            // Update follower with smooth interpolation
+                            followerX += (mouseX - followerX) * 0.2;
+                            followerY += (mouseY - followerY) * 0.2;
+                            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+                            
+                            requestAnimationFrame(animateCursor);
+                        }
+                        
+                        // Start animation
+                        requestAnimationFrame(animateCursor);
+                        
+                        // Add hover effect to links and buttons
+                        const links = document.querySelectorAll('a, button, .btn, .nav-link, .social-icon-circle');
+                        links.forEach(function(link) {
+                            link.addEventListener('mouseenter', function() {
+                                cursor.classList.add('cursor-hover');
+                                cursorFollower.classList.add('cursor-hover');
+                            });
+                            link.addEventListener('mouseleave', function() {
+                                cursor.classList.remove('cursor-hover');
+                                cursorFollower.classList.remove('cursor-hover');
+                            });
+                        });
+                    } else {
+                        // Hide custom cursor on touch devices
+                        cursor.style.display = 'none';
+                        cursorFollower.style.display = 'none';
+                    }
+                }
+            },
+            
             // Initialize progress bars animation
-            function animateProgressBars() {
+            animateProgressBars: function() {
                 const progressBars = document.querySelectorAll('.progress-animation');
-                progressBars.forEach(bar => {
+                progressBars.forEach(function(bar) {
                     const width = bar.getAttribute('data-width');
                     bar.style.width = width;
                 });
             }
             
-            // Run on page load
-            setTimeout(animateProgressBars, 500);
-            
-            // Also run when scrolling to the skills section
-            const skillsSection = document.getElementById('skills');
-            if (skillsSection) {
-                window.addEventListener('scroll', function() {
-                    const rect = skillsSection.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                        animateProgressBars();
-                    }
+            // Run on page load - moved to the initProgressBars method below
+        
+        
+        // Create an instance of the portfolio object and initialize it
+        const portfolio = {
+            animateProgressBars: function() {
+                const progressBars = document.querySelectorAll('.progress-animation');
+                progressBars.forEach(function(bar) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width;
                 });
-            }
+            },
             
-            // Theme toggle functionality is now handled in theme-toggle.js
-            function setupThemeToggle() {
-                // This function is now disabled as theme toggle is handled in theme-toggle.js
-                return;
-                // Theme toggle elements
-                const themeToggle = document.querySelector('.theme-toggle');
-                const mobileThemeToggle = document.querySelector('#mobile-theme-toggle');
-                const body = document.body;
-                const html = document.documentElement;
+            initProgressBars: function() {
+                const self = this;
+                setTimeout(function() {
+                    self.animateProgressBars();
+                }, 500);
                 
-                // Function to update theme
-                function updateTheme(isDark) {
-                    if (isDark) {
-                        body.classList.add('dark-theme');
-                        html.classList.add('dark-theme');
-                        html.classList.add('dark'); // For Tailwind dark mode
-                        localStorage.setItem('theme', 'dark');
-                        
-                        // Update desktop toggle
-                        if (themeToggle) {
-                            const icon = themeToggle.querySelector('i');
-                            const label = themeToggle.querySelector('.theme-label');
-                            if (icon) icon.className = 'fas fa-sun text-primary';
-                            if (label) label.textContent = 'Light Mode';
+                // Also run when scrolling to the skills section
+                const skillsSection = document.getElementById('skills');
+                if (skillsSection) {
+                    window.addEventListener('scroll', function() {
+                        const rect = skillsSection.getBoundingClientRect();
+                        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                            self.animateProgressBars();
                         }
-                        
-                        // Update mobile toggle
-                        if (mobileThemeToggle) {
-                            mobileThemeToggle.checked = true;
-                        }
-                    } else {
-                        body.classList.remove('dark-theme');
-                        html.classList.remove('dark-theme');
-                        html.classList.remove('dark'); // For Tailwind dark mode
-                        localStorage.setItem('theme', 'light');
-                        
-                        // Update desktop toggle
-                        if (themeToggle) {
-                            const icon = themeToggle.querySelector('i');
-                            const label = themeToggle.querySelector('.theme-label');
-                            if (icon) icon.className = 'fas fa-moon text-primary';
-                            if (label) label.textContent = 'Dark Mode';
-                        }
-                        
-                        // Update mobile toggle
-                        if (mobileThemeToggle) {
-                            mobileThemeToggle.checked = false;
-                        }
-                    }
-                }
-                
-                // Check saved theme preference
-                if (localStorage.getItem('theme') === 'dark') {
-                    updateTheme(true);
-                } else {
-                    updateTheme(false);
-                }
-                
-                // Desktop theme toggle
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', function() {
-                        const isDark = !body.classList.contains('dark-theme');
-                        updateTheme(isDark);
                     });
                 }
-                
-                // Mobile theme toggle
-                if (mobileThemeToggle) {
-                    mobileThemeToggle.addEventListener('change', function() {
-                        const isDark = this.checked;
-                        updateTheme(isDark);
-                    });
-                }
-            }
+            },
             
-            // Run theme toggle setup
-            setupThemeToggle();
-        });
+            init: function() {
+                this.initProgressBars();
+            }
+        };
+        
+        // Initialize the portfolio
+        portfolio.init();
     </script>
     
     <!-- Theme toggle script -->
