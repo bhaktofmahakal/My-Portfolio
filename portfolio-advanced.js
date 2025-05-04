@@ -547,10 +547,10 @@ function submitContactForm(event) {
     // Get form data
     const formData = new FormData(form);
     
-    // Backend URL - change this to your PHP backend when deployed
+    // Backend URL - points to your PHP backend
     const backendUrl = window.location.hostname === 'localhost' 
         ? 'process_contact.php' 
-        : 'https://your-backend-url.com/process_contact.php';
+        : 'https://your-domain.com/process_contact.php'; // Replace with your actual domain
     
     // Send data to server using fetch API
     fetch(backendUrl, {
