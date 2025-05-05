@@ -35,7 +35,7 @@ if (fs.existsSync('vercel.json')) {
 }
 
 // Copy directories
-const directories = ['api', 'image', 'includes'];
+const directories = ['api', 'image', 'includes', 'certificates'];
 directories.forEach(dir => {
   if (fs.existsSync(dir)) {
     // Create directory in dist

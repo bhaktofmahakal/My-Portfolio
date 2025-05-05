@@ -633,7 +633,7 @@ function submitContactForm(event) {
     }
     
     // For production - use actual backend
-    const backendUrl = 'https://utsav.infinityfreeapp.com/process_contact.php'
+    const backendUrl = 'https://utsav.infinityfreeapp.com/process_contact.php';
     
     // Send data to server using fetch API
     fetch(backendUrl, {
