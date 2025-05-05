@@ -1,53 +1,53 @@
 const fs = require('fs');
 const path = require('path');
 
-// Create dist directory
-if (!fs.existsSync('dist')) {
-  fs.mkdirSync('dist', { recursive: true });
-  console.log('Created dist directory');
+// Create public directory (Vercel expects this directory name)
+if (!fs.existsSync('public')) {
+  fs.mkdirSync('public', { recursive: true });
+  console.log('Created public directory');
 }
 
 // Copy HTML files
 const htmlFiles = fs.readdirSync('.').filter(file => file.endsWith('.html'));
 htmlFiles.forEach(file => {
-  fs.copyFileSync(file, `dist/${file}`);
-  console.log(`Copied ${file} to dist/`);
+  fs.copyFileSync(file, `public/${file}`);
+  console.log(`Copied ${file} to public/`);
 });
 
 // Copy CSS files
 const cssFiles = fs.readdirSync('.').filter(file => file.endsWith('.css'));
 cssFiles.forEach(file => {
-  fs.copyFileSync(file, `dist/${file}`);
-  console.log(`Copied ${file} to dist/`);
+  fs.copyFileSync(file, `public/${file}`);
+  console.log(`Copied ${file} to public/`);
 });
 
 // Copy JS files
 const jsFiles = fs.readdirSync('.').filter(file => file.endsWith('.js'));
 jsFiles.forEach(file => {
-  fs.copyFileSync(file, `dist/${file}`);
-  console.log(`Copied ${file} to dist/`);
+  fs.copyFileSync(file, `public/${file}`);
+  console.log(`Copied ${file} to public/`);
 });
 
 // Copy vercel.json
 if (fs.existsSync('vercel.json')) {
-  fs.copyFileSync('vercel.json', 'dist/vercel.json');
-  console.log('Copied vercel.json to dist/');
+  fs.copyFileSync('vercel.json', 'public/vercel.json');
+  console.log('Copied vercel.json to public/');
 }
 
 // Copy directories
 const directories = ['api', 'image', 'includes', 'certificates'];
 directories.forEach(dir => {
   if (fs.existsSync(dir)) {
-    // Create directory in dist
-    if (!fs.existsSync(`dist/${dir}`)) {
-      fs.mkdirSync(`dist/${dir}`, { recursive: true });
+    // Create directory in public
+    if (!fs.existsSync(`public/${dir}`)) {
+      fs.mkdirSync(`public/${dir}`, { recursive: true });
     }
     
     // Copy files (excluding config.php in includes)
     const files = fs.readdirSync(dir);
     files.forEach(file => {
       const srcPath = path.join(dir, file);
-      const destPath = path.join('dist', dir, file);
+      const destPath = path.join('public', dir, file);
       
       if (fs.statSync(srcPath).isDirectory()) {
         // Skip directories for now
