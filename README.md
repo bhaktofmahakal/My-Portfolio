@@ -1,126 +1,92 @@
-# Utsav Mishra Portfolio
+# Portfolio Website - Vercel Deployment Guide
 
-A professional portfolio website showcasing skills, projects, and contact information.
+This is a professional portfolio website for Utsav Mishra, ready to deploy on Vercel.
 
-## Deployment Instructions
+## Project Structure
 
-### Frontend Deployment (Vercel)
+- **HTML/CSS/JS**: Main frontend files
+- **API**: Serverless functions for the contact form
+- **Images/Assets**: Portfolio images and documents
+- **Certificates**: PDF certificates
 
-1. **Push your code to GitHub**
-   - Create a new GitHub repository
-   - Push your code to the repository
+## Deployment to Vercel
 
-2. **Deploy on Vercel**
-   - Go to [Vercel](https://vercel.com) and sign in with your GitHub account
-   - Click "New Project" and select your repository
-   - Keep the default settings (Framework Preset: Other)
-   - Click "Deploy"
+### Prerequisites
 
-3. **Configure Domain (Optional)**
-   - In the Vercel dashboard, go to your project settings
-   - Click on "Domains" and add your custom domain
+1. A [Vercel](https://vercel.com) account (you can sign up with GitHub)
+2. [Git](https://git-scm.com/) installed on your computer
+3. Basic knowledge of command line operations
 
-### Backend Deployment (PHP/MySQL)
+### Deployment Steps
 
-1. **Choose a PHP Hosting Provider**
-   - Recommended options: Hostinger, DigitalOcean, or any PHP/MySQL hosting service
-
-2. **Set Up the Database**
-   - Create a new MySQL database
-   - Create the required tables using the following SQL:
-
-```sql
--- Create admin_users table
-CREATE TABLE admin_users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Create messages table
-CREATE TABLE messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    subject VARCHAR(200) NOT NULL,
-    message TEXT NOT NULL,
-    status ENUM('new', 'read', 'handled') DEFAULT 'new',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Create rate_limits table
-CREATE TABLE rate_limits (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ip_address VARCHAR(45) NOT NULL,
-    action VARCHAR(50) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX (ip_address, action)
-);
-```
-
-3. **Upload Backend Files**
-   - Upload the following files/folders to your hosting:
-     - `process_contact.php`
-     - `includes/` directory
-     - `admin/` directory
-
-4. **Configure Database Connection**
-   - Update `includes/config.php` with your database credentials:
-   ```php
-   define('DB_HOST', 'your-database-host');
-   define('DB_USER', 'your-database-username');
-   define('DB_PASS', 'your-database-password');
-   define('DB_NAME', 'your-database-name');
+1. **Clone or Download this repository**
+   ```bash
+   git clone <repository-url>
+   cd portfolio
    ```
 
-5. **Set Up Admin User**
-   - Navigate to `your-backend-url.com/admin/setup.php` in your browser
-   - This will create the default admin user
-   - Delete `setup.php` after running it for security
-
-6. **Update Frontend Configuration**
-   - In the deployed frontend code, update the backend URL in `portfolio-advanced.js`:
-   ```javascript
-   const backendUrl = 'https://your-backend-url.com/process_contact.php';
+2. **Install Vercel CLI (optional)**
+   ```bash
+   npm install -g vercel
    ```
 
-## Local Development
+3. **Deploy to Vercel**
 
-1. **Set up a local PHP server**
-   - Install XAMPP, WAMP, or MAMP
-   - Place the project files in the web server directory
-   - Start the Apache and MySQL services
+   **Option 1: Using Vercel CLI**
+   ```bash
+   # Login to Vercel
+   vercel login
+   
+   # Deploy to Vercel
+   vercel
+   
+   # For production deployment
+   vercel --prod
+   ```
 
-2. **Create the database**
-   - Open phpMyAdmin and create a new database
-   - Import the SQL from the deployment instructions
+   **Option 2: Using Vercel Dashboard**
+   1. Push your code to a GitHub repository
+   2. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   3. Click "Import Project"
+   4. Select "Import Git Repository"
+   5. Connect to your GitHub account and select your repository
+   6. Configure your project settings
+   7. Click "Deploy"
 
-3. **Configure database connection**
-   - Update `includes/config.php` with your local database credentials
+### Important Configuration
 
-4. **Run the application**
-   - Access the site at `http://localhost/portfolio`
+The project includes a `vercel.json` file that configures the build settings and routing for Vercel deployment. This ensures:
 
-## Security Considerations
+1. Static files (HTML, CSS, JS, images, PDFs) are served correctly
+2. API routes are processed as serverless functions
+3. Proper routing for all requests
 
-1. **HTTPS**
-   - Ensure both frontend and backend use HTTPS
+## Contact Form Setup
 
-2. **Admin Security**
-   - Change the default admin password immediately
-   - Consider implementing additional security measures like IP restrictions
+The contact form now uses a serverless function approach:
 
-3. **Regular Backups**
-   - Set up regular database backups
+1. The form data is sent to `/api/contact` endpoint
+2. The API function forwards the request to the InfinityFree PHP backend
+3. The PHP backend processes the data and stores it in the MySQL database
 
-## Maintenance
+This approach allows you to:
+1. Keep your existing database setup on InfinityFree
+2. Deploy a modern frontend on Vercel with great performance
+3. Continue using your existing admin panel to view messages
 
-1. **Content Updates**
-   - Update the HTML files to reflect new projects, skills, or information
+## Post-Deployment
 
-2. **Backend Updates**
-   - Regularly update your PHP version and dependencies for security
+1. **Test the contact form** to ensure it's working correctly
+2. **Update DNS settings** if you're using a custom domain
+3. **Set up monitoring** through Vercel's dashboard
 
-3. **Monitoring**
-   - Set up monitoring for your backend to ensure it remains operational
+## Troubleshooting
+
+- **Contact form not working?** Check the browser console for errors. Ensure the InfinityFree backend is accessible.
+- **API error messages?** Check Vercel logs in the dashboard under your project's "Functions" tab.
+- **CSS/JS not loading?** Verify the paths in HTML files are correct.
+
+## Future Improvements
+
+- Consider moving from InfinityFree to a more integrated database solution like MongoDB Atlas or Supabase for improved performance and reliability.
+- Implement serverless functions for admin functionality to completely migrate away from PHP.

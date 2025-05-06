@@ -632,8 +632,10 @@ function submitContactForm(event) {
         return false; // Prevent default form submission
     }
     
-    // For production - use actual backend
-    const backendUrl = 'https://utsav.infinityfreeapp.com/process_contact.php';
+    // Determine which backend URL to use based on the environment
+    // Using the relative path '/api/contact' will work on both Vercel
+    // and when the InfinityFree backend is available
+    const backendUrl = '/api/contact';
     
     // Send data to server using fetch API
     fetch(backendUrl, {

@@ -1,20 +1,27 @@
 {
-  "name": "portfolio",
+  "name": "utsav-portfolio",
   "version": "1.0.0",
-  "description": "Professional Portfolio Website",
-  "main": "index.js",
+  "description": "Utsav Mishra's Professional Portfolio",
+  "main": "portfolio-advanced.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/input.css -o ./public/output.css --minify",
-    "watch:css": "tailwindcss -i ./src/input.css -o ./public/output.css --watch",
-    "build": "node build-vercel.js"
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
   },
   "keywords": [
     "portfolio",
-    "web development"
+    "web developer",
+    "full stack developer"
   ],
   "author": "Utsav Mishra",
   "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
   "devDependencies": {
-    "tailwindcss": "^3.3.3"
-  }
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "type": "module"
 }
