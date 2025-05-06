@@ -2,91 +2,66 @@
 
 This is a professional portfolio website for Utsav Mishra, ready to deploy on Vercel.
 
-## Project Structure
+# Utsav Mishra's Full Stack Developer Portfolio
 
-- **HTML/CSS/JS**: Main frontend files
-- **API**: Serverless functions for the contact form
-- **Images/Assets**: Portfolio images and documents
-- **Certificates**: PDF certificates
+🚀 Live Website: [View Portfolio](https://portfolio-nine-ecru-23.vercel.app/)
 
-## Deployment to Vercel
+This is my personal developer portfolio built using HTML, CSS, JavaScript, and Tailwind CSS on the frontend, with a backend powered by PHP and MySQL. It highlights my projects, skills, resume, and a contact form connected to the backend.
 
-### Prerequisites
+---
 
-1. A [Vercel](https://vercel.com) account (you can sign up with GitHub)
-2. [Git](https://git-scm.com/) installed on your computer
-3. Basic knowledge of command line operations
+## About Me
 
-### Deployment Steps
+I’m Utsav Mishra, a Full Stack Web Developer and BCA student at Dr. Ram Manohar Lohia Avadh University. I'm focused on mastering real-world development using PHP, MySQL, and modern frontend tools like Tailwind CSS.
 
-1. **Clone or Download this repository**
-   ```bash
-   git clone <repository-url>
-   cd portfolio
-   ```
+---
 
-2. **Install Vercel CLI (optional)**
-   ```bash
-   npm install -g vercel
-   ```
+## Tech Stack
 
-3. **Deploy to Vercel**
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+- Tailwind CSS
 
-   **Option 1: Using Vercel CLI**
-   ```bash
-   # Login to Vercel
-   vercel login
-   
-   # Deploy to Vercel
-   vercel
-   
-   # For production deployment
-   vercel --prod
-   ```
+### Backend
+- PHP 8
+- MySQL
 
-   **Option 2: Using Vercel Dashboard**
-   1. Push your code to a GitHub repository
-   2. Go to [Vercel Dashboard](https://vercel.com/dashboard)
-   3. Click "Import Project"
-   4. Select "Import Git Repository"
-   5. Connect to your GitHub account and select your repository
-   6. Configure your project settings
-   7. Click "Deploy"
+### Other Tools
+- Git and GitHub for Version Control
+- Vercel for Deployment
 
-### Important Configuration
+---
 
-The project includes a `vercel.json` file that configures the build settings and routing for Vercel deployment. This ensures:
+## Key Features
 
-1. Static files (HTML, CSS, JS, images, PDFs) are served correctly
-2. API routes are processed as serverless functions
-3. Proper routing for all requests
+- Clean and Responsive Design
+- Projects Showcase Section
+- Resume Download Option
+- Working Contact Form with PHP Backend
+- Deployed on Vercel (Frontend)
 
-## Contact Form Setup
+---
 
-The contact form now uses a serverless function approach:
+---
 
-1. The form data is sent to `/api/contact` endpoint
-2. The API function forwards the request to the InfinityFree PHP backend
-3. The PHP backend processes the data and stores it in the MySQL database
+## Preview
 
-This approach allows you to:
-1. Keep your existing database setup on InfinityFree
-2. Deploy a modern frontend on Vercel with great performance
-3. Continue using your existing admin panel to view messages
+You can add a screenshot of your portfolio by placing an image in your repo and using:
 
-## Post-Deployment
+![Screenshot](screenshot.png)
 
-1. **Test the contact form** to ensure it's working correctly
-2. **Update DNS settings** if you're using a custom domain
-3. **Set up monitoring** through Vercel's dashboard
+---
 
-## Troubleshooting
+## Contact
 
-- **Contact form not working?** Check the browser console for errors. Ensure the InfinityFree backend is accessible.
-- **API error messages?** Check Vercel logs in the dashboard under your project's "Functions" tab.
-- **CSS/JS not loading?** Verify the paths in HTML files are correct.
+Email: utsavmishraa005@gmail.com  
+LinkedIn: https://linkedin.com/in/utsav-mishra-1
+GitHub: https://github.com/bhaktofmahakal  
 
-## Future Improvements
+---
 
-- Consider moving from InfinityFree to a more integrated database solution like MongoDB Atlas or Supabase for improved performance and reliability.
-- Implement serverless functions for admin functionality to completely migrate away from PHP.
+## License
+
+This project is open-source and free to use or modify. Attribution is appreciated.
