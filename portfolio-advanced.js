@@ -228,43 +228,189 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Project filtering
+    // Enhanced Project filtering with smooth animations
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const projectsGrid = document.querySelector('.grid');
     
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterBtns.forEach(btn => btn.classList.remove('active'));
+    // Initialize Isotope if available (fallback to custom filtering if not)
+    let iso;
+    try {
+        if (typeof Isotope !== 'undefined' && projectsGrid) {
+            iso = new Isotope(projectsGrid, {
+                itemSelector: '.project-card',
+                layoutMode: 'fitRows',
+                transitionDuration: '0.6s',
+                stagger: 100
+            });
             
-            // Add active class to clicked button
-            this.classList.add('active');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    iso.arrange({ filter: filterValue === 'all' ? '*' : `[data-category="${filterValue}"]` });
+                });
+            });
+        } else {
+            // Fallback to custom filtering
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Add animation class to container
+                    if (projectsGrid) {
+                        projectsGrid.classList.add('filtering');
+                        setTimeout(() => {
+                            projectsGrid.classList.remove('filtering');
+                        }, 600);
+                    }
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else if (card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+    } catch (error) {
+        console.warn('Isotope not available, using fallback filtering', error);
+        // Fallback already implemented above
+    }
+    
+    // Project Modal Functionality
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.querySelector('#modal-content .modal-content');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const closeModalBtn = document.getElementById('close-modal');
+    const detailsBtns = document.querySelectorAll('.project-details-btn');
+    
+    if (modal && modalContent && modalOverlay && closeModalBtn) {
+        // Open modal function
+        function openModal(projectData) {
+            // Populate modal content
+            modalContent.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="rounded-lg overflow-hidden">
+                        <img src="${projectData.image}" alt="${projectData.title}" class="w-full h-auto object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">${projectData.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">${projectData.description}</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">Technologies</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${projectData.tags.map(tag => `<span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">Key Features</h4>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
+                                ${projectData.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="flex gap-3 mt-6">
+                            ${projectData.liveLink ? `<a href="${projectData.liveLink}" target="_blank" class="px-4 py-2 bg-primary text-white rounded-md font-medium transition-all hover:bg-primary-dark flex items-center gap-2"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                            ${projectData.githubLink ? `<a href="${projectData.githubLink}" target="_blank" class="px-4 py-2 bg-gray-800 text-white rounded-md font-medium transition-all hover:bg-gray-700 flex items-center gap-2"><i class="fab fa-github"></i> GitHub</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
             
-            const filter = this.getAttribute('data-filter');
-            
-            projectCards.forEach(card => {
-                if (filter === 'all') {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 100);
-                } else if (card.getAttribute('data-category') === filter) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 100);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
+            // Show modal with animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }, 10);
+        }
+        
+        // Close modal function
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }, 300);
+        }
+        
+        // Add click event to all detail buttons
+        detailsBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                // Get project data from the card
+                const card = btn.closest('.project-card');
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('p').textContent;
+                const image = card.querySelector('img').src;
+                const tags = Array.from(card.querySelectorAll('.project-tags span')).map(span => span.textContent);
+                
+                // Get links
+                const links = card.querySelectorAll('.project-links a');
+                const liveLink = links[0]?.href || '';
+                const githubLink = links[1]?.href || '';
+                
+                // Sample features (you can customize this based on your projects)
+                const features = [
+                    'Responsive design for all devices',
+                    'Intuitive user interface',
+                    'Fast loading and performance optimized',
+                    'Cross-browser compatibility'
+                ];
+                
+                // Open modal with project data
+                openModal({
+                    title,
+                    description,
+                    image,
+                    tags,
+                    liveLink,
+                    githubLink,
+                    features
+                });
             });
         });
-    });
+        
+        // Close modal when clicking the close button or overlay
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    }
 
     // Enhanced progress bar animation with staggered loading and visual effects
     function animateProgressBars() {
@@ -704,3 +850,45 @@ function submitContactForm(event) {
     
     return false;
 }
+
+// Counter animation for project stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // The lower the faster
+    
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const increment = target / speed;
+        
+        const updateCount = () => {
+            const count = +counter.innerText;
+            
+            // If count is less than target, continue incrementing
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 30);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        
+        updateCount();
+    });
+}
+
+// Initialize counter animation when the section is in view
+document.addEventListener('DOMContentLoaded', function() {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(animateCounters, 1000); // Delay to ensure visibility
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(projectsSection);
+    }
+});
