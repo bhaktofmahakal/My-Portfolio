@@ -726,14 +726,9 @@ function submitContactForm(event) {
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
     
     // Clear previous status
-    if (window.showFormStatus) {
-        // Use the new status display function if available
-        statusDiv.classList.add('hidden');
-    } else {
-        // Fallback to original behavior
-        statusDiv.innerHTML = '';
-        statusDiv.className = 'form-status';
-    }
+    document.getElementById('formSuccess').classList.add('hidden');
+    document.getElementById('formError').classList.add('hidden');
+    statusDiv.classList.add('hidden');
     
     // Get form data
     const formData = new FormData(form);
@@ -779,8 +774,7 @@ function submitContactForm(event) {
     }
     
     // Determine which backend URL to use based on the environment
-    // Using the relative path '/api/contact' will work on both Vercel
-    // and when the InfinityFree backend is available
+    // For Vercel deployment, use the API route
     const backendUrl = '/api/contact';
     
     // Send data to server using fetch API
@@ -801,21 +795,12 @@ function submitContactForm(event) {
     .then(data => {
         if (data.success) {
             // Form submission successful
-            if (window.showFormStatus) {
-                window.showFormStatus(data.message, true);
-            } else {
-                statusDiv.innerHTML = data.message;
-                statusDiv.className = 'form-status success';
-            }
+            document.getElementById('formSuccess').classList.remove('hidden');
             form.reset();
         } else {
             // Form submission failed
-            if (window.showFormStatus) {
-                window.showFormStatus(data.message, false);
-            } else {
-                statusDiv.innerHTML = data.message;
-                statusDiv.className = 'form-status error';
-            }
+            document.getElementById('formError').classList.remove('hidden');
+            document.getElementById('formError').textContent = data.message || 'There was an error sending your message. Please try again later.';
         }
         
         // Re-enable the submit button
@@ -835,12 +820,38 @@ function submitContactForm(event) {
     .catch(error => {
         console.error('Error:', error);
         
-        // Show error message
-        if (window.showFormStatus) {
-            window.showFormStatus("There was an error sending your message. Please try again later.", false);
+        // Try EmailJS as a fallback if available
+        if (typeof emailjs !== 'undefined' && typeof emailjs.send === 'function') {
+            console.log('Trying EmailJS as fallback...');
+            
+            // Create template parameters
+            const templateParams = {
+                from_name: formJson.name,
+                from_email: formJson.email,
+                subject: formJson.subject,
+                message: formJson.message
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_portfolio', 'template_contact', templateParams)
+                .then(function(response) {
+                    console.log('EmailJS SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    document.getElementById('formSuccess').classList.remove('hidden');
+                    
+                    // Reset form
+                    form.reset();
+                })
+                .catch(function(err) {
+                    console.log('EmailJS FAILED...', err);
+                    
+                    // Show error message
+                    document.getElementById('formError').classList.remove('hidden');
+                });
         } else {
-            statusDiv.innerHTML = "There was an error sending your message. Please try again later.";
-            statusDiv.className = 'form-status error';
+            // Show error message if EmailJS is not available
+            document.getElementById('formError').classList.remove('hidden');
         }
         
         // Re-enable the submit button

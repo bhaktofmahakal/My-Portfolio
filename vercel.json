@@ -4,14 +4,12 @@
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "*.css", "use": "@vercel/static" },
     { "src": "*.js", "use": "@vercel/static" },
-    { "src": "api/**/*.js", "use": "@vercel/node" },
     { "src": "image/**/*", "use": "@vercel/static" },
     { "src": "certificates/**/*", "use": "@vercel/static" },
     { "src": "*.jpg", "use": "@vercel/static" },
     { "src": "*.pdf", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
