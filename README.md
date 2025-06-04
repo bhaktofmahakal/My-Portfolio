@@ -150,16 +150,6 @@ Cross-browser tested (Chrome, Firefox, Safari, Edge)
 ---
 
 
-| Page                    | Preview                               |
-| ----------------------- | ------------------------------------- |
-| Hero / Landing          | ![Hero](screenshots/hero.png)         |
-| Projects                | ![Projects](screenshots/projects.png) |
-| Contact Form            | ![Contact](screenshots/contact.png)   |
-
-
----
-
-
 📄 License
 
 This project is licensed under the MIT License.
