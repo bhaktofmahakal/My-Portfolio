@@ -87,26 +87,13 @@
 
 ---
 
-## 📁 Project Structure
+🛡️ Security Features
+
 
 <details>
 <summary>Click to view folder layout</summary>
 
-    portfolio-website/
-    ├── public/                 # Assets & images
-    ├── src/
-    │   ├── css/                # Custom Tailwind + animations
-    │   ├── js/                 # JS for theme, navigation, form
-    │   ├── components/         # Sections like Hero, About, etc.
-    │   ├── data/               # JSON-based project/certification info
-    │   └── index.html          # Main HTML file
-    ├── contact.php             # Backend form handler
-    ├── vercel.json             # Deployment config
-    ├── README.md               # Documentation
 
----
-
-🛡️ Security Features
 
 🔐 Secure contact form processing (PHP + EmailJS)
 
@@ -163,7 +150,6 @@ Cross-browser tested (Chrome, Firefox, Safari, Edge)
 📄 License
 
 This project is licensed under the MIT License.
-Feel free to use and modify — just give credit if you use it publicly.
 
 ---
 
@@ -177,5 +163,6 @@ Utsav Mishra
 
 🔗 LinkedIn: https://linkedin.com/in/utsav-mishra1
 
+---
 
 💡 “Design is not just what it looks like and feels like. Design is how it works.” — Steve Jobs
