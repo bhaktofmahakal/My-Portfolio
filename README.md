@@ -91,17 +91,17 @@
 
 
 <details>
-<summary>Click to view folder layout</summary>
+<summary>Click to view</summary>
 
 
 
-🔐 Secure contact form processing (PHP + EmailJS)
-
-✅ Input validation (client-side + backend)
-
-🚫 XSS protection via sanitized HTML inputs
-
-🔒 Protected admin routes (optional future update)
+  🔐 Secure contact form processing (PHP + EmailJS)
+  
+  ✅ Input validation (client-side + backend)
+  
+  🚫 XSS protection via sanitized HTML inputs
+  
+  🔒 Protected admin routes (optional future update)
 
 
 ---
