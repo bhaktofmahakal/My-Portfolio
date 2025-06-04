@@ -1,4 +1,4 @@
-# 🚀 Utsav Mishra — Developer Portfolio Website
+#  Utsav Mishra — Developer Portfolio Website
 
 <p align="center">
   <img src="https://img.shields.io/badge/TechStack-FullStack-blue?style=for-the-badge&logo=visualstudiocode&logoColor=white">
