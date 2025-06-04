@@ -33,6 +33,8 @@
 - Dynamic skill bars
 - Resume download button
 
+---
+
 ### 📂 **Key Sections**
 - 🏠 Home / Hero Section
 - 🙋‍♂️ About Me
@@ -63,6 +65,9 @@
 | Font Awesome    | Iconography                             |
 | Poppins         | Elegant typography                      |
 
+
+---
+
 ### 🖥️ **Backend & Integration**
 
 | Tech      | Description                                      |
@@ -70,6 +75,8 @@
 | PHP       | Contact form server-side processing              |
 | EmailJS   | Email service for form handling (JavaScript SDK) |
 | Node.js   | Runtime for development & Vercel compatibility   |
+
+---
 
 ### ☁️ **Deployment & Tools**
 
@@ -97,3 +104,78 @@
     ├── vercel.json             # Deployment config
     ├── README.md               # Documentation
 
+---
+
+🛡️ Security Features
+
+🔐 Secure contact form processing (PHP + EmailJS)
+
+✅ Input validation (client-side + backend)
+
+🚫 XSS protection via sanitized HTML inputs
+
+🔒 Protected admin routes (optional future update)
+
+
+---
+
+
+🧪 Development & Best Practices
+
+Modular code structure for easy maintenance
+
+Clean, readable, and commented code
+
+Separate development and production builds
+
+Cross-browser tested (Chrome, Firefox, Safari, Edge)
+
+
+---
+
+
+🧩 Special Features
+
+🌓 Theme Persistence: Saves user theme preference using localStorage
+
+🖥️ System Theme Detection: Automatically adapts to OS-level dark/light mode
+
+📑 Resume Download: Professional PDF resume download option
+
+🔍 Project Filtering System: Filter portfolio items by category
+
+🏅 Certificates Carousel: Highlight your key achievements visually
+
+
+---
+
+
+| Page                    | Preview                               |
+| ----------------------- | ------------------------------------- |
+| Hero / Landing          | ![Hero](screenshots/hero.png)         |
+| Projects                | ![Projects](screenshots/projects.png) |
+| Contact Form            | ![Contact](screenshots/contact.png)   |
+
+
+---
+
+
+📄 License
+
+This project is licensed under the MIT License.
+Feel free to use and modify — just give credit if you use it publicly.
+
+---
+
+📬 Contact
+
+Utsav Mishra
+
+📧 Email: utsavmishraa005@gmail.com
+
+🌐 GitHub: https://github.com/bhaktofmahakal
+
+🔗 LinkedIn: https://linkedin.com/in/utsav-mishra1
+
+
+💡 “Design is not just what it looks like and feels like. Design is how it works.” — Steve Jobs
