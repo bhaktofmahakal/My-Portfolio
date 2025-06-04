@@ -87,6 +87,19 @@
 
 ---
 
+## 📸 Screenshots
+
+| Page/Section     | Screenshot           | Description                                        |
+|------------------|----------------------|----------------------------------------------------|
+| 📨 Contact Page   | ![Contact](images/contact.png)     | Contact form UI                     |
+| 🌙 Dark Theme     | ![Dark](images/dark.png)           | Full UI in dark mode                |
+| 🌞 Light Theme    | ![Light](images/light.png)         | Full UI in light mode               |
+| 💼 Project View   | ![Project](images/project.png)     | Overview of the full project layout |
+
+
+---
+
+
 🛡️ Security Features
 
 
