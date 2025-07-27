@@ -88,54 +88,124 @@
     --z-modal: 1000;
 }
 
-/* ===== DARK THEME ===== */
+/* ===== DARK THEME - CHAI Research + Lusion Inspired ===== */
 .dark-theme, html.dark-theme {
-    --primary-color: #7678ed;
-    --primary-color-rgb: 118, 120, 237;
-    --primary-light: #8f91ff;
-    --primary-light-rgb: 143, 145, 255;
-    --primary-dark: #5e60ce;
-    --primary-dark-rgb: 94, 96, 206;
-    --secondary-color: #ff5678;
-    --secondary-color-rgb: 255, 86, 120;
-    --secondary-light: #ff7a94;
-    --secondary-light-rgb: 255, 122, 148;
-    --secondary-dark: #e63e60;
-    --secondary-dark-rgb: 230, 62, 96;
-    --accent-color: #00d4b1;
-    --accent-color-rgb: 0, 212, 177;
-    --accent-light: #33e6c8;
-    --accent-light-rgb: 51, 230, 200;
-    --accent-dark: #00b396;
-    --accent-dark-rgb: 0, 179, 150;
-    --background-color: #121212;
-    --background-color-rgb: 18, 18, 18;
-    --background-alt: #1e1e1e;
-    --text-color: #e0e0e0;
-    --text-light: #b0b0b0;
-    --text-dark: #ffffff;
-    --white: #ffffff;
-    --black: #000000;
-    --gray-100: #2d2d2d;
-    --gray-200: #333333;
-    --gray-300: #444444;
-    --gray-400: #555555;
-    --gray-500: #666666;
-    --gray-600: #777777;
-    --gray-700: #888888;
-    --gray-800: #999999;
-    --gray-900: #212529;
+    /* CHAI Research - Deep Tech Colors */
+    --primary-color: #6366f1; /* Indigo-500 */
+    --primary-color-rgb: 99, 102, 241;
+    --primary-light: #818cf8; /* Indigo-400 */
+    --primary-light-rgb: 129, 140, 248;
+    --primary-dark: #4f46e5; /* Indigo-600 */
+    --primary-dark-rgb: 79, 70, 229;
+    
+    /* Lusion - Electric Accents */
+    --secondary-color: #f59e0b; /* Amber-500 */
+    --secondary-color-rgb: 245, 158, 11;
+    --secondary-light: #fbbf24; /* Amber-400 */
+    --secondary-light-rgb: 251, 191, 36;
+    --secondary-dark: #d97706; /* Amber-600 */
+    --secondary-dark-rgb: 217, 119, 6;
+    
+    /* Replika - Warm Cyan */
+    --accent-color: #06b6d4; /* Cyan-500 */
+    --accent-color-rgb: 6, 182, 212;
+    --accent-light: #22d3ee; /* Cyan-400 */
+    --accent-light-rgb: 34, 211, 238;
+    --accent-dark: #0891b2; /* Cyan-600 */
+    --accent-dark-rgb: 8, 145, 178;
+    
+    /* Dark Theme Backgrounds */
+    --background-color: #0f0f23; /* Very Dark Blue */
+    --background-color-rgb: 15, 15, 35;
+    --background-alt: #1a1a2e; /* Dark Blue-Gray */
+    --background-card: #16213e; /* Card Background */
+    --background-elevated: #1e2749; /* Elevated Elements */
+    
+    /* Dark Theme Text */
+    --text-color: #e2e8f0; /* Slate-200 */
+    --text-light: #94a3b8; /* Slate-400 */
+    --text-dark: #f8fafc; /* Slate-50 */
+    --text-muted: #64748b; /* Slate-500 */
+    
+    /* Dark Theme Grays */
+    --gray-50: #1e293b; /* Slate-800 */
+    --gray-100: #334155; /* Slate-700 */
+    --gray-200: #475569; /* Slate-600 */
+    --gray-300: #64748b; /* Slate-500 */
+    --gray-400: #94a3b8; /* Slate-400 */
+    --gray-500: #cbd5e1; /* Slate-300 */
+    --gray-600: #e2e8f0; /* Slate-200 */
+    --gray-700: #f1f5f9; /* Slate-100 */
+    --gray-800: #f8fafc; /* Slate-50 */
+    --gray-900: #ffffff;
+    
+    /* Dark Theme Borders & Effects */
+    --border-color: rgba(99, 102, 241, 0.2);
+    --border-light: rgba(148, 163, 184, 0.1);
+    --shadow-color: rgba(15, 15, 35, 0.5);
+    --glow-primary: rgba(99, 102, 241, 0.4);
+    --glow-secondary: rgba(245, 158, 11, 0.4);
+    --glow-accent: rgba(6, 182, 212, 0.4);
 }
 
-/* ===== LIGHT THEME (DEFAULT) ===== */
-/* These styles apply to the default light mode */
+/* ===== LIGHT THEME - Replika + CHAI Research Inspired ===== */
 body:not(.dark-theme), html:not(.dark-theme) {
+    /* CHAI Research - Professional Blues */
+    --primary-color: #3b82f6; /* Blue-500 */
+    --primary-color-rgb: 59, 130, 246;
+    --primary-light: #60a5fa; /* Blue-400 */
+    --primary-light-rgb: 96, 165, 250;
+    --primary-dark: #2563eb; /* Blue-600 */
+    --primary-dark-rgb: 37, 99, 235;
+    
+    /* Lusion - Vibrant Orange */
+    --secondary-color: #f97316; /* Orange-500 */
+    --secondary-color-rgb: 249, 115, 22;
+    --secondary-light: #fb923c; /* Orange-400 */
+    --secondary-light-rgb: 251, 146, 60;
+    --secondary-dark: #ea580c; /* Orange-600 */
+    --secondary-dark-rgb: 234, 88, 12;
+    
+    /* Replika - Soft Emerald */
+    --accent-color: #10b981; /* Emerald-500 */
+    --accent-color-rgb: 16, 185, 129;
+    --accent-light: #34d399; /* Emerald-400 */
+    --accent-light-rgb: 52, 211, 153;
+    --accent-dark: #059669; /* Emerald-600 */
+    --accent-dark-rgb: 5, 150, 105;
+    
+    /* Light Theme Backgrounds */
     --background-color: #ffffff;
     --background-color-rgb: 255, 255, 255;
-    --background-alt: #f8f9fa;
-    --text-color: #333333;
-    --text-light: #666666;
-    --text-dark: #111111;
+    --background-alt: #f8fafc; /* Slate-50 */
+    --background-card: #ffffff; /* Pure White Cards */
+    --background-elevated: #f1f5f9; /* Slate-100 */
+    
+    /* Light Theme Text */
+    --text-color: #334155; /* Slate-700 */
+    --text-light: #64748b; /* Slate-500 */
+    --text-dark: #0f172a; /* Slate-900 */
+    --text-muted: #94a3b8; /* Slate-400 */
+    
+    /* Light Theme Grays */
+    --gray-50: #f8fafc; /* Slate-50 */
+    --gray-100: #f1f5f9; /* Slate-100 */
+    --gray-200: #e2e8f0; /* Slate-200 */
+    --gray-300: #cbd5e1; /* Slate-300 */
+    --gray-400: #94a3b8; /* Slate-400 */
+    --gray-500: #64748b; /* Slate-500 */
+    --gray-600: #475569; /* Slate-600 */
+    --gray-700: #334155; /* Slate-700 */
+    --gray-800: #1e293b; /* Slate-800 */
+    --gray-900: #0f172a; /* Slate-900 */
+    
+    /* Light Theme Borders & Effects */
+    --border-color: rgba(59, 130, 246, 0.2);
+    --border-light: rgba(203, 213, 225, 0.5);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --glow-primary: rgba(59, 130, 246, 0.3);
+    --glow-secondary: rgba(249, 115, 22, 0.3);
+    --glow-accent: rgba(16, 185, 129, 0.3);
 }
 
 /* Additional light theme styles for specific elements */
@@ -3804,15 +3874,353 @@ section#contact {
     background: linear-gradient(to bottom, var(--primary-dark), var(--secondary-dark));
 }
 
-/* Selection Color */
-::selection {
-    background: rgba(94, 96, 206, 0.2);
+/* Selection Color - Design Inspiration Based */
+/* Light Mode Selection - Replika Warm */
+body:not(.dark-theme) ::selection {
+    background: rgba(59, 130, 246, 0.2);
     color: var(--primary-color);
 }
 
-::-moz-selection {
-    background: rgba(94, 96, 206, 0.2);
+body:not(.dark-theme) ::-moz-selection {
+    background: rgba(59, 130, 246, 0.2);
     color: var(--primary-color);
+}
+
+/* Dark Mode Selection - CHAI Research Electric */
+.dark-theme ::selection {
+    background: rgba(99, 102, 241, 0.3);
+    color: var(--primary-color);
+}
+
+.dark-theme ::-moz-selection {
+    background: rgba(99, 102, 241, 0.3);
+    color: var(--primary-color);
+}
+
+/* Advanced Button Hover Effects - Lusion Inspired */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+/* Card Hover Effects - CHAI Research Style */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .card-hover:hover {
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+}
+
+/* Glassmorphism Effects */
+.glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .glass {
+    background: rgba(15, 15, 35, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+body:not(.dark-theme) .glass {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* Advanced Gradient Text Effects */
+.gradient-text-light {
+    background: linear-gradient(135deg, #3b82f6, #f97316, #10b981);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 3s ease infinite;
+}
+
+.gradient-text-dark {
+    background: linear-gradient(135deg, #6366f1, #f59e0b, #06b6d4);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Neon Glow Effects for Dark Mode */
+.dark-theme .neon-glow {
+    box-shadow: 
+        0 0 5px rgba(99, 102, 241, 0.5),
+        0 0 10px rgba(99, 102, 241, 0.3),
+        0 0 15px rgba(99, 102, 241, 0.2),
+        0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+/* Light Mode Soft Shadows */
+body:not(.dark-theme) .soft-shadow {
+    box-shadow: 
+        0 4px 6px rgba(59, 130, 246, 0.1),
+        0 2px 4px rgba(59, 130, 246, 0.06);
+}
+
+/* Animated Borders */
+.animated-border {
+    position: relative;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, var(--background-color), var(--background-color)) padding-box,
+                linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color)) border-box;
+}
+
+/* Floating Animation Variations */
+.animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+    animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+    animation: float-fast 2s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(180deg); }
+}
+
+@keyframes float-medium {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+@keyframes float-fast {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(180deg); }
+}
+
+/* Design System Inspired Utilities */
+
+/* CHAI Research - Tech Professional */
+.bg-tech-gradient {
+    background: linear-gradient(135deg, #1e3a8a, #3730a3, #1e40af);
+}
+
+.dark-theme .bg-tech-gradient {
+    background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+}
+
+/* Lusion - Creative Energy */
+.bg-creative-gradient {
+    background: linear-gradient(135deg, #f97316, #eab308, #10b981);
+}
+
+.dark-theme .bg-creative-gradient {
+    background: linear-gradient(135deg, #f59e0b, #d97706, #06b6d4);
+}
+
+/* Replika - Warm & Friendly */
+.bg-warm-gradient {
+    background: linear-gradient(135deg, #3b82f6, #10b981, #06b6d4);
+}
+
+.dark-theme .bg-warm-gradient {
+    background: linear-gradient(135deg, #6366f1, #22d3ee, #8b5cf6);
+}
+
+/* Advanced Typography Scale */
+.text-mega {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+.text-display {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 0.95;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+/* Interactive Elements */
+.interactive-card {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.interactive-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.interactive-card:hover::before {
+    opacity: 1;
+}
+
+.interactive-card:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+/* Micro-interactions */
+.micro-bounce {
+    transition: transform 0.2s ease;
+}
+
+.micro-bounce:hover {
+    transform: scale(1.05);
+}
+
+.micro-bounce:active {
+    transform: scale(0.98);
+}
+
+/* Status Indicators */
+.status-online {
+    position: relative;
+}
+
+.status-online::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    background: #10b981;
+    border: 2px solid var(--background-color);
+    border-radius: 50%;
+    animation: pulse-status 2s infinite;
+}
+
+@keyframes pulse-status {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Progressive Enhancement */
+@supports (backdrop-filter: blur(10px)) {
+    .progressive-blur {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+@supports (mix-blend-mode: multiply) {
+    .blend-multiply {
+        mix-blend-mode: multiply;
+    }
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+    .text-mega {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+    }
+    
+    .interactive-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .interactive-card:hover {
+        transform: translateY(-6px) scale(1.01);
+    }
+}
+
+/* High DPI Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .crisp-edges {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark Mode Specific Enhancements */
+.dark-theme {
+    color-scheme: dark;
+}
+
+.dark-theme img {
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.dark-theme .logo {
+    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+}
+
+/* Light Mode Specific Enhancements */
+body:not(.dark-theme) {
+    color-scheme: light;
+}
+
+body:not(.dark-theme) .logo {
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.1));
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .dark-theme {
+        background: white !important;
+        color: black !important;
+    }
 }
     
     /* Improve readability of text */
