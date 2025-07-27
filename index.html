@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5;url=portfolio-advanced.html">
+    <meta http-equiv="refresh" content="6;url=portfolio-advanced.html">
     <title>Utsav Mishra | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,10 +14,25 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --glow-color: rgba(102, 126, 234, 0.4);
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
-            color: white;
+            background: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            color: var(--text-primary);
             height: 100vh;
             overflow: hidden;
             display: flex;
@@ -25,109 +41,436 @@
             position: relative;
         }
         
-        .container {
-            text-align: center;
-            z-index: 10;
-        }
-        
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.5s;
-            background: linear-gradient(90deg, #5e60ce, #6930c3, #5390d9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.8s;
-        }
-        
-        .loader-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards 1.2s;
-        }
-        
-        .loader {
+        /* Advanced Background Effects */
+        .bg-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: 4px solid rgba(255, 255, 255, 0.1);
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.05) 40%, transparent 60%),
+                linear-gradient(-45deg, transparent 30%, rgba(255, 119, 198, 0.05) 40%, transparent 60%);
+            animation: bgShift 20s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+        
+        /* Advanced Logo with Glitch Effect */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #00f2fe);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            animation: logoReveal 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.3s;
+            text-shadow: 0 0 30px var(--glow-color);
+        }
+        
+        .logo::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            animation: glitchEffect 3s infinite;
+        }
+        
+        .logo::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            animation: glitchEffect 3s infinite reverse;
+        }
+        
+        /* Enhanced Tagline */
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInFade 1s ease forwards 0.8s;
+            color: var(--text-secondary);
+            position: relative;
+        }
+        
+        .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            animation: expandLine 1s ease forwards 1.5s;
+            transform-origin: center;
+            scale: 0;
+        }
+        
+        /* Advanced Loader */
+        .loader-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.2s;
+        }
+        
+        .loader-ring {
+            position: absolute;
             border-radius: 50%;
-            border-top: 4px solid #5e60ce;
-            animation: spin 1s linear infinite;
+            border: 2px solid transparent;
         }
         
-        .loader:nth-child(2) {
-            border-top-color: #6930c3;
-            animation-duration: 1.3s;
-            width: 90%;
-            height: 90%;
-            top: 5%;
-            left: 5%;
+        .loader-ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            border-top: 3px solid #667eea;
+            border-right: 3px solid #667eea;
+            animation: rotate 2s linear infinite;
         }
         
-        .loader:nth-child(3) {
-            border-top-color: #5390d9;
-            animation-duration: 1.6s;
+        .loader-ring:nth-child(2) {
             width: 80%;
             height: 80%;
             top: 10%;
             left: 10%;
+            border-top: 3px solid #764ba2;
+            border-left: 3px solid #764ba2;
+            animation: rotate 1.5s linear infinite reverse;
+        }
+        
+        .loader-ring:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-top: 3px solid #f093fb;
+            border-bottom: 3px solid #f093fb;
+            animation: rotate 1.8s linear infinite;
+        }
+        
+        .loader-ring:nth-child(4) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            border-right: 3px solid #00f2fe;
+            border-left: 3px solid #00f2fe;
+            animation: rotate 1.2s linear infinite reverse;
+        }
+        
+        .loader-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px var(--glow-color);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .loader-center i {
+            font-size: 24px;
+            color: white;
+            animation: bounce 1s ease-in-out infinite alternate;
+        }
+        
+        /* Progress Section */
+        .progress-section {
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.8s;
         }
         
         .progress-text {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards 1.5s;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
         }
         
+        .progress-bar-container {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            width: 0;
+            animation: progressFill 4s ease-in-out forwards;
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progressShine 2s ease-in-out infinite;
+        }
+        
+        .percentage {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+        
+        /* Status Messages */
+        .status-container {
+            margin-top: 1rem;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .status-message {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: messageSlide 0.5s ease forwards;
+        }
+        
+        /* Enhanced Footer */
         .made-by {
             position: absolute;
             bottom: 2rem;
             width: 100%;
             text-align: center;
-            font-size: 0.9rem;
             opacity: 0;
-            animation: fadeIn 0.5s ease forwards 2s;
+            animation: fadeIn 0.8s ease forwards 2.5s;
         }
         
+        .made-by p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+            text-shadow: 0 5px 15px var(--glow-color);
+        }
+        
+        /* Enhanced Particles */
         .particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 2;
+            pointer-events: none;
         }
         
         .particle {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(94, 96, 206, 0.5);
             border-radius: 50%;
-            animation: float 15s linear infinite;
+            pointer-events: none;
         }
         
-        @keyframes float {
+        .particle.primary {
+            background: radial-gradient(circle, #667eea, transparent);
+            animation: floatPrimary 20s linear infinite;
+        }
+        
+        .particle.secondary {
+            background: radial-gradient(circle, #f093fb, transparent);
+            animation: floatSecondary 25s linear infinite;
+        }
+        
+        .particle.accent {
+            background: radial-gradient(circle, #00f2fe, transparent);
+            animation: floatAccent 15s linear infinite;
+        }
+        
+        /* Advanced Animations */
+        @keyframes bgShift {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+        
+        @keyframes logoReveal {
             0% {
-                transform: translateY(0) translateX(0);
+                opacity: 0;
+                transform: translateY(30px) scale(0.9) rotateX(-90deg);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05) rotateX(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+        
+        @keyframes glitchEffect {
+            0%, 90%, 100% {
+                opacity: 0;
+                transform: translate(0, 0);
+            }
+            91% {
+                opacity: 0.8;
+                transform: translate(2px, -1px);
+            }
+            92% {
+                opacity: 0.7;
+                transform: translate(-2px, 1px);
+            }
+            93% {
+                opacity: 0.9;
+                transform: translate(1px, -2px);
+            }
+            94% {
+                opacity: 0.6;
+                transform: translate(-1px, 2px);
+            }
+            95% {
+                opacity: 0.8;
+                transform: translate(2px, 1px);
+            }
+        }
+        
+        @keyframes slideInFade {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes expandLine {
+            0% {
+                scale: 0;
+            }
+            100% {
+                scale: 1;
+            }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 30px var(--glow-color);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                box-shadow: 0 0 50px var(--glow-color);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes messageSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes floatPrimary {
+            0% {
+                transform: translateY(100vh) translateX(0px) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -137,119 +480,377 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-10vh) translateX(100px) rotate(360deg);
                 opacity: 0;
             }
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @keyframes floatSecondary {
+            0% {
+                transform: translateY(100vh) translateX(50px) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.8;
+            }
+            85% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-100px) rotate(-360deg);
+                opacity: 0;
             }
         }
         
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
+        @keyframes floatAccent {
+            0% {
+                transform: translateY(100vh) translateX(-30px) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(150px) rotate(180deg);
+                opacity: 0;
             }
         }
         
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .loader-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .progress-bar-container {
+                width: 250px;
+            }
+            
+            .social-links {
+                gap: 0.8rem;
+            }
+            
+            .social-links a {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .logo {
                 font-size: 2rem;
             }
             
             .tagline {
                 font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .loader-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .progress-bar-container {
+                width: 200px;
+            }
+            
+            .made-by p {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .logo {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .tagline {
+                margin-bottom: 1.5rem;
             }
             
             .loader-container {
                 width: 100px;
                 height: 100px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .made-by {
+                bottom: 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="bg-overlay"></div>
     <div class="particles" id="particles"></div>
     
     <div class="container">
-        <h1 class="logo">Utsav Mishra</h1>
-        <p class="tagline">Full Stack Developer & Problem Solver</p>
-        
-        <div class="loader-container">
-            <div class="loader"></div>
-            <div class="loader"></div>
-            <div class="loader"></div>
+        <div class="logo-container">
+            <h1 class="logo" data-text="Utsav Mishra">Utsav Mishra</h1>
         </div>
         
-        <p class="progress-text">Loading portfolio experience...</p>
+        <p class="tagline">Full Stack Developer & Creative Problem Solver</p>
+        
+        <div class="loader-container">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-center">
+                <i class="fas fa-code"></i>
+            </div>
+        </div>
+        
+        <div class="progress-section">
+            <p class="progress-text">Initializing portfolio experience...</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="percentage" id="percentage">0%</div>
+            <div class="status-container">
+                <div class="status-message" id="statusMessage">Starting up...</div>
+            </div>
+        </div>
     </div>
     
     <div class="made-by">
-        <p>Designed & Developed by Utsav Mishra</p>
+        <p>Crafted with ❤️ by Utsav Mishra</p>
+        <div class="social-links">
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
     </div>
     
     <script>
-        // Create floating particles
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 30;
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
+        // Advanced Particle System
+        function createAdvancedParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 60;
+            const particleTypes = ['primary', 'secondary', 'accent'];
             
-            // Random position
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            particle.style.left = `${posX}%`;
-            particle.style.top = `${posY}%`;
-            
-            // Random size
-            const size = Math.random() * 5 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // Random opacity
-            const opacity = Math.random() * 0.5 + 0.3;
-            particle.style.backgroundColor = `rgba(94, 96, 206, ${opacity})`;
-            
-            // Random animation delay
-            const delay = Math.random() * 10;
-            particle.style.animationDelay = `${delay}s`;
-            
-            // Random animation duration
-            const duration = Math.random() * 10 + 10;
-            particle.style.animationDuration = `${duration}s`;
-            
-            particlesContainer.appendChild(particle);
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                particle.classList.add('particle', type);
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random size based on type
+                let size;
+                switch(type) {
+                    case 'primary': size = Math.random() * 8 + 4; break;
+                    case 'secondary': size = Math.random() * 6 + 3; break;
+                    case 'accent': size = Math.random() * 10 + 5; break;
+                }
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random animation delay
+                const delay = Math.random() * 15;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Random animation duration
+                const duration = Math.random() * 15 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
         }
         
-        // Simulate loading progress
-        let progress = 0;
-        const progressText = document.querySelector('.progress-text');
-        
-        const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 10) + 1;
-            if (progress >= 100) {
-                progress = 100;
-                progressText.textContent = 'Ready to explore...';
-                clearInterval(interval);
-            } else {
-                progressText.textContent = `Loading portfolio experience... ${progress}%`;
+        // Advanced Loading System
+        class AdvancedLoader {
+            constructor() {
+                this.progress = 0;
+                this.progressBar = document.getElementById('progressBar');
+                this.percentage = document.getElementById('percentage');
+                this.statusMessage = document.getElementById('statusMessage');
+                this.progressText = document.querySelector('.progress-text');
+                
+                this.loadingSteps = [
+                    { range: [0, 15], message: "Initializing systems...", text: "Setting up environment..." },
+                    { range: [15, 30], message: "Loading assets...", text: "Preparing visual elements..." },
+                    { range: [30, 50], message: "Connecting to server...", text: "Establishing connections..." },
+                    { range: [50, 70], message: "Rendering components...", text: "Building user interface..." },
+                    { range: [70, 85], message: "Optimizing performance...", text: "Fine-tuning experience..." },
+                    { range: [85, 95], message: "Almost ready...", text: "Finalizing details..." },
+                    { range: [95, 100], message: "Ready to launch! 🚀", text: "Welcome to my portfolio!" }
+                ];
+                
+                this.init();
             }
-        }, 300);
+            
+            init() {
+                this.startLoading();
+            }
+            
+            startLoading() {
+                const interval = setInterval(() => {
+                    // Variable speed loading
+                    const increment = this.progress < 20 ? Math.random() * 3 + 1 : 
+                                    this.progress < 50 ? Math.random() * 4 + 2 : 
+                                    this.progress < 80 ? Math.random() * 3 + 1 : 
+                                    Math.random() * 2 + 0.5;
+                    
+                    this.progress += increment;
+                    
+                    if (this.progress >= 100) {
+                        this.progress = 100;
+                        this.updateUI();
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            this.completeLoading();
+                        }, 1000);
+                    } else {
+                        this.updateUI();
+                    }
+                }, 100);
+            }
+            
+            updateUI() {
+                // Update progress bar with smooth animation
+                this.progressBar.style.width = `${this.progress}%`;
+                this.percentage.textContent = `${Math.floor(this.progress)}%`;
+                
+                // Update status message based on progress
+                const currentStep = this.loadingSteps.find(step => 
+                    this.progress >= step.range[0] && this.progress <= step.range[1]
+                );
+                
+                if (currentStep) {
+                    this.statusMessage.textContent = currentStep.message;
+                    this.progressText.textContent = currentStep.text;
+                }
+                
+                // Add pulse effect at certain milestones
+                if (this.progress % 25 < 2) {
+                    this.progressBar.style.boxShadow = '0 0 20px rgba(79, 172, 254, 0.8)';
+                    setTimeout(() => {
+                        this.progressBar.style.boxShadow = '';
+                    }, 200);
+                }
+            }
+            
+            completeLoading() {
+                // Add completion effects
+                this.statusMessage.innerHTML = '🎉 Portfolio loaded successfully!';
+                this.progressText.textContent = 'Redirecting to main experience...';
+                
+                // Add final glow effect
+                document.querySelector('.loader-center').style.boxShadow = '0 0 50px rgba(102, 126, 234, 0.8)';
+                
+                // Fade out effect before redirect
+                setTimeout(() => {
+                    document.body.style.transition = 'opacity 1s ease';
+                    document.body.style.opacity = '0';
+                }, 500);
+            }
+        }
+        
+        // Enhanced Mouse Trail Effect
+        function createMouseTrail() {
+            let mouseX = 0, mouseY = 0;
+            const trail = [];
+            const trailLength = 10;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Add new trail point
+                trail.push({ x: mouseX, y: mouseY, age: 0 });
+                
+                // Remove old trail points
+                if (trail.length > trailLength) {
+                    trail.shift();
+                }
+            });
+            
+            // Create trail elements
+            for (let i = 0; i < trailLength; i++) {
+                const trailElement = document.createElement('div');
+                trailElement.style.position = 'fixed';
+                trailElement.style.width = '8px';
+                trailElement.style.height = '8px';
+                trailElement.style.background = 'radial-gradient(circle, rgba(102, 126, 234, 0.6), transparent)';
+                trailElement.style.borderRadius = '50%';
+                trailElement.style.pointerEvents = 'none';
+                trailElement.style.zIndex = '5';
+                trailElement.style.transition = 'all 0.1s ease';
+                document.body.appendChild(trailElement);
+                
+                // Animate trail
+                setInterval(() => {
+                    if (trail[i]) {
+                        const opacity = (trailLength - i) / trailLength;
+                        const scale = opacity;
+                        trailElement.style.left = trail[i].x - 4 + 'px';
+                        trailElement.style.top = trail[i].y - 4 + 'px';
+                        trailElement.style.opacity = opacity;
+                        trailElement.style.transform = `scale(${scale})`;
+                    }
+                }, 50);
+            }
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createAdvancedParticles();
+            new AdvancedLoader();
+            createMouseTrail();
+            
+            // Add keyboard interaction
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    // Create burst effect
+                    const burst = document.createElement('div');
+                    burst.style.position = 'fixed';
+                    burst.style.width = '100px';
+                    burst.style.height = '100px';
+                    burst.style.background = 'radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent)';
+                    burst.style.borderRadius = '50%';
+                    burst.style.left = '50%';
+                    burst.style.top = '50%';
+                    burst.style.transform = 'translate(-50%, -50%) scale(0)';
+                    burst.style.pointerEvents = 'none';
+                    burst.style.animation = 'burst 0.6s ease-out forwards';
+                    document.body.appendChild(burst);
+                    
+                    setTimeout(() => burst.remove(), 600);
+                }
+            });
+        });
+        
+        // Add burst animation
+        const burstCSS = `
+            @keyframes burst {
+                0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+            }
+        `;
+        const style = document.createElement('style');
+        style.textContent = burstCSS;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

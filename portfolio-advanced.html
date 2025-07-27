@@ -2107,7 +2107,7 @@
     
     <script>
         // Initialize AOS animations
-        document.addEventListener('DOMContentLoaded'), function() {
+        document.addEventListener('DOMContentLoaded', function() {
             // Check for dark mode preference
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -2193,22 +2193,12 @@
                         cursorFollower.style.display = 'none';
                     }
                 }
-            },
-            
-            // Initialize progress bars animation
-            animateProgressBars: function() {
-                const progressBars = document.querySelectorAll('.progress-animation');
-                progressBars.forEach(function(bar) {
-                    const width = bar.getAttribute('data-width');
-                    bar.style.width = width;
-                });
             }
-        };  // Close the object properly
-            
-        // Run on page load - moved to the initProgressBars method below
+        );
         
-        // Create an instance of the portfolio object and initialize it
+        // Create portfolio object
         const portfolio = {
+            // Initialize progress bars animation
             animateProgressBars: function() {
                 const progressBars = document.querySelectorAll('.progress-animation');
                 progressBars.forEach(function(bar) {
