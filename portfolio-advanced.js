@@ -32,12 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    // Preloader
+    // Preloader (only if exists)
     setTimeout(function() {
-        document.querySelector('.preloader').style.opacity = '0';
-        setTimeout(function() {
-            document.querySelector('.preloader').style.display = 'none';
-        }, 500);
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 500);
+        }
     }, 1500);
 
     // Custom cursor - optimized version
