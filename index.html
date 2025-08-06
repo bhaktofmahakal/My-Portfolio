@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5;url=portfolio-advanced.html">
+    <meta http-equiv="refresh" content="6;url=portfolio-advanced.html">
     <title>Utsav Mishra | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,242 +14,401 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
             height: 100vh;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
         }
-        
-        .container {
-            text-align: center;
-            z-index: 10;
+
+        /* Background Effects */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            z-index: 1;
+            animation: gradientMove 15s ease-in-out infinite;
         }
-        
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
         .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
             margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.5s;
-            background: linear-gradient(90deg, #5e60ce, #6930c3, #5390d9);
+            background: linear-gradient(135deg, #ffffff 0%, #0ea5e9 50%, #06b6d4 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.02em;
+            animation: logoGlow 2s ease-in-out infinite alternate;
         }
-        
+
         .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.8s;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
-        
-        .loader-container {
+
+        .subtitle {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            color: #0ea5e9;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Loading System */
+        .loading-container {
+            margin: 2rem 0;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
             position: relative;
-            width: 120px;
-            height: 120px;
+        }
+
+        .spinner-ring {
+            position: absolute;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        .spinner-ring:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            border-top: 2px solid #0ea5e9;
+            border-right: 2px solid #0ea5e9;
+        }
+
+        .spinner-ring:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+            border-top: 2px solid #06b6d4;
+            border-left: 2px solid #06b6d4;
+            animation-duration: 1.5s;
+            animation-direction: reverse;
+        }
+
+        .spinner-ring:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid #10b981;
+            border-bottom: 2px solid #10b981;
+            animation-duration: 1s;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            width: 100%;
+            max-width: 400px;
             margin: 0 auto;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards 1.2s;
         }
-        
-        .loader {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top: 4px solid #5e60ce;
-            animation: spin 1s linear infinite;
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
-        
-        .loader:nth-child(2) {
-            border-top-color: #6930c3;
-            animation-duration: 1.3s;
-            width: 90%;
-            height: 90%;
-            top: 5%;
-            left: 5%;
-        }
-        
-        .loader:nth-child(3) {
-            border-top-color: #5390d9;
-            animation-duration: 1.6s;
-            width: 80%;
-            height: 80%;
-            top: 10%;
-            left: 10%;
-        }
-        
+
         .progress-text {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards 1.5s;
+            color: #94a3b8;
+            font-weight: 500;
         }
-        
-        .made-by {
-            position: absolute;
-            bottom: 2rem;
+
+        .progress-percent {
+            color: #0ea5e9;
+            font-weight: 600;
+        }
+
+        .progress-bar {
             width: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards 2s;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1rem;
         }
-        
-        .particles {
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9, #06b6d4, #10b981);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
         }
-        
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(94, 96, 206, 0.5);
-            border-radius: 50%;
-            animation: float 15s linear infinite;
+
+        .status-message {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
         }
-        
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tech-item {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: #0ea5e9;
+            color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes gradientMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(14, 165, 233, 0.6)); }
+        }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2rem;
+            .container {
+                padding: 1.5rem;
             }
             
-            .tagline {
-                font-size: 1rem;
+            .spinner {
+                width: 60px;
+                height: 60px;
             }
             
-            .loader-container {
-                width: 100px;
-                height: 100px;
+            .spinner-ring:nth-child(1) {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .spinner-ring:nth-child(2) {
+                width: 45px;
+                height: 45px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+            
+            .spinner-ring:nth-child(3) {
+                width: 30px;
+                height: 30px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .tech-stack {
+                gap: 0.4rem;
+            }
+            
+            .tech-item {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+    <!-- Background Effects -->
+    <div class="bg-gradient"></div>
+    <div class="grid-pattern"></div>
     
+    <!-- Main Content -->
     <div class="container">
         <h1 class="logo">Utsav Mishra</h1>
-        <p class="tagline">Full Stack Developer & Problem Solver</p>
+        <p class="tagline">Full Stack Developer & AI Engineer</p>
+        <p class="subtitle">Building Digital Excellence</p>
         
-        <div class="loader-container">
-            <div class="loader"></div>
-            <div class="loader"></div>
-            <div class="loader"></div>
+        <!-- Loading System -->
+        <div class="loading-container">
+            <div class="spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span class="progress-text" id="progressText">Initializing...</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="status-message" id="statusMessage">Loading core systems...</div>
+            </div>
         </div>
-        
-        <p class="progress-text">Loading portfolio experience...</p>
     </div>
     
-    <div class="made-by">
-        <p>Designed & Developed by Utsav Mishra</p>
+    <!-- Footer -->
+    <div class="footer">
+        <p class="footer-text">Crafted with modern technologies</p>
+        <div class="tech-stack">
+            <span class="tech-item">React</span>
+            <span class="tech-item">Node.js</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">MongoDB</span>
+            <span class="tech-item">AI/ML</span>
+            <span class="tech-item">AWS</span>
+        </div>
     </div>
     
     <script>
-        // Create floating particles
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 30;
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
+        // Simple and reliable loading system
+        function startLoading() {
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const progressText = document.getElementById('progressText');
+            const statusMessage = document.getElementById('statusMessage');
             
-            // Random position
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            particle.style.left = `${posX}%`;
-            particle.style.top = `${posY}%`;
+            const phases = [
+                { progress: 20, text: 'Core Systems', message: 'Loading core systems...', duration: 800 },
+                { progress: 40, text: 'UI Components', message: 'Loading interface...', duration: 600 },
+                { progress: 60, text: 'Data Layer', message: 'Fetching data...', duration: 700 },
+                { progress: 80, text: 'Optimization', message: 'Optimizing performance...', duration: 500 },
+                { progress: 100, text: 'Complete', message: 'Ready to launch!', duration: 400 }
+            ];
             
-            // Random size
-            const size = Math.random() * 5 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
+            let currentPhase = 0;
+            let currentProgress = 0;
             
-            // Random opacity
-            const opacity = Math.random() * 0.5 + 0.3;
-            particle.style.backgroundColor = `rgba(94, 96, 206, ${opacity})`;
+            function updateProgress() {
+                if (currentPhase < phases.length) {
+                    const phase = phases[currentPhase];
+                    const targetProgress = phase.progress;
+                    
+                    const interval = setInterval(() => {
+                        if (currentProgress < targetProgress) {
+                            currentProgress += 2;
+                            progressFill.style.width = currentProgress + '%';
+                            progressPercent.textContent = currentProgress + '%';
+                        } else {
+                            clearInterval(interval);
+                            
+                            // Update text with fade effect
+                            progressText.style.opacity = '0.5';
+                            statusMessage.style.opacity = '0.5';
+                            
+                            setTimeout(() => {
+                                progressText.textContent = phase.text;
+                                statusMessage.textContent = phase.message;
+                                progressText.style.opacity = '1';
+                                statusMessage.style.opacity = '1';
+                            }, 200);
+                            
+                            currentPhase++;
+                            setTimeout(updateProgress, phase.duration);
+                        }
+                    }, 50);
+                }
+            }
             
-            // Random animation delay
-            const delay = Math.random() * 10;
-            particle.style.animationDelay = `${delay}s`;
-            
-            // Random animation duration
-            const duration = Math.random() * 10 + 10;
-            particle.style.animationDuration = `${duration}s`;
-            
-            particlesContainer.appendChild(particle);
+            setTimeout(updateProgress, 500);
         }
         
-        // Simulate loading progress
-        let progress = 0;
-        const progressText = document.querySelector('.progress-text');
+        // Start loading when page loads
+        document.addEventListener('DOMContentLoaded', startLoading);
         
-        const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 10) + 1;
-            if (progress >= 100) {
-                progress = 100;
-                progressText.textContent = 'Ready to explore...';
-                clearInterval(interval);
-            } else {
-                progressText.textContent = `Loading portfolio experience... ${progress}%`;
-            }
-        }, 300);
+        // Preload next page
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = 'portfolio-advanced.html';
+        document.head.appendChild(link);
     </script>
 </body>
 </html>
