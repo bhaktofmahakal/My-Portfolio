@@ -1935,6 +1935,22 @@
                                     Send Message
                                 </span>
                             </button>
+                            
+                            <!-- Success Message -->
+                            <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>Message sent successfully! I'll get back to you soon.</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Error Message -->
+                            <div id="formError" class="hidden mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>
+                                    <span>Failed to send message. Please try again later.</span>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1984,6 +2000,22 @@
                                     Send Message
                                 </span>
                             </button>
+                            
+                            <!-- Success Message -->
+                            <div id="formSuccessDark" class="hidden mt-4 p-4 bg-green-900/50 border border-green-500 text-green-300 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>Message sent successfully! I'll get back to you soon.</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Error Message -->
+                            <div id="formErrorDark" class="hidden mt-4 p-4 bg-red-900/50 border border-red-500 text-red-300 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>
+                                    <span>Failed to send message. Please try again later.</span>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -2846,69 +2878,82 @@
             // Initialize EmailJS
             emailjs.init("TW4X1V5QJ1HHojGT5"); // Your actual EmailJS public key
             
-            // Get the contact form element
-            const contactForm = document.getElementById('contactForm');
-            const formSuccess = document.getElementById('formSuccess');
-            const formError = document.getElementById('formError');
+            // Function to handle form submission
+            function handleFormSubmission(formId, successId, errorId) {
+                const contactForm = document.getElementById(formId);
+                const formSuccess = document.getElementById(successId);
+                const formError = document.getElementById(errorId);
+                
+                if (!contactForm) return; // Form not found, skip
+                
+                // Add submit event listener to the form
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Get the submit button
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    
+                    // Disable the submit button and show loading state
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    
+                    // Hide any previous status messages
+                    if (formSuccess) formSuccess.classList.add('hidden');
+                    if (formError) formError.classList.add('hidden');
+                    
+                    // Send the email using EmailJS
+                    // Create template parameters object
+                    const templateParams = {
+                        from_name: contactForm.from_name.value,
+                        from_email: contactForm.from_email.value,
+                        subject: contactForm.subject.value,
+                        message: contactForm.message.value
+                    };
+                    
+                    // Send the email using EmailJS
+                    emailjs.send('service_90jongb', 'template_xdrmc8e', templateParams, 'TW4X1V5QJ1HHojGT5')
+                        .then(function() {
+                            // Show success message
+                            if (formSuccess) formSuccess.classList.remove('hidden');
+                            
+                            // Reset the form
+                            contactForm.reset();
+                            
+                            // Re-enable the submit button
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = originalButtonText;
+                            
+                            // Hide success message after 5 seconds
+                            setTimeout(function() {
+                                if (formSuccess) formSuccess.classList.add('hidden');
+                            }, 5000);
+                        })
+                        .catch(function(error) {
+                            console.error('EmailJS error:', error);
+                            
+                            // Show error message
+                            if (formError) formError.classList.remove('hidden');
+                            
+                            // Re-enable the submit button
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = originalButtonText;
+                            
+                            // Hide error message after 5 seconds
+                            setTimeout(function() {
+                                if (formError) formError.classList.add('hidden');
+                            }, 5000);
+                        });
+                });
+            }
             
-            // Add submit event listener to the form
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault();
+            // Initialize both forms when DOM is loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // Handle light mode form
+                handleFormSubmission('contactForm', 'formSuccess', 'formError');
                 
-                // Get the submit button
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                const originalButtonText = submitButton.innerHTML;
-                
-                // Disable the submit button and show loading state
-                submitButton.disabled = true;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-                
-                // Hide any previous status messages
-                formSuccess.classList.add('hidden');
-                formError.classList.add('hidden');
-                
-                // Send the email using EmailJS
-                // Create template parameters object
-                const templateParams = {
-                    from_name: contactForm.from_name.value,
-                    from_email: contactForm.from_email.value,
-                    subject: contactForm.subject.value,
-                    message: contactForm.message.value
-                };
-                
-                // Send the email using EmailJS
-                emailjs.send('service_90jongb', 'template_xdrmc8e', templateParams, 'TW4X1V5QJ1HHojGT5')
-                    .then(function() {
-                        // Show success message
-                        formSuccess.classList.remove('hidden');
-                        
-                        // Reset the form
-                        contactForm.reset();
-                        
-                        // Re-enable the submit button
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalButtonText;
-                        
-                        // Hide success message after 5 seconds
-                        setTimeout(function() {
-                            formSuccess.classList.add('hidden');
-                        }, 5000);
-                    })
-                    .catch(function(error) {
-                        console.error('EmailJS error:', error);
-                        
-                        // Show error message
-                        formError.classList.remove('hidden');
-                        
-                        // Re-enable the submit button
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalButtonText;
-                        
-                        // Hide error message after 5 seconds
-                        setTimeout(function() {
-                            formError.classList.add('hidden');
-                        }, 5000);
-                    });
+                // Handle dark mode form
+                handleFormSubmission('contactFormDark', 'formSuccessDark', 'formErrorDark');
             });
         })();
     </script>
