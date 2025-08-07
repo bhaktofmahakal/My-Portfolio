@@ -631,9 +631,9 @@
                 </div>
             </div>
             
-            <!-- Scroll Indicator -->
+            <!-- Scroll Indicator - Hidden on mobile to prevent overlap -->
             <!-- Light Mode Indicator -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 dark:hidden animate-bounce" data-aos="fade-up" data-aos-delay="1000">
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-slate-600 dark:hidden animate-bounce" data-aos="fade-up" data-aos-delay="1000">
                 <span class="text-sm font-medium">Scroll Down</span>
                 <div class="w-6 h-10 border-2 border-slate-400/50 rounded-full flex justify-center">
                     <div class="w-1 h-3 bg-slate-500/60 rounded-full mt-2 animate-pulse"></div>
@@ -641,7 +641,7 @@
             </div>
             
             <!-- Dark Mode Indicator -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden dark:flex flex-col items-center gap-2 text-slate-300/80 animate-bounce" data-aos="fade-up" data-aos-delay="1000">
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden dark:md:flex flex-col items-center gap-2 text-slate-300/80 animate-bounce" data-aos="fade-up" data-aos-delay="1000">
                 <span class="text-sm font-medium">Scroll Down</span>
                 <div class="w-6 h-10 border-2 border-slate-500/30 rounded-full flex justify-center">
                     <div class="w-1 h-3 bg-slate-400/50 rounded-full mt-2 animate-pulse"></div>
@@ -1653,6 +1653,176 @@
         </div>
     </section>
 
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications-section py-20 relative overflow-hidden">
+        <!-- Light Mode Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50/30 to-blue-50/40 dark:hidden"></div>
+        
+        <!-- Dark Mode Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950/20 to-slate-800 hidden dark:block"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 py-1 bg-accent/10 text-accent text-sm rounded-full mb-4">Achievements</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+                    My <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Certifications</span>
+                </h2>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-accent mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Professional certifications that validate my expertise and commitment to continuous learning in web development.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Full Stack Web Developer -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2 border-l-4 border-primary" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-laptop-code text-2xl text-primary"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Full Stack Web Developer</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2 font-medium">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">Completed: April 2024</p>
+                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AI & Machine Learning -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2 border-l-4 border-secondary" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-robot text-2xl text-secondary"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">AI & Machine Learning</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2 font-medium">Google AI</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">Completed: March 2024</p>
+                        <span class="inline-flex items-center text-secondary font-medium">
+                            <span class="mr-2">Certificate Pending</span>
+                            <i class="fas fa-clock text-sm"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-20 relative overflow-hidden">
+        <!-- Light Mode Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/40 dark:hidden"></div>
+        
+        <!-- Dark Mode Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-950/20 to-indigo-900/30 hidden dark:block"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-sm rounded-full mb-4">Get In Touch</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+                    Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Connect</span>
+                </h2>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-accent mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border-l-4 border-primary">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Email</p>
+                                    <a href="mailto:utsavmishra9336@gmail.com" class="text-gray-800 dark:text-white font-medium hover:text-primary transition-colors">utsavmishra9336@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-secondary/10 rounded-full mr-4">
+                                    <i class="fas fa-phone text-secondary text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Phone</p>
+                                    <a href="tel:+919336123456" class="text-gray-800 dark:text-white font-medium hover:text-secondary transition-colors">+91 93361 23456</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-accent/10 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Location</p>
+                                    <p class="text-gray-800 dark:text-white font-medium">Bhubaneswar, Odisha, India</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Follow me on social media</p>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/bhaktofmahakal" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-all duration-300 hover:scale-110">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/utsav-mishra" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 hover:scale-110">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://twitter.com/utsav_mishra" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-400 hover:bg-blue-500 text-white rounded-full transition-all duration-300 hover:scale-110">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Send Message</h3>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                            <span class="flex items-center justify-center">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Send Message
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -1777,6 +1947,39 @@
                 const docHeight = document.body.offsetHeight - window.innerHeight;
                 const scrollPercent = (scrollTop / docHeight) * 100;
                 progressBar.style.width = scrollPercent + '%';
+            });
+        }
+
+        // Contact form functionality
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (replace with actual EmailJS or backend integration)
+                setTimeout(() => {
+                    // Reset form
+                    this.reset();
+                    
+                    // Show success message
+                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                    }, 3000);
+                }, 2000);
             });
         }
     </script>
