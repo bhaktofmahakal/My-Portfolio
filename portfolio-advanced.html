@@ -1663,38 +1663,11 @@
             offset: 100
         });
 
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        // Check for saved theme preference or default to 'light'
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        html.classList.toggle('dark', currentTheme === 'dark');
-        
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const theme = html.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-        });
+        // Theme toggle functionality is handled by the toggleTheme() function in the header
+        // No need for additional event listeners since onclick is already set
 
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-        
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('translate-x-full');
-            mobileMenuOverlay.classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden');
-        }
-        
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', toggleMobileMenu);
-        });
+        // Mobile menu functionality - currently not implemented as hamburger is hidden
+        // The navigation is always visible in the header
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1709,6 +1682,35 @@
                 }
             });
         });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        if (cursor && cursorFollower) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            });
+
+            // Add hover effects for interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('cursor-hover');
+                    cursorFollower.classList.add('cursor-hover');
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('cursor-hover');
+                    cursorFollower.classList.remove('cursor-hover');
+                });
+            });
+        }
 
         // Counter animation
         function animateCounters() {
@@ -1740,533 +1742,43 @@
         document.querySelectorAll('.counter').forEach(counter => {
             observer.observe(counter);
         });
+
+        // Skill bars animation
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('[data-width]');
+            
+            skillBars.forEach(bar => {
+                const targetWidth = bar.getAttribute('data-width');
+                bar.style.width = targetWidth;
+            });
+        }
+
+        // Trigger skill bars animation when in view
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        // Observe the technical proficiency section
+        const technicalSection = document.querySelector('.technical-proficiency');
+        if (technicalSection) {
+            skillObserver.observe(technicalSection);
+        }
+
+        // Header progress bar
+        const progressBar = document.querySelector('.header-progress-bar');
+        if (progressBar) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.offsetHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            });
+        }
     </script>
 </body>
 </html>
-            <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="400">
-                <a href="https://github.com/bhaktofmahakal" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50">
-                    <i class="fab fa-github"></i> View All Projects
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                    </span>
-                </a>
-            </div>
-            
-            <!-- Project Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 mb-8" data-aos="fade-up" data-aos-delay="500">
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-primary mb-2 counter" data-target="30">30+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Projects Completed</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="8">8+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Happy Clients</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-accent mb-2 counter" data-target="15">15+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Full Stack Projects</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-primary mb-2 counter" data-target="2">2+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Years Experience</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Project Details Modal (Hidden by default) -->
-        <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-            <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="modal-overlay"></div>
-            <div class="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
-                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 z-10" id="close-modal">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-                <div class="p-6 md:p-8">
-                    <div class="modal-content">
-                        <!-- Content will be dynamically inserted here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications-section py-20 relative overflow-hidden">
-        <!-- Light Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50/30 to-blue-50/40 dark:hidden"></div>
-        
-        <!-- Dark Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950/20 to-slate-800 hidden dark:block"></div>
-        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">My Certifications</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Full Stack Web Developer -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up">
-                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-laptop-code text-2xl text-primary"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Full Stack Web Developer</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">April 2025</p>
-                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
-                            <span class="mr-2">View Certificate</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- AWS Certified Developer Associate -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
-                        <i class="fab fa-aws text-2xl text-secondary"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">AWS Certified Developer Associate</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">August 2024</p>
-                        <a href="https://www.udemy.com/certificate/UC-2e8bdf65-6374-47a3-9ea2-f76dedc93ee4/" target="_blank" class="inline-flex items-center text-secondary hover:text-secondary-dark transition-colors">
-                            <span class="mr-2">View Certificate</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Google Cloud Certified Data Engineer -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-accent/20 to-accent/10 rounded-full mb-6 mx-auto">
-                        <i class="fab fa-google text-2xl text-accent"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Google Cloud Certified Data Engineer</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">October 2024</p>
-                        <a href="https://www.udemy.com/certificate/UC-76139db5-9cdb-4b37-808b-64cefaeb8d36/" target="_blank" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors">
-                            <span class="mr-2">View Certificate</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Alpha (DSA with Java) -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-code text-2xl text-primary"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Alpha (DSA with Java)</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-2">Apna College</p>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">September 2024</p>
-                        <a href="https://www.apnacollege.in/path-player?courseid=alpha-plus-combo-1&unit=662f9454b676a6f0bf0547cbUnit" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
-                            <span class="mr-2">View Certificate</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="achievements-section py-20 relative overflow-hidden">
-        <!-- Light Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-orange-50/20 to-slate-100/50 dark:hidden"></div>
-        
-        <!-- Dark Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-800 via-amber-950/20 to-slate-900 hidden dark:block"></div>
-        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">Achievements</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Full Stack Web Developer Achievement -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up">
-                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-trophy text-2xl text-primary"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">10+ Full Stack Websites Delivered</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">Successfully delivered modern web applications using MERN Stack, LAMP Stack, and Bootstrap. Built secure authentication systems, e-commerce platforms, admin dashboards, and AI-powered applications with enhanced user experience.</p>
-                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors" target="_blank">
-                            <span class="mr-2">View Certificate</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- AWS Achievement -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-brain text-2xl text-secondary"></i>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">AI Research & Publications</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">Published AI research blogs on Ready Tensor platform including MedPrompt AI and Code Companion, showcasing expertise in AI development and prompt engineering.</p>
-                        <a href="https://app.readytensor.ai/publications/medprompt-ai-powered-medical-triage-assistant-H6JIxMU75cym" class="inline-flex items-center text-secondary hover:text-secondary-dark transition-colors" target="_blank">
-                            <span class="mr-2">View Publications</span>
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 pt-28 relative overflow-hidden">
-        <!-- Replika-Inspired Light Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-orange-50/40 to-green-50/30 dark:hidden"></div>
-        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-300/15 to-transparent dark:hidden rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4 animate-pulse"></div>
-        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-orange-300/20 to-transparent dark:hidden rounded-full blur-3xl translate-x-1/4 translate-y-1/4 animate-pulse" style="animation-delay: 1s;"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-br from-green-300/12 to-transparent dark:hidden rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-        
-        <!-- CHAI Research-Inspired Dark Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-indigo-950/80 to-slate-900 hidden dark:block"></div>
-        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-indigo-500/12 to-transparent hidden dark:block rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4"></div>
-        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-cyan-500/15 to-transparent hidden dark:block rounded-full blur-3xl translate-x-1/4 translate-y-1/4"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Lusion-Inspired Section Header -->
-            <div class="text-center mb-20" data-aos="fade-up">
-                <!-- Light Mode Header - Replika Style -->
-                <div class="dark:hidden">
-                    <span class="inline-block py-2 px-4 rounded-full bg-gradient-to-r from-purple-100 to-orange-100 text-purple-600 text-sm font-semibold mb-4 border border-purple-200">✨ Get In Touch</span>
-                    <h2 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-orange-500 to-green-500 bg-clip-text text-transparent mb-6 leading-tight">
-                        Let's Create Something<br/>
-                        <span class="font-black">Amazing Together</span>
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                        Ready to bring your ideas to life? I'm here to listen, understand, and create digital experiences that matter.
-                    </p>
-                </div>
-                
-                <!-- Dark Mode Header - CHAI Research Style -->
-                <div class="hidden dark:block">
-                    <span class="inline-block py-2 px-4 rounded-lg bg-indigo-500/10 text-cyan-400 text-sm font-bold mb-4 border border-indigo-500/20">◆ CONNECT</span>
-                    <h2 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                        Let's Build the
-                        <span class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent font-black">Future</span>
-                    </h2>
-                    <p class="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                        Professional web development services. Let's discuss your project and create cutting-edge solutions.
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Fixed Contact Layout -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <!-- Left Column - Contact Form -->
-                <!-- Light Mode Contact Form -->
-                <div class="bg-white dark:hidden rounded-2xl shadow-xl overflow-hidden border border-slate-200/60 backdrop-blur-sm" data-aos="fade-right">
-                    <div class="p-8 relative">
-                        <!-- Simple Decorative elements -->
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full -mr-12 -mt-12 blur-xl"></div>
-                        <div class="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-orange-500/8 to-transparent rounded-full -ml-10 -mb-10 blur-xl"></div>
-                        
-                        <h3 class="text-2xl font-bold text-slate-800 mb-6 text-center">Send Me a Message</h3>
-                        
-                        <form id="contactForm" class="relative z-10">
-                            <div class="mb-4">
-                                <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Your Name</label>
-                                <input type="text" id="from_name" name="from_name" required
-                                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-400 transition-all duration-300"
-                                       placeholder="John Doe">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Your Email</label>
-                                <input type="email" id="from_email" name="from_email" required
-                                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-400 transition-all duration-300"
-                                       placeholder="john@example.com">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="subject" class="block text-sm font-medium text-slate-700 mb-2">Subject</label>
-                                <input type="text" id="subject" name="subject" required
-                                       class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-400 transition-all duration-300"
-                                       placeholder="Project Inquiry">
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Your Message</label>
-                                <textarea id="message" name="message" rows="4" required
-                                          class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-800 placeholder-slate-400 resize-none transition-all duration-300"
-                                          placeholder="Hello, I'd like to talk about..."></textarea>
-                            </div>
-                            
-                            <button type="submit" 
-                                    class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-orange-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-1">
-                                <span class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-paper-plane"></i>
-                                    Send Message
-                                </span>
-                            </button>
-                            
-                            <!-- Success Message -->
-                            <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-check-circle mr-2"></i>
-                                    <span>Message sent successfully! I'll get back to you soon.</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Error Message -->
-                            <div id="formError" class="hidden mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-exclamation-circle mr-2"></i>
-                                    <span>Failed to send message. Please try again later.</span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                
-                <!-- Dark Mode Contact Form -->
-                <div class="bg-slate-800/90 hidden dark:block rounded-2xl shadow-xl overflow-hidden border border-slate-700/60 backdrop-blur-sm" data-aos="fade-right">
-                    <div class="p-8 relative">
-                        <!-- Simple Dark Decorative elements -->
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-full -mr-12 -mt-12 blur-xl"></div>
-                        <div class="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-cyan-500/8 to-transparent rounded-full -ml-10 -mb-10 blur-xl"></div>
-                        
-                        <h3 class="text-2xl font-bold text-white mb-6 text-center">Send Me a Message</h3>
-                        
-                        <form id="contactFormDark" class="relative z-10">
-                            <div class="mb-4">
-                                <label for="nameDark" class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
-                                <input type="text" id="from_name_dark" name="from_name" required
-                                       class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-white placeholder-slate-400 transition-all duration-300"
-                                       placeholder="John Doe">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="emailDark" class="block text-sm font-medium text-slate-300 mb-2">Your Email</label>
-                                <input type="email" id="from_email_dark" name="from_email" required
-                                       class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-white placeholder-slate-400 transition-all duration-300"
-                                       placeholder="john@example.com">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="subjectDark" class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
-                                <input type="text" id="subject_dark" name="subject" required
-                                       class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-white placeholder-slate-400 transition-all duration-300"
-                                       placeholder="Project Inquiry">
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="messageDark" class="block text-sm font-medium text-slate-300 mb-2">Your Message</label>
-                                <textarea id="message_dark" name="message" rows="4" required
-                                          class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-white placeholder-slate-400 resize-none transition-all duration-300"
-                                          placeholder="Hello, I'd like to talk about..."></textarea>
-                            </div>
-                            
-                            <button type="submit" 
-                                    class="w-full py-3 px-6 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 transform hover:-translate-y-1">
-                                <span class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-paper-plane"></i>
-                                    Send Message
-                                </span>
-                            </button>
-                            
-                            <!-- Success Message -->
-                            <div id="formSuccessDark" class="hidden mt-4 p-4 bg-green-900/50 border border-green-500 text-green-300 rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-check-circle mr-2"></i>
-                                    <span>Message sent successfully! I'll get back to you soon.</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Error Message -->
-                            <div id="formErrorDark" class="hidden mt-4 p-4 bg-red-900/50 border border-red-500 text-red-300 rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-exclamation-circle mr-2"></i>
-                                    <span>Failed to send message. Please try again later.</span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                
-                <!-- Right Column - Contact Info Cards -->
-                <!-- Light Mode Contact Info -->
-                <div class="bg-white dark:hidden backdrop-blur-sm rounded-2xl shadow-xl border border-slate-200/60 p-8 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-left">
-                    <!-- Simple Contact Cards -->
-                    <div class="space-y-6 mb-8">
-                        <!-- Location Card -->
-                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-200 group hover:shadow-md transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <i class="fas fa-map-marker-alt text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-slate-800 mb-1">Location</h3>
-                                <p class="text-slate-600 text-sm">Antu, Pratapgarh, Uttar Pradesh, India</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Email Card -->
-                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-200 group hover:shadow-md transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <i class="fas fa-envelope text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-slate-800 mb-1">Email</h3>
-                                <p class="text-slate-600 text-sm">utsavmishraa005@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Phone Card -->
-                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-200 group hover:shadow-md transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <i class="fas fa-phone-alt text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-slate-800 mb-1">Phone</h3>
-                                <p class="text-slate-600 text-sm">+91 9721607720</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Simple Social Section -->
-                    <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-slate-800 mb-4">Follow Me</h3>
-                        
-                        <div class="flex space-x-3">
-                            <a href="https://www.instagram.com/bhakt_of_mahakal9721" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white shadow-md hover:shadow-pink-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-instagram text-sm"></i>
-                            </a>
-                            <a href="https://github.com/bhaktofmahakal" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-white shadow-md hover:shadow-gray-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-github text-sm"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/utsav-mishra-a82515193/" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white shadow-md hover:shadow-blue-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-linkedin-in text-sm"></i>
-                            </a>
-                            <a href="https://wa.me/919721607720" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white shadow-md hover:shadow-green-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-whatsapp text-sm"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Simple CTA Button -->
-                    <div class="text-center">
-                        <a href="tel:+919721607720" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-orange-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-blue-500/25 hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-phone text-sm"></i>
-                            <span>Call Now</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Dark Mode Contact Info -->
-                <div class="bg-slate-800/90 hidden dark:block backdrop-blur-sm rounded-2xl shadow-xl border border-slate-700/60 p-8 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-left">
-                    <!-- Simple Dark Contact Cards -->
-                    <div class="space-y-6 mb-8">
-                        <!-- Location Card -->
-                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-700/50 border border-slate-600 group hover:shadow-md transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <i class="fas fa-map-marker-alt text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-white mb-1">Location</h3>
-                                <p class="text-slate-300 text-sm">Antu, Pratapgarh, Uttar Pradesh, India</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Email Card -->
-                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-700/50 border border-slate-600 group hover:shadow-md transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <i class="fas fa-envelope text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-white mb-1">Email</h3>
-                                <p class="text-slate-300 text-sm">utsavmishraa005@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Phone Card -->
-                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-700/50 border border-slate-600 group hover:shadow-md transition-all duration-300">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <i class="fas fa-phone-alt text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-white mb-1">Phone</h3>
-                                <p class="text-slate-300 text-sm">+91 9721607720</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Simple Dark Social Section -->
-                    <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-white mb-4">Follow Me</h3>
-                        
-                        <div class="flex space-x-3">
-                            <a href="https://www.instagram.com/bhakt_of_mahakal9721" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white shadow-md hover:shadow-pink-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-instagram text-sm"></i>
-                            </a>
-                            <a href="https://github.com/bhaktofmahakal" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-600 to-gray-700 flex items-center justify-center text-white shadow-md hover:shadow-gray-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-github text-sm"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/utsav-mishra-a82515193/" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white shadow-md hover:shadow-blue-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-linkedin-in text-sm"></i>
-                            </a>
-                            <a href="https://wa.me/919721607720" target="_blank" 
-                               class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white shadow-md hover:shadow-green-500/25 hover:scale-110 transition-all duration-300">
-                                <i class="fab fa-whatsapp text-sm"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Simple Dark CTA Button -->
-                    <div class="text-center">
-                        <a href="tel:+919721607720" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-indigo-500/25 hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-phone text-sm"></i>
-                            <span>Call Now</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Map Section -->
-            <div class="mt-16 rounded-2xl overflow-hidden shadow-xl relative">
-                <div class="absolute inset-0 bg-gray-900 bg-opacity-20 pointer-events-none z-10"></div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28675.542251134084!2d81.87810544786943!3d26.0517819944707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a8ce2b5879dc1%3A0xd0c3fcce7108dd40!2sAntu%2C%20Uttar%20Pradesh%20230501!5e0!3m2!1sen!2sin!4v1731931702972!5m2!1sen!2sin" 
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
-    
-    <script>
-        // Update form status display for the new design
-        document.addEventListener('DOMContentLoaded', function() {
-            const formStatus = document.getElementById('formStatus');
-            
-            // Override the original form status display
-            window.showFormStatus = function(message, isSuccess) {
-                formStatus.textContent = message;
-                formStatus.classList.remove('hidden', 'bg-green-500/20', 'text-green-400', 'bg-red-500/20', 'text-red-400');
-                
-                if (isSuccess) {
-                    formStatus.classList.add('bg-green-500/20', 'text-green-400', 'border', 'border-green-500');
-                } else {
-                    formStatus.classList.add('bg-red-500/20', 'text-red-400', 'border', 'border-red-500');
-                }
-                
-                formStatus.classList.remove('hidden');
-            };
-        });
-    </script>
-
-    <!-- Footer with Tailwind CSS -->
-    <footer class="relative overflow-hidden">
-        <!-- Light Mode Footer -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-700 via-blue-800/90 to-slate-800 dark:hidden"></div>
-        
-        <!-- Dark Mode Footer -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-950 v
