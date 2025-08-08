@@ -43,14 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 1500);
 
-    // Custom cursor - optimized version
+    // Custom cursor - optimized version with better mobile detection
     try {
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
         
         if (cursor && cursorFollower) {
-            // Check if we're on a touch device
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+            // Enhanced mobile/touch device detection
+            const isTouchDevice = 'ontouchstart' in window || 
+                                navigator.maxTouchPoints > 0 || 
+                                navigator.msMaxTouchPoints > 0 ||
+                                window.innerWidth <= 768 ||
+                                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
             if (!isTouchDevice) {
                 // Hide default cursor
@@ -123,6 +127,44 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error initializing custom cursor:', error);
     }
 
+    // Mobile-specific optimizations
+    function handleMobileOptimizations() {
+        const isMobile = window.innerWidth <= 768;
+        const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+        
+        // Adjust scroll behavior for mobile
+        if (isMobile) {
+            // Disable hover effects on mobile
+            document.body.classList.add('mobile-device');
+            
+            // Optimize touch interactions
+            document.addEventListener('touchstart', function() {}, { passive: true });
+            document.addEventListener('touchmove', function() {}, { passive: true });
+            
+            // Handle orientation changes
+            window.addEventListener('orientationchange', function() {
+                setTimeout(function() {
+                    // Recalculate heights and positions after orientation change
+                    window.scrollTo(0, window.pageYOffset);
+                }, 100);
+            });
+        }
+        
+        // Tablet-specific optimizations
+        if (isTablet) {
+            document.body.classList.add('tablet-device');
+        }
+    }
+    
+    // Initialize mobile optimizations
+    handleMobileOptimizations();
+    
+    // Re-run on window resize
+    window.addEventListener('resize', function() {
+        clearTimeout(window.resizeTimeout);
+        window.resizeTimeout = setTimeout(handleMobileOptimizations, 250);
+    });
+
     // Enhanced Mobile menu functionality
     const mobileClose = document.querySelector('.mobile-close');
     // Use existing mobileNavLinks variable or create it if it doesn't exist
@@ -185,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Theme toggle functionality is now handled in theme-toggle.js
 
-    // Smooth scrolling for navigation links
+    // Enhanced smooth scrolling for navigation links with mobile optimization
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     
     navLinks.forEach(link => {
@@ -195,15 +237,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
-            window.scrollTo({
-                top: targetSection.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            if (mobileMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
+            if (targetSection) {
+                // Calculate offset based on screen size
+                const isMobile = window.innerWidth <= 768;
+                const offset = isMobile ? 60 : 80;
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - offset,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    if (mobileOverlay) mobileOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    body.style.overflow = '';
+                }
             }
         });
     });

@@ -3043,6 +3043,406 @@ section {
         text-align: center;
         gap: var(--spacing-2xl);
     }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-content {
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+    
+    .achievements-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Enhanced Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    /* Hide custom cursor on mobile */
+    .cursor, .cursor-follower {
+        display: none !important;
+    }
+    
+    /* Container improvements */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
+    }
+    
+    /* Contact section mobile improvements */
+    .contact-content {
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+    
+    .contact-form {
+        padding: var(--spacing-lg);
+    }
+    
+    .contact-card {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .contact-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .contact-icon i {
+        font-size: var(--font-size-md);
+    }
+    
+    /* Form improvements */
+    .form-group input,
+    .form-group textarea {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-md);
+    }
+    
+    .form-group label {
+        font-size: var(--font-size-sm);
+    }
+    
+    /* Button improvements */
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: var(--font-size-md);
+    }
+    
+    .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Section spacing */
+    .section {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    /* Typography adjustments */
+    .section-title {
+        font-size: var(--font-size-3xl);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .section-subtitle {
+        font-size: var(--font-size-md);
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    /* Grid adjustments */
+    .stats-grid,
+    .skills-grid,
+    .projects-grid,
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .achievements-content {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Card improvements */
+    .skill-card,
+    .project-card,
+    .certification-card,
+    .achievement-card {
+        padding: var(--spacing-lg);
+    }
+    
+    /* Hero section mobile */
+    .hero-content {
+        text-align: center;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-3xl);
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-md);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Navigation improvements */
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    /* Footer improvements */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+    
+    .footer-links-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    /* Social media improvements */
+    .social-links {
+        justify-content: center;
+        gap: var(--spacing-md);
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
+    }
+    
+    /* Back to top button mobile */
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .back-to-top-text {
+        display: none;
+    }
+    
+    /* About section mobile */
+    .about-content {
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+    
+    .image-container {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+    
+    .image-frame {
+        width: 250px;
+        height: 300px;
+    }
+    
+    /* Skills section mobile */
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Projects section mobile */
+    .filter-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .filter-btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .contact-form {
+        padding: var(--spacing-md);
+    }
+    
+    .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: var(--font-size-sm);
+    }
+    
+    .skill-card,
+    .project-card,
+    .certification-card,
+    .achievement-card {
+        padding: var(--spacing-md);
+    }
+    
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+    }
+    
+    .image-container {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .image-frame {
+        width: 200px;
+        height: 250px;
+    }
+    
+    .hero-text h1 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .about-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .btn-outline,
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Tablet specific adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-content {
+        gap: var(--spacing-2xl);
+    }
+    
+    .achievements-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-links-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile-specific device classes */
+.mobile-device .skill-card:hover,
+.mobile-device .project-card:hover,
+.mobile-device .certification-card:hover,
+.mobile-device .achievement-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+}
+
+.mobile-device .btn:hover {
+    transform: none;
+}
+
+.mobile-device .social-link:hover {
+    transform: none;
+}
+
+/* Touch-friendly improvements */
+.mobile-device .btn,
+.mobile-device .social-link,
+.mobile-device .filter-btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.mobile-device .form-group input,
+.mobile-device .form-group textarea {
+    min-height: 44px;
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+        font-size: 16px !important;
+    }
+}
+
+/* Dark theme mobile improvements */
+.dark-theme .mobile-device {
+    background-color: var(--gray-900);
+}
+
+/* Accessibility improvements for mobile */
+@media (prefers-reduced-motion: reduce) {
+    .mobile-device * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        border: 2px solid var(--white);
+    }
+    
+    .contact-form {
+        border: 2px solid var(--text-color);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        border: 2px solid var(--text-color);
+    }
+}
 
 /* ===== CUSTOM ANIMATIONS AND ENHANCEMENTS ===== */
 

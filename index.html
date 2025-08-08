@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="6;url=portfolio-advanced.html">
+    <meta http-equiv="refresh" content="4;url=portfolio-advanced.html">
     <title>Utsav Mishra | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -357,11 +357,10 @@
             const statusMessage = document.getElementById('statusMessage');
             
             const phases = [
-                { progress: 20, text: 'Core Systems', message: 'Loading core systems...', duration: 800 },
-                { progress: 40, text: 'UI Components', message: 'Loading interface...', duration: 600 },
-                { progress: 60, text: 'Data Layer', message: 'Fetching data...', duration: 700 },
-                { progress: 80, text: 'Optimization', message: 'Optimizing performance...', duration: 500 },
-                { progress: 100, text: 'Complete', message: 'Ready to launch!', duration: 400 }
+                { progress: 30, text: 'Core Systems', message: 'Loading core systems...', duration: 400 },
+                { progress: 60, text: 'UI Components', message: 'Loading interface...', duration: 300 },
+                { progress: 75, text: 'Data Layer', message: 'Fetching data...', duration: 300 },
+                { progress: 100, text: 'Complete', message: 'Ready to launch!', duration: 200 }
             ];
             
             let currentPhase = 0;
@@ -371,14 +370,24 @@
                 if (currentPhase < phases.length) {
                     const phase = phases[currentPhase];
                     const targetProgress = phase.progress;
+                    const startTime = performance.now();
+                    const duration = 600; // Fixed duration for smooth animation
                     
-                    const interval = setInterval(() => {
-                        if (currentProgress < targetProgress) {
-                            currentProgress += 2;
-                            progressFill.style.width = currentProgress + '%';
-                            progressPercent.textContent = currentProgress + '%';
+                    function animateProgress(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Smooth easing function
+                        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                        const newProgress = Math.floor(currentProgress + (targetProgress - currentProgress) * easeOutQuart);
+                        
+                        progressFill.style.width = newProgress + '%';
+                        progressPercent.textContent = newProgress + '%';
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animateProgress);
                         } else {
-                            clearInterval(interval);
+                            currentProgress = targetProgress;
                             
                             // Update text with fade effect
                             progressText.style.opacity = '0.5';
@@ -389,16 +398,18 @@
                                 statusMessage.textContent = phase.message;
                                 progressText.style.opacity = '1';
                                 statusMessage.style.opacity = '1';
-                            }, 200);
+                            }, 100);
                             
                             currentPhase++;
                             setTimeout(updateProgress, phase.duration);
                         }
-                    }, 50);
+                    }
+                    
+                    requestAnimationFrame(animateProgress);
                 }
             }
             
-            setTimeout(updateProgress, 500);
+            setTimeout(updateProgress, 200);
         }
         
         // Start loading when page loads

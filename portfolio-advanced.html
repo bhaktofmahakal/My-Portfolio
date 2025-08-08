@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Utsav Mishra - Professional Portfolio - Full Stack Developer with 2+ years experience, 30+ MERN/LAMP projects, AI Development & Published Research Blogs">
     <meta name="theme-color" content="#6c63ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Utsav Mishra | Professional Portfolio</title>
    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
 
@@ -68,7 +71,8 @@
                         'bounce-slow': 'bounce 3s infinite',
                         'float': 'float 3s ease-in-out infinite',
                         'spin-slow': 'spin 6s linear infinite',
-                        'tilt': 'tilt 10s infinite linear'
+                        'tilt': 'tilt 10s infinite linear',
+                        'blink': 'blink 1s infinite'
                     },
                     keyframes: {
                         float: {
@@ -85,6 +89,10 @@
                             '75%': {
                                 transform: 'rotate(-2deg)',
                             },
+                        },
+                        blink: {
+                            '0%, 50%': { opacity: '1' },
+                            '51%, 100%': { opacity: '0' }
                         }
                     }
                 }
@@ -502,6 +510,7 @@
                             I'm a <span class="relative inline-block">
                                 <!-- Single Typed Text Element with Theme-Aware Styling -->
                                 <span class="typed-text font-black bg-gradient-to-r from-blue-600 via-orange-500 to-emerald-500 dark:from-indigo-400 dark:via-amber-400 dark:to-cyan-400 bg-clip-text text-transparent"></span>
+                                <span class="typing-cursor animate-blink font-black text-blue-600 dark:text-indigo-400">|</span>
                                 <!-- Dynamic Underline -->
                                 <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-orange-500 dark:from-indigo-400 dark:to-amber-400 rounded-full"></span>
                             </span>
@@ -1632,13 +1641,9 @@
             </div>
             
             <!-- Project Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 mb-8" data-aos="fade-up" data-aos-delay="900">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-20 mb-8" data-aos="fade-up" data-aos-delay="900">
                 <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-primary mb-2 counter" data-target="7">7+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Featured Projects</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="8">8+</div>
+                    <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="10">10+</div>
                     <p class="text-gray-600 dark:text-gray-300 text-sm">Happy Clients</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
@@ -1646,7 +1651,7 @@
                     <p class="text-gray-600 dark:text-gray-300 text-sm">Full Stack Projects</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-1">
-                    <div class="text-3xl font-bold text-primary mb-2 counter" data-target="2">2+</div>
+                    <div class="text-3xl font-bold text-primary mb-2 counter" data-target="1">1+</div>
                     <p class="text-gray-600 dark:text-gray-300 text-sm">Years Experience</p>
                 </div>
             </div>
@@ -1654,55 +1659,74 @@
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="certifications-section py-20 relative overflow-hidden">
-        <!-- Light Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50/30 to-blue-50/40 dark:hidden"></div>
-        
-        <!-- Dark Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-cyan-950/20 to-slate-800 hidden dark:block"></div>
-        
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block px-3 py-1 bg-accent/10 text-accent text-sm rounded-full mb-4">Achievements</span>
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-                    My <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Certifications</span>
-                </h2>
-                <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-accent mx-auto rounded-full mb-6"></div>
-                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    Professional certifications that validate my expertise and commitment to continuous learning in web development.
-                </p>
+    <section id="certifications" class="certifications-section py-20 bg-white dark:bg-gray-900">
+        <div class="custom-container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">My Certifications</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Full Stack Web Developer -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2 border-l-4 border-primary" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up">
                     <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
                         <i class="fas fa-laptop-code text-2xl text-primary"></i>
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Full Stack Web Developer</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-2 font-medium">Udemy</p>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">Completed: April 2024</p>
-                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">April 2025</p>
+                        <a href="https://www.udemy.com/certificate/UC-b6a3d9a4-a9b8-4550-82e3-108974d411ff/" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
                             <span class="mr-2">View Certificate</span>
                             <i class="fas fa-external-link-alt text-sm"></i>
                         </a>
                     </div>
                 </div>
-
-                <!-- AI & Machine Learning -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2 border-l-4 border-secondary" data-aos="fade-up" data-aos-delay="200">
+                
+                <!-- AWS Certified Developer Associate -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-robot text-2xl text-secondary"></i>
+                        <i class="fab fa-aws text-2xl text-secondary"></i>
                     </div>
                     <div class="text-center">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">AI & Machine Learning</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-2 font-medium">Google AI</p>
-                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">Completed: March 2024</p>
-                        <span class="inline-flex items-center text-secondary font-medium">
-                            <span class="mr-2">Certificate Pending</span>
-                            <i class="fas fa-clock text-sm"></i>
-                        </span>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">AWS Certified Developer Associate</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">August 2024</p>
+                        <a href="https://www.udemy.com/certificate/UC-2e8bdf65-6374-47a3-9ea2-f76dedc93ee4/" target="_blank" class="inline-flex items-center text-secondary hover:text-secondary-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Google Cloud Certified Data Engineer -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-accent/20 to-accent/10 rounded-full mb-6 mx-auto">
+                        <i class="fab fa-google text-2xl text-accent"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Google Cloud Certified Data Engineer</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Udemy</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">October 2024</p>
+                        <a href="https://www.udemy.com/certificate/UC-76139db5-9cdb-4b37-808b-64cefaeb8d36/" target="_blank" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Alpha (DSA with Java) -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-code text-2xl text-primary"></i>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Alpha (DSA with Java)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Apna College</p>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm">September 2024</p>
+                        <a href="https://www.apnacollege.in/path-player?courseid=alpha-plus-combo-1&unit=662f9454b676a6f0bf0547cbUnit" target="_blank" class="inline-flex items-center text-primary hover:text-primary-dark transition-colors">
+                            <span class="mr-2">View Certificate</span>
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1710,118 +1734,152 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section py-20 relative overflow-hidden">
-        <!-- Light Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/40 dark:hidden"></div>
-        
-        <!-- Dark Mode Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-950/20 to-indigo-900/30 hidden dark:block"></div>
-        
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-sm rounded-full mb-4">Get In Touch</span>
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-                    Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Connect</span>
-                </h2>
-                <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-accent mx-auto rounded-full mb-6"></div>
-                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
-                </p>
+    <section id="contact" class="py-20 pt-28 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent inline-block">Contact Me</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
             </div>
-
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <!-- Contact Info -->
-                <div class="space-y-8" data-aos="fade-right">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border-l-4 border-primary">
-                        <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Contact Information</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4">
-                                    <i class="fas fa-envelope text-primary text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Email</p>
-                                    <a href="mailto:utsavmishra9336@gmail.com" class="text-gray-800 dark:text-white font-medium hover:text-primary transition-colors">utsavmishra9336@gmail.com</a>
-                                </div>
+                <!-- Left Column - Contact Info -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:shadow-2xl border border-gray-200 dark:border-gray-700">
+                    <!-- Contact Cards -->
+                    <div class="space-y-8 mb-10">
+                        <!-- Location -->
+                        <div class="flex items-start space-x-6">
+                            <div class="w-12 h-12 rounded-full bg-purple-500 bg-opacity-20 flex items-center justify-center flex-shrink-0 shadow-md">
+                                <i class="fas fa-map-marker-alt text-purple-500 text-xl"></i>
                             </div>
-                            
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 flex items-center justify-center bg-secondary/10 rounded-full mr-4">
-                                    <i class="fas fa-phone text-secondary text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Phone</p>
-                                    <a href="tel:+919336123456" class="text-gray-800 dark:text-white font-medium hover:text-secondary transition-colors">+91 93361 23456</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 flex items-center justify-center bg-accent/10 rounded-full mr-4">
-                                    <i class="fas fa-map-marker-alt text-accent text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Location</p>
-                                    <p class="text-gray-800 dark:text-white font-medium">Bhubaneswar, Odisha, India</p>
-                                </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-1">Location</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Antu, Pratapgarh, Uttar Pradesh, India</p>
                             </div>
                         </div>
-
-                        <!-- Social Links -->
-                        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">Follow me on social media</p>
-                            <div class="flex space-x-4">
-                                <a href="https://github.com/bhaktofmahakal" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-all duration-300 hover:scale-110">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/utsav-mishra" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 hover:scale-110">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="https://twitter.com/utsav_mishra" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-400 hover:bg-blue-500 text-white rounded-full transition-all duration-300 hover:scale-110">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
+                        
+                        <!-- Email -->
+                        <div class="flex items-start space-x-6">
+                            <div class="w-12 h-12 rounded-full bg-purple-500 bg-opacity-20 flex items-center justify-center flex-shrink-0 shadow-md">
+                                <i class="fas fa-envelope text-purple-500 text-xl"></i>
                             </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-1">Email</h3>
+                                <p class="text-gray-600 dark:text-gray-400">utsavmishraa005@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div class="flex items-start space-x-6">
+                            <div class="w-12 h-12 rounded-full bg-purple-500 bg-opacity-20 flex items-center justify-center flex-shrink-0 shadow-md">
+                                <i class="fas fa-phone-alt text-purple-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-1">Phone</h3>
+                                <p class="text-gray-600 dark:text-gray-400">+91 9721607720</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Follow Me Section -->
+                    <div class="mb-10">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-5 relative inline-block">
+                            Follow Me
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-pink-500"></span>
+                        </h3>
+                        
+                        <div class="flex space-x-4">
+                            <a href="https://www.instagram.com/bhakt_of_mahakal9721" target="_blank" 
+                               class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group">
+                                <i class="fab fa-instagram text-gray-600 dark:text-gray-400 group-hover:text-purple-500 text-xl transform group-hover:scale-110 transition-all duration-300"></i>
+                            </a>
+                            <a href="https://github.com/bhaktofmahakal" target="_blank" 
+                               class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group">
+                                <i class="fab fa-github text-gray-600 dark:text-gray-400 group-hover:text-purple-500 text-xl transform group-hover:scale-110 transition-all duration-300"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/utsav-mishra1" target="_blank" 
+                               class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group">
+                                <i class="fab fa-linkedin-in text-gray-600 dark:text-gray-400 group-hover:text-purple-500 text-xl transform group-hover:scale-110 transition-all duration-300"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8" data-aos="fade-left">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Send Message</h3>
+                <!-- Right Column - Contact Form -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:shadow-2xl border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Send Message</h3>
                     
                     <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
                             </div>
                         </div>
                         
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white transition-colors">
                         </div>
                         
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors resize-none"></textarea>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white transition-colors resize-none"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50">
-                            <span class="flex items-center justify-center">
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Send Message
-                            </span>
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="submit" class="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/30 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500/50">
+                                <span class="flex items-center justify-center">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Send Message
+                                </span>
+                            </button>
+                            <a href="mailto:utsavmishraa005@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Utsav,%0A%0AI%20would%20like%20to%20discuss..." 
+                               class="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 text-center">
+                                <span class="flex items-center justify-center">
+                                    <i class="fas fa-envelope mr-2"></i>
+                                    Direct Email
+                                </span>
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>
+            
+            <!-- Map Section -->
+            <div class="mt-16 rounded-2xl overflow-hidden shadow-xl relative">
+                <div class="absolute inset-0 bg-gray-900 bg-opacity-20 pointer-events-none z-10"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28675.542251134084!2d81.87810544786943!3d26.0517819944707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a8ce2b5879dc1%3A0xd0c3fcce7108dd40!2sAntu%2C%20Uttar%20Pradesh%20230501!5e0!3m2!1sen!2sin!4v1731931702972!5m2!1sen!2sin" 
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
     </section>
+    
+    <script>
+        // Update form status display for the new design
+        document.addEventListener('DOMContentLoaded', function() {
+            const formStatus = document.getElementById('formStatus');
+            
+            // Override the original form status display
+            window.showFormStatus = function(message, isSuccess) {
+                if (formStatus) {
+                    formStatus.textContent = message;
+                    formStatus.classList.remove('hidden', 'bg-green-500/20', 'text-green-400', 'bg-red-500/20', 'text-red-400');
+                    
+                    if (isSuccess) {
+                        formStatus.classList.add('bg-green-500/20', 'text-green-400', 'border', 'border-green-500');
+                    } else {
+                        formStatus.classList.add('bg-red-500/20', 'text-red-400', 'border', 'border-red-500');
+                    }
+                    
+                    formStatus.classList.remove('hidden');
+                }
+            };
+        });
+    </script>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1882,36 +1940,58 @@
             });
         }
 
-        // Counter animation
+        // Enhanced Counter animation - smoother and faster
         function animateCounters() {
             const counters = document.querySelectorAll('.counter');
+            
             counters.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-target'));
-                const count = +counter.innerText.replace('+', '');
-                const increment = target / 200;
+                const duration = 1500; // 1.5 seconds total duration
+                const startTime = performance.now();
+                const startValue = 0;
                 
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment) + '+';
-                    setTimeout(() => animateCounters(), 1);
-                } else {
-                    counter.innerText = target + '+';
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing function for smooth animation
+                    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                    const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
+                    
+                    counter.innerText = currentValue + '+';
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target + '+';
+                    }
                 }
+                
+                requestAnimationFrame(updateCounter);
             });
         }
 
-        // Trigger counter animation when in view
+        // Trigger counter animation when in view - improved with better threshold
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounters();
+                    // Add a small delay to make it feel more natural
+                    setTimeout(() => {
+                        animateCounters();
+                    }, 200);
                     observer.unobserve(entry.target);
                 }
             });
+        }, {
+            threshold: 0.3, // Trigger when 30% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Start animation slightly before fully visible
         });
 
-        document.querySelectorAll('.counter').forEach(counter => {
-            observer.observe(counter);
-        });
+        // Observe the stats container instead of individual counters
+        const statsContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-3');
+        if (statsContainer) {
+            observer.observe(statsContainer);
+        }
 
         // Skill bars animation
         function animateSkillBars() {
@@ -1950,13 +2030,18 @@
             });
         }
 
-        // Contact form functionality
+        // Initialize EmailJS with your actual keys
+        emailjs.init("TW4X1V5QJ1HHojGT5"); // Your actual EmailJS public key
+        
+        // For testing - log EmailJS availability
+        console.log('EmailJS available:', typeof emailjs !== 'undefined');
+        
+        // Contact form functionality with EmailJS
         const contactForm = document.getElementById('contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const formData = new FormData(this);
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 
@@ -1964,24 +2049,444 @@
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
                 submitBtn.disabled = true;
                 
-                // Simulate form submission (replace with actual EmailJS or backend integration)
-                setTimeout(() => {
-                    // Reset form
-                    this.reset();
+                // Get form data
+                const templateParams = {
+                    from_name: document.getElementById('name').value,
+                    from_email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Check if EmailJS is properly configured
+                if (typeof emailjs === 'undefined' || !emailjs.send) {
+                    // Fallback to mailto if EmailJS is not configured
+                    const subject = encodeURIComponent(`Portfolio Contact: ${templateParams.subject}`);
+                    const body = encodeURIComponent(`Name: ${templateParams.from_name}\nEmail: ${templateParams.from_email}\n\nMessage:\n${templateParams.message}`);
+                    const mailtoLink = `mailto:utsavmishra9336@gmail.com?subject=${subject}&body=${body}`;
                     
-                    // Show success message
-                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
-                    submitBtn.classList.add('bg-green-500');
+                    window.location.href = mailtoLink;
+                    
+                    // Show info message
+                    submitBtn.innerHTML = '<i class="fas fa-envelope mr-2"></i>Opening Email Client';
+                    submitBtn.classList.remove('bg-gradient-to-r', 'from-primary', 'to-secondary');
+                    submitBtn.classList.add('bg-blue-500');
+                    
+                    showNotification('Opening your email client. Please send the pre-filled email.', 'info');
                     
                     // Reset button after 3 seconds
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
-                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.remove('bg-blue-500');
+                        submitBtn.classList.add('bg-gradient-to-r', 'from-primary', 'to-secondary');
                     }, 3000);
-                }, 2000);
+                    
+                    return;
+                }
+                
+                // Send email using EmailJS
+                emailjs.send('service_90jongb', 'template_xdrmc8e', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Show success message
+                        submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
+                        submitBtn.classList.remove('bg-gradient-to-r', 'from-primary', 'to-secondary');
+                        submitBtn.classList.add('bg-green-500');
+                        
+                        // Show success notification
+                        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            submitBtn.classList.remove('bg-green-500');
+                            submitBtn.classList.add('bg-gradient-to-r', 'from-primary', 'to-secondary');
+                        }, 3000);
+                        
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        
+                        // Fallback to mailto on EmailJS failure
+                        const subject = encodeURIComponent(`Portfolio Contact: ${templateParams.subject}`);
+                        const body = encodeURIComponent(`Name: ${templateParams.from_name}\nEmail: ${templateParams.from_email}\n\nMessage:\n${templateParams.message}`);
+                        const mailtoLink = `mailto:utsavmishra9336@gmail.com?subject=${subject}&body=${body}`;
+                        
+                        window.location.href = mailtoLink;
+                        
+                        // Show fallback message
+                        submitBtn.innerHTML = '<i class="fas fa-envelope mr-2"></i>Opening Email Client';
+                        submitBtn.classList.remove('bg-gradient-to-r', 'from-primary', 'to-secondary');
+                        submitBtn.classList.add('bg-blue-500');
+                        
+                        // Show fallback notification
+                        showNotification('EmailJS failed. Opening your email client as backup.', 'info');
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            submitBtn.classList.remove('bg-blue-500');
+                            submitBtn.classList.add('bg-gradient-to-r', 'from-primary', 'to-secondary');
+                        }, 3000);
+                    });
             });
         }
+        
+        // Notification function
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            let bgColor, iconClass;
+            
+            switch(type) {
+                case 'success':
+                    bgColor = 'bg-green-500 text-white';
+                    iconClass = 'fa-check-circle';
+                    break;
+                case 'error':
+                    bgColor = 'bg-red-500 text-white';
+                    iconClass = 'fa-exclamation-circle';
+                    break;
+                case 'info':
+                    bgColor = 'bg-blue-500 text-white';
+                    iconClass = 'fa-info-circle';
+                    break;
+                default:
+                    bgColor = 'bg-gray-500 text-white';
+                    iconClass = 'fa-bell';
+            }
+            
+            notification.className = `fixed top-4 right-4 left-4 sm:left-auto z-[9999] p-4 rounded-lg shadow-xl border transform transition-all duration-300 translate-x-full ${bgColor} border-white/20`;
+            notification.innerHTML = `
+                <div class="flex items-center max-w-sm">
+                    <i class="fas ${iconClass} mr-3 flex-shrink-0 text-lg"></i>
+                    <span class="text-sm font-medium">${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200 flex-shrink-0 p-1">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 7 seconds for info messages, 5 for others
+            const autoRemoveTime = type === 'info' ? 7000 : 5000;
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, autoRemoveTime);
+        }
+
+        // Typing Animation for Hero Section
+        function initTypingAnimation() {
+            const typedTextElement = document.querySelector('.typed-text');
+            if (!typedTextElement) return;
+
+            const roles = [
+                'Full Stack Developer',
+                'Web Developer', 
+                'Software Engineer',
+                'MERN Stack Developer',
+                'AI Enthusiast',
+                'Problem Solver',
+                'Tech Innovator'
+            ];
+
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+
+            function typeRole() {
+                const currentRole = roles[roleIndex];
+                
+                if (isDeleting) {
+                    // Deleting characters
+                    typedTextElement.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50;
+                } else {
+                    // Typing characters
+                    typedTextElement.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100;
+                }
+
+                // Check if word is complete
+                if (!isDeleting && charIndex === currentRole.length) {
+                    // Pause at end of word
+                    typingSpeed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    // Move to next role
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    typingSpeed = 500;
+                }
+
+                setTimeout(typeRole, typingSpeed);
+            }
+
+            // Start typing animation
+            typeRole();
+        }
+
+        // Initialize typing animation when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTypingAnimation);
+        } else {
+            initTypingAnimation();
+        }
+    </script>
+
+    <!-- Footer with Tailwind CSS -->
+    <footer class="relative bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white overflow-hidden">
+        <!-- Wave Top Shape -->
+        <div class="w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="text-gray-100 dark:text-gray-900 w-full">
+                <path fill="currentColor" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        
+        <!-- Gradient Circles Background -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-gradient-to-r from-primary/20 to-transparent blur-3xl"></div>
+            <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] rounded-full bg-gradient-to-l from-secondary/20 to-transparent blur-3xl"></div>
+            <div class="absolute top-[40%] right-[20%] w-[300px] h-[300px] rounded-full bg-gradient-to-l from-accent/15 to-transparent blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 py-16 relative z-10">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
+                <!-- Developer Info Column -->
+                <div class="lg:col-span-4 flex flex-col space-y-6">
+                    <!-- Logo -->
+                    <div class="flex items-center mb-2">
+                        <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
+                            Utsav <span class="bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">Mishra</span>
+                        </h2>
+                        <div class="w-2 h-2 rounded-full bg-accent ml-2 animate-pulse"></div>
+                    </div>
+                    
+                    <!-- Bio -->
+                    <p class="text-gray-600 dark:text-gray-300 max-w-md text-base leading-relaxed">
+                        Full Stack Developer specializing in creating beautiful, functional, and user-friendly digital experiences that leave a lasting impression.
+                    </p>
+                    
+                    <!-- Contact Info -->
+                    <div class="space-y-4 mt-2">
+                        <div class="flex items-center space-x-3 text-gray-800 dark:text-white group hover:translate-x-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent/30 to-accent-dark/30 flex items-center justify-center group-hover:from-accent/50 group-hover:to-accent-dark/50 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-map-marker-alt text-accent"></i>
+                            </div>
+                            <span class="text-base">Antu, Uttar Pradesh, India</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 text-gray-800 dark:text-white group hover:translate-x-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent/30 to-accent-dark/30 flex items-center justify-center group-hover:from-accent/50 group-hover:to-accent-dark/50 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-envelope text-accent"></i>
+                            </div>
+                            <span class="text-base">utsavmishraa005@gmail.com</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 text-gray-800 dark:text-white group hover:translate-x-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent/30 to-accent-dark/30 flex items-center justify-center group-hover:from-accent/50 group-hover:to-accent-dark/50 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-phone-alt text-accent"></i>
+                            </div>
+                            <span class="text-base">+91 9721607720</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Links Columns -->
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+                        <!-- Quick Links -->
+                        <div class="bg-white/80 dark:bg-gray-800/30 p-6 rounded-xl shadow-xl backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-5 pb-2 border-b border-accent/30 relative">
+                                Quick Links
+                                <span class="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-accent to-accent-light rounded-full"></span>
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#home" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-home text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Home</span>
+                                    </a>
+                                </li>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#about" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-user text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">About</span>
+                                    </a>
+                                </li>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#skills" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-code text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Skills</span>
+                                    </a>
+                                </li>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#projects" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-project-diagram text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Projects</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- More Links -->
+                        <div class="bg-white/80 dark:bg-gray-800/30 p-6 rounded-xl shadow-xl backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-5 pb-2 border-b border-accent/30 relative">
+                                More Links
+                                <span class="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-accent to-accent-light rounded-full"></span>
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#certifications" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-certificate text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Certifications</span>
+                                    </a>
+                                </li>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#achievements" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-trophy text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Achievements</span>
+                                    </a>
+                                </li>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-envelope text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Contact</span>
+                                    </a>
+                                </li>
+                                <li class="transform transition-transform duration-300 hover:translate-x-2">
+                                    <a href="utsavm-resume.pdf" class="text-gray-700 dark:text-gray-200 hover:text-accent flex items-center group">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700/50 flex items-center justify-center mr-3 group-hover:bg-accent/20 transition-all duration-300">
+                                            <i class="fas fa-file-alt text-accent"></i>
+                                        </div>
+                                        <span class="font-medium">Resume</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Newsletter -->
+                        <div class="bg-white/80 dark:bg-gray-800/30 p-6 rounded-xl shadow-xl backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-5 pb-2 border-b border-accent/30 relative">
+                                Stay Connected
+                                <span class="absolute bottom-0 left-0 w-16 h-1 bg-gradient-to-r from-accent to-accent-light rounded-full"></span>
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-200 text-base mb-5">Subscribe to my newsletter for latest updates</p>
+                            
+                            <!-- Newsletter Form -->
+                            <form class="flex mb-6 overflow-hidden rounded-lg shadow-lg">
+                                <input 
+                                    type="email" 
+                                    placeholder="Your Email" 
+                                    class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border-0 focus:outline-none focus:ring-2 focus:ring-accent/50"
+                                    required
+                                />
+                                <button 
+                                    type="submit" 
+                                    class="px-4 bg-accent hover:bg-accent-dark transition-all duration-300 text-white"
+                                >
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                            
+                            <!-- Social Icons -->
+                            <div class="flex space-x-3">
+                                <a href="https://www.instagram.com/bhakt_of_mahakal9721" target="_blank" 
+                                   class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                                    <i class="fab fa-instagram text-gray-700 dark:text-white hover:text-white"></i>
+                                </a>
+                                <a href="https://www.github.com/bhaktofmahakal" target="_blank" 
+                                   class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                                    <i class="fab fa-github text-gray-700 dark:text-white hover:text-white"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/utsav-mishra1" target="_blank" 
+                                   class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                                    <i class="fab fa-linkedin text-gray-700 dark:text-white hover:text-white"></i>
+                                </a>
+                                <a href="#" target="_blank" 
+                                   class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center hover:bg-accent transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                                    <i class="fab fa-twitter text-gray-700 dark:text-white hover:text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="pt-10 mt-10 border-t border-gray-300/50 dark:border-gray-700/50 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-800 dark:text-white text-base mb-4 md:mb-0 font-medium">
+                    &copy; <span id="current-year">2024</span> <span class="text-accent">Utsav Mishra</span>. All rights reserved.
+                </div>
+                <div class="text-gray-800 dark:text-white text-base flex items-center bg-gray-200/50 dark:bg-gray-800/50 px-4 py-2 rounded-full shadow-lg">
+                    Made with 
+                    <i class="fas fa-heart text-accent mx-2 animate-pulse"></i>
+                    by <span class="text-accent font-medium ml-1">Utsav Mishra</span>
+                </div>
+            </div>
+            
+            <!-- Accent Line at Bottom -->
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-accent-light to-primary"></div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button with Tailwind -->
+    <a href="#home" class="fixed bottom-8 right-8 w-14 h-14 flex flex-col items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/30 opacity-0 invisible transform translate-y-5 scale-90 transition-all duration-300 z-50 group hover:translate-y-[-5px] hover:scale-105 hover:shadow-xl hover:shadow-primary/40 back-to-top">
+        <div class="transition-transform duration-300 group-hover:translate-y-[-2px]">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <span class="text-[10px] font-semibold uppercase tracking-wider mt-0.5 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">Top</span>
+    </a>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Back to Top Button functionality
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible', 'translate-y-5', 'scale-90');
+                backToTop.classList.add('opacity-100', 'visible', 'translate-y-0', 'scale-100');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible', 'translate-y-5', 'scale-90');
+                backToTop.classList.remove('opacity-100', 'visible', 'translate-y-0', 'scale-100');
+            }
+        });
     </script>
 </body>
 </html>
